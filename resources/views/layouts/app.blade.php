@@ -39,17 +39,31 @@
             border-radius: 0 3px 3px 0;
             background-color: #6CF600;
         }
+
+        .rotate-90 {
+            transform: rotate(90deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .collapsible-content.expanded {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
     </style>
 </head>
 
 <body class="text-black flex">
 
     <aside id="sidebar"
-        class="sidebar bg-[#292929] w-72 fixed top-0 left-0 bottom-0 z-50 flex flex-col justify-between p-6 transition-transform duration-300 md:translate-x-0 -translate-x-full">
+        class="sidebar bg-[#292929] md:w-64 fixed top-0 left-0 bottom-0 z-50 flex flex-col justify-between p-6 transition-transform duration-300 md:translate-x-0 -translate-x-full">
         <div class="flex flex-col h-full">
             <div class="mb-6 flex items-center space-x-3">
-                <img alt="Logo SMK Amaliah" class="w-11 h-11"
-                    src="{{ asset('assets/image/amaliah2.png') }}" />
+                <img alt="Logo SMK Amaliah" class="w-11 h-11" src="{{ asset('assets/logo/amaliah_white.png') }}" />
                 <div class="text-white text-xs leading-tight times">
                     <div>
                         <span class="font-bold">SMK</span> Amaliah 1 &amp; 2 CIAWI
@@ -60,37 +74,41 @@
 
             <div class="mb-6 relative">
                 <input
-                    class="w-full rounded-full bg-[#D9D9D9] text-xs text-black placeholder-black px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#6CF600] pl-10"
+                    class="w-full rounded-full bg-[#D9D9D9] text-xs text-black placeholder-gray-600 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#6CF600] pl-10"
                     placeholder="Search..." type="search" />
                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
             </div>
 
             <nav class="text-white text-sm space-y-1 flex-1 overflow-y-auto pr-2">
+                <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700" href="#">
                     <i class="fas fa-home w-5 text-center"></i>
                     <span>Home</span>
                 </a>
 
-                <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700"
-                    href="#">
-                    <i class="fas fa-pen-alt w-5 text-center"></i>
-                    <span>Editor</span>
-                </a>
-                
-                <div class="pl-8 space-y-1">
-                    <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Main Page</a>
-                    <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Discover Amaliah</a>
-                    <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Facilities</a>
-                    <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Education Preview</a>
-                    <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Major Competency</a>
-                    <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Discover News</a>
-                    <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Testimonials</a>
-                    <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Statistics</a>
-                    <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Industry Partners</a>
-                    <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Curator.io</a>
+                <div class="relative">
+                    <button id="editor-toggle"
+                        class="w-full text-left relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700 focus:outline-none">
+                        <i class="fas fa-pen-alt w-5 text-center"></i>
+                        <span class="flex-1">Editor</span>
+                        <i id="editor-arrow" class="fas fa-chevron-right text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div id="editor-submenu" class="pl-10 space-y-1 collapsible-content">
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Main Page</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Discover
+                            Amaliah</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Facilities</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Education
+                            Preview</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Major
+                            Competency</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Discover News</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Testimonials</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Industry
+                            Partners</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Curator.io</a>
+                    </div>
                 </div>
-            </nav>
-            
-            <div class="mt-auto pt-6 space-y-1">
+
                 <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700" href="#">
                     <i class="fas fa-comments w-5 text-center"></i>
                     <span>Feedback</span>
@@ -99,23 +117,23 @@
                     <i class="fas fa-cog w-5 text-center"></i>
                     <span>Settings</span>
                 </a>
-            </div>
-        </div>
+            </nav>
 
-        <div class="sidebar-footer space-y-3 pt-6">
-            <form action="{{ route('logout') }}" method="POST" class="w-full">
-                @csrf
-                <button type="submit"
+            <div class="sidebar-footer space-y-3 pt-6">
+                <form action="{{ route('logout') }}" method="POST" class="w-full">
+                    @csrf
+                    <button type="submit"
+                        class="w-full bg-[#6CF600] text-white text-sm font-semibold rounded-lg px-4 py-2.5 flex items-center justify-center space-x-2 hover:bg-[#5bd300] transition">
+                        <span>Log Out</span>
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </form>
+                <a href="{{ url('/') }}"
                     class="w-full bg-[#6CF600] text-white text-sm font-semibold rounded-lg px-4 py-2.5 flex items-center justify-center space-x-2 hover:bg-[#5bd300] transition">
-                    <span>Log Out</span>
-                    <i class="fas fa-sign-out-alt"></i>
-                </button>
-            </form>
-            <a href="{{ url('/') }}"
-                class="w-full bg-[#6CF600] text-white text-sm font-semibold rounded-lg px-4 py-2.5 flex items-center justify-center space-x-2 hover:bg-[#5bd300] transition">
-                <span>Go to Web</span>
-                <i class="fas fa-external-link-alt"></i>
-            </a>
+                    <span>Go to Web</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
         </div>
     </aside>
 
@@ -123,7 +141,7 @@
         <i class="fas fa-bars"></i>
     </button>
 
-    <main class="main-content flex-1 md:ml-72 p-6 w-full">
+    <main class="main-content flex-1 md:ml-64 p-6 w-full">
         @yield('content')
     </main>
 
@@ -132,6 +150,15 @@
         const toggleBtn = document.getElementById("toggleSidebar");
         toggleBtn.addEventListener("click", () => {
             sidebar.classList.toggle("-translate-x-full");
+        });
+
+        const editorToggle = document.getElementById("editor-toggle");
+        const editorSubmenu = document.getElementById("editor-submenu");
+        const editorArrow = document.getElementById("editor-arrow");
+
+        editorToggle.addEventListener("click", () => {
+            editorSubmenu.classList.toggle("expanded");
+            editorArrow.classList.toggle("rotate-90");
         });
     </script>
 </body>
