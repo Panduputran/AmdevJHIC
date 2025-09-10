@@ -80,31 +80,37 @@
             </div>
 
             <nav class="text-white text-sm space-y-1 flex-1 overflow-y-auto pr-2">
-                <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700" href="#">
+                {{-- Home --}}
+                <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700
+                    @if(request()->routeIs('dashboard')) sidebar-link-active @endif" href="#">
                     <i class="fas fa-home w-5 text-center"></i>
                     <span>Home</span>
                 </a>
 
+                {{-- Editor --}}
                 <div class="relative">
                     <button id="editor-toggle"
-                        class="w-full text-left relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700 focus:outline-none">
+                        class="w-full text-left relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700 focus:outline-none
+                        @if(request()->routeIs('admin.majors.index') || request()->routeIs('admin.news.index')) sidebar-link-active @endif">
                         <i class="fas fa-pen-alt w-5 text-center"></i>
                         <span class="flex-1">Editor</span>
                         <i id="editor-arrow" class="fas fa-chevron-right text-xs transition-transform duration-300"></i>
                     </button>
-                    <div id="editor-submenu" class="pl-10 space-y-1 collapsible-content">
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Main Page</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Discover
-                            Amaliah</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Facilities</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Education
-                            Preview</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Major
-                            Competency</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Discover News</a>
+                    <div id="editor-submenu" class="pl-10 space-y-1 collapsible-content
+                        @if(request()->routeIs('admin.majors.index') || request()->routeIs('admin.news.index')) expanded @endif">
+                        {{-- Sub-menu items --}}
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Main Image</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">History</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Facility</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Education Preview</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.majors.index')) sidebar-link-active @endif"
+                            href="{{ route('admin.majors.index') }}">
+                            Major
+                        </a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.news.index')) sidebar-link-active @endif"
+                            href="{{ route('admin.news.index') }}">News</a>
                         <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Testimonials</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Industry
-                            Partners</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Industry Partners</a>
                         <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Curator.io</a>
                     </div>
                 </div>
