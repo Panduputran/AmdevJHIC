@@ -39,17 +39,15 @@
                     <h1 class="text-xl font-bold">
                         Hallo,
                         <span class="text-green-custom">
-                            Username
+                            {{ Auth::user()->name }}
                         </span>
                     </h1>
                     <p class="text-sm font-normal text-gray-600">
-                        caption
+                        Lets Create Something <span class="text-green-custom">Usefull</span>
                     </p>
                 </div>
                 <div class="flex items-center space-x-2 text-gray-600">
-                    <span>
-                        16 Aug, 2025
-                    </span>
+                    <span id="current-date"></span>
                     <i class="fas fa-calendar-alt"></i>
                 </div>
             </header>
@@ -57,8 +55,7 @@
             <div class="mb-6">
                 <div class="w-full rounded-lg overflow-hidden border border-[#D9D9D9]">
                     <img alt="Panoramic aerial view of modern building complex with glass and greenery"
-                        class="w-full h-40 object-cover"
-                        src="https://storage.googleapis.com/a1aa/image/8037b038-7902-4e3b-1b46-9598966ebaf9.jpg" />
+                        class="w-full h-40 object-cover" src="{{ asset('assets/image/DroneView.jpg') }}" />
                 </div>
             </div>
 
@@ -70,7 +67,8 @@
                             <i class="fas fa-home fa-lg"></i>
                         </div>
                         <h2 class="font-semibold text-base">Main Page</h2>
-                        <p class="text-sm text-gray-600 leading-tight">Edit halaman utama website SMK dengan efisien</p>
+                        <p class="text-sm text-gray-600 leading-tight">Kelola tampilan dan konten utama yang dilihat
+                            pengunjung pertama kali.</p>
                         <span class="text-xs text-green-custom font-semibold flex items-center space-x-1">
                             <span>Kustomisasi</span>
                             <i class="fas fa-arrow-right text-[10px]"></i>
@@ -83,7 +81,8 @@
                             <i class="fas fa-globe-asia fa-lg"></i>
                         </div>
                         <h2 class="font-semibold text-base">Discover Amaliah</h2>
-                        <p class="text-sm text-gray-600 leading-tight">Edit halaman utama website SMK dengan efisien</p>
+                        <p class="text-sm text-gray-600 leading-tight">Atur dan perbarui informasi profil sekolah serta
+                            visi-misi.</p>
                         <span class="text-xs text-green-custom font-semibold flex items-center space-x-1">
                             <span>Kustomisasi</span>
                             <i class="fas fa-arrow-right text-[10px]"></i>
@@ -96,7 +95,8 @@
                             <i class="fas fa-quote-right fa-lg"></i>
                         </div>
                         <h2 class="font-semibold text-base">Testimonials</h2>
-                        <p class="text-sm text-gray-600 leading-tight">Edit halaman utama website SMK dengan efisien</p>
+                        <p class="text-sm text-gray-600 leading-tight">Kelola ulasan dan testimoni inspiratif dari siswa,
+                            orang tua, dan alumni.</p>
                         <span class="text-xs text-green-custom font-semibold flex items-center space-x-1">
                             <span>Kustomisasi</span>
                             <i class="fas fa-arrow-right text-[10px]"></i>
@@ -109,7 +109,8 @@
                             <i class="fas fa-building fa-lg"></i>
                         </div>
                         <h2 class="font-semibold text-base">Facilities</h2>
-                        <p class="text-sm text-gray-600 leading-tight">Edit halaman utama website SMK dengan efisien</p>
+                        <p class="text-sm text-gray-600 leading-tight">Perbarui informasi dan galeri foto fasilitas sekolah
+                            yang tersedia.</p>
                         <span class="text-xs text-green-custom font-semibold flex items-center space-x-1">
                             <span>Kustomisasi</span>
                             <i class="fas fa-arrow-right text-[10px]"></i>
@@ -122,7 +123,8 @@
                             <i class="fas fa-book fa-lg"></i>
                         </div>
                         <h2 class="font-semibold text-base">Education Preview</h2>
-                        <p class="text-sm text-gray-600 leading-tight">Edit halaman utama website SMK dengan efisien</p>
+                        <p class="text-sm text-gray-600 leading-tight">Tinjau dan sesuaikan pratinjau kurikulum dan program
+                            pendidikan.</p>
                         <span class="text-xs text-green-custom font-semibold flex items-center space-x-1">
                             <span>Kustomisasi</span>
                             <i class="fas fa-arrow-right text-[10px]"></i>
@@ -135,7 +137,8 @@
                             <i class="fas fa-chart-bar fa-lg"></i>
                         </div>
                         <h2 class="font-semibold text-base">Statistics</h2>
-                        <p class="text-sm text-gray-600 leading-tight">Edit halaman utama website SMK dengan efisien</p>
+                        <p class="text-sm text-gray-600 leading-tight">Lihat data dan statistik penting untuk memantau
+                            performa website.</p>
                         <span class="text-xs text-green-custom font-semibold flex items-center space-x-1">
                             <span>Kustomisasi</span>
                             <i class="fas fa-arrow-right text-[10px]"></i>
@@ -148,7 +151,8 @@
                             <i class="fas fa-star fa-lg"></i>
                         </div>
                         <h2 class="font-semibold text-base">Major Competency</h2>
-                        <p class="text-sm text-gray-600 leading-tight">Edit halaman utama website SMK dengan efisien</p>
+                        <p class="text-sm text-gray-600 leading-tight">Kelola informasi detail tentang jurusan dan
+                            kompetensi unggulan sekolah.</p>
                         <span class="text-xs text-green-custom font-semibold flex items-center space-x-1">
                             <span>Kustomisasi</span>
                             <i class="fas fa-arrow-right text-[10px]"></i>
@@ -161,7 +165,8 @@
                             <i class="fas fa-newspaper fa-lg"></i>
                         </div>
                         <h2 class="font-semibold text-base">Discover News</h2>
-                        <p class="text-sm text-gray-600 leading-tight">Edit halaman utama website SMK dengan efisien</p>
+                        <p class="text-sm text-gray-600 leading-tight">Buat, sunting, dan publikasikan berita atau artikel
+                            terbaru sekolah.</p>
                         <span class="text-xs text-green-custom font-semibold flex items-center space-x-1">
                             <span>Kustomisasi</span>
                             <i class="fas fa-arrow-right text-[10px]"></i>
@@ -174,19 +179,41 @@
                             <i class="fas fa-handshake fa-lg"></i>
                         </div>
                         <h2 class="font-semibold text-base">Industry Partners</h2>
-                        <p class="text-sm text-gray-600 leading-tight">Edit halaman utama website SMK dengan efisien</p>
+                        <p class="text-sm text-gray-600 leading-tight">Kelola dan tampilkan daftar mitra industri dan
+                            kolaborasi.</p>
                         <span class="text-xs text-green-custom font-semibold flex items-center space-x-1">
                             <span>Kustomisasi</span>
                             <i class="fas fa-arrow-right text-[10px]"></i>
                         </span>
                     </a>
-
                 </div>
             </main>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const dateSpan = document.getElementById('current-date');
+
+                function updateDate() {
+                    const now = new Date();
+                    const options = {
+                        timeZone: 'Asia/Jakarta',
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    };
+                    const formattedDate = new Intl.DateTimeFormat('id-ID', options).format(now);
+                    dateSpan.textContent = formattedDate;
+                }
+
+                updateDate();
+                // Optional: update date every minute to keep it current
+                setInterval(updateDate, 60000);
+            });
+        </script>
     </body>
 
     </html>
-
 
 @endsection
