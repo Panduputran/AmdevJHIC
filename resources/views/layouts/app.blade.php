@@ -81,7 +81,7 @@
             <nav class="text-white text-sm space-y-1 flex-1 overflow-y-auto pr-2">
                 {{-- Home --}}
                 <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700
-        @if(request()->routeIs('admin.dashboard')) sidebar-link-active @endif" href="{{ route('admin.dashboard') }}">
+                @if(request()->routeIs('admin.dashboard')) sidebar-link-active @endif" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-home w-5 text-center"></i>
                     <span>Home</span>
                 </a>
@@ -90,22 +90,22 @@
                 <div class="relative">
                     <button id="editor-toggle"
                         class="w-full text-left relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700 focus:outline-none
-            @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*'])) sidebar-link-active @endif">
+                        @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*', 'admin.facilities.*', 'admin.programs.*'])) sidebar-link-active @endif">
                         <i class="fas fa-pen-alt w-5 text-center"></i>
                         <span class="flex-1">Editor</span>
                         <i id="editor-arrow"
                             class="fas fa-chevron-right text-xs transition-transform duration-300
-                @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*'])) rotate-90 @endif">
+                            @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*', 'admin.facilities.*', 'admin.programs.*'])) rotate-90 @endif">
                         </i>
                     </button>
                     <div id="editor-submenu"
                         class="pl-10 space-y-1 collapsible-content
-            @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*'])) expanded @endif">
+                        @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*', 'admin.facilities.*', 'admin.programs.*'])) expanded @endif">
                         {{-- Sub-menu items --}}
                         <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Main Image</a>
                         <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">History</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Facility</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Curriculum</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.facilities.*')) sidebar-link-active @endif" href="{{ route('admin.facilities.index') }}">Facility</a>
+                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.programs.*')) sidebar-link-active @endif" href="{{ route('admin.programs.index') }}">Programs</a>
                         <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.majors.*')) sidebar-link-active @endif"
                             href="{{ route('admin.majors.index') }}">
                             Major

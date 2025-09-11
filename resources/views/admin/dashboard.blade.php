@@ -37,13 +37,13 @@
             <header class="flex justify-between items-center mb-6">
                 <div>
                     <h1 class="text-xl font-bold">
-                        Hallo,
+                        Welcome,
                         <span class="text-green-custom">
                             {{ Auth::user()->name }}
                         </span>
                     </h1>
                     <p class="text-sm font-normal text-gray-600">
-                        Lets Create Something <span class="text-green-custom">Usefull</span>
+                        Lets Customize Something <span class="text-green-custom">Here</span>
                     </p>
                 </div>
                 <div class="flex items-center space-x-2 text-gray-600">

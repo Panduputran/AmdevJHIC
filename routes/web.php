@@ -7,6 +7,9 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\PartnerController; // Mengimpor PartnerController
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\FacilityController; // Mengimpor FacilityController
+use App\Http\Controllers\SchoolProgramController;
+use App\Models\SchoolProgram;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,6 +43,13 @@ Route::middleware(['auth'])->group(function () {
         // Rute untuk Mitra Industri
         Route::resource('partners', PartnerController::class);
 
-         Route::resource('testimonials', TestimonialController::class); // Rute untuk Testimoni
+        // Rute untuk Testimoni
+        Route::resource('testimonials', TestimonialController::class); 
+
+        // Rute untuk Fasilitas
+        Route::resource('facilities', FacilityController::class);
+         
+        // Rute untuk Fasilitas 
+        Route::resource('programs', SchoolProgramController::class);
     });
 });

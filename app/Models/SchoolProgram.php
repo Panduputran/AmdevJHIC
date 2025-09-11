@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Facility extends Model
+class SchoolProgram extends Model
 {
     use HasFactory;
 
@@ -18,7 +18,6 @@ class Facility extends Model
         'name',
         'description',
         'image',
-        'type',
         'publisher',
     ];
 }
