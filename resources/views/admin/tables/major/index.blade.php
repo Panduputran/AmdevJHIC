@@ -44,6 +44,7 @@
                         <th class="py-3 px-6 text-left">Gambar</th>
                         <th class="py-3 px-6 text-left">Deskripsi</th>
                         <th class="py-3 px-6 text-left">Kepala Kompetensi</th>
+                        <th class="py-3 px-6 text-left">Foto Kepala Kompetensi</th>
                         <th class="py-3 px-6 text-left">Penerbit</th>
                         <th class="py-3 px-6 text-center">Aksi</th>
                     </tr>
@@ -53,12 +54,23 @@
                         <tr class="border-b border-gray-200 hover:bg-gray-100 transition-colors duration-200">
                             <td class="py-4 px-6 text-left font-medium">{{ $major->name }}</td>
                             <td class="py-4 px-6 text-left">
-                                <img src="{{ asset('storage/' . $major->image) }}" alt="{{ $major->name }}" class="w-16 h-16 object-cover rounded-md shadow-sm">
+                                @if($major->image)
+                                    <img src="{{ asset('storage/' . $major->image) }}" alt="{{ $major->name }}" class="w-16 h-16 object-cover rounded-md shadow-sm">
+                                @else
+                                    -
+                                @endif
                             </td>
                             <td class="py-4 px-6 text-left max-w-xs overflow-hidden truncate">
                                 <p class="line-clamp-3">{{ $major->description }}</p>
                             </td>
                             <td class="py-4 px-6 text-left">{{ $major->competency_head }}</td>
+                            <td class="py-4 px-6 text-left">
+                                @if($major->competency_head_photo)
+                                    <img src="{{ asset('storage/' . $major->competency_head_photo) }}" alt="Foto Kepala Kompetensi" class="w-16 h-16 object-cover rounded-md shadow-sm">
+                                @else
+                                    -
+                                @endif
+                            </td>
                             <td class="py-4 px-6 text-left">{{ $major->publisher }}</td>
                             <td class="py-4 px-6 text-center">
                                 <div class="flex items-center justify-center space-x-2">
@@ -80,7 +92,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="py-8 text-center text-gray-500">Belum ada jurusan yang ditambahkan.</td>
+                            <td colspan="7" class="py-8 text-center text-gray-500">Belum ada jurusan yang ditambahkan.</td>
                         </tr>
                     @endforelse
                 </tbody>

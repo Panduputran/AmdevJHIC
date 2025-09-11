@@ -50,17 +50,25 @@
             </div>
 
             <div class="mb-4">
-                <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Gambar</label>
+                <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Gambar Jurusan</label>
                 <input type="file" name="image" id="image" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('image') border-red-500 @enderror">
                 @error('image')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
             
-            <div class="mb-6">
+            <div class="mb-4">
                 <label for="competency_head" class="block text-sm font-medium text-gray-700 mb-1">Kepala Kompetensi</label>
                 <input type="text" name="competency_head" id="competency_head" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('competency_head') border-red-500 @enderror" value="{{ old('competency_head') }}">
                 @error('competency_head')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-6">
+                <label for="competency_head_photo" class="block text-sm font-medium text-gray-700 mb-1">Foto Kepala Kompetensi</label>
+                <input type="file" name="competency_head_photo" id="competency_head_photo" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('competency_head_photo') border-red-500 @enderror">
+                @error('competency_head_photo')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>

@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Testimonial extends Model
+class Partner extends Model
 {
     use HasFactory;
 
@@ -17,18 +16,12 @@ class Testimonial extends Model
      */
     protected $fillable = [
         'name',
-        'alumni_year',
-        'major_id',
         'description',
-        'photo',
+        'logo',
+        'sector',
+        'city',
+        'company_contact',
         'publisher',
+        'partnership_date',
     ];
-
-    /**
-     * Get the major that the testimonial belongs to.
-     */
-    public function major(): BelongsTo
-    {
-        return $this->belongsTo(Major::class);
-    }
 }

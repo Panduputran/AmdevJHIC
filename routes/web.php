@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\MajorController; // Mengimpor MajorController
+use App\Http\Controllers\MajorController;
+use App\Http\Controllers\PartnerController; // Mengimpor PartnerController
+use App\Http\Controllers\TestimonialController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,5 +36,10 @@ Route::middleware(['auth'])->group(function () {
 
         // Rute untuk Jurusan
         Route::resource('majors', MajorController::class);
+
+        // Rute untuk Mitra Industri
+        Route::resource('partners', PartnerController::class);
+
+         Route::resource('testimonials', TestimonialController::class); // Rute untuk Testimoni
     });
 });

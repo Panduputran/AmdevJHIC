@@ -38,8 +38,19 @@
             <h2 class="text-lg font-semibold text-[#292929]">Deskripsi</h2>
             <p>{{ $major->description }}</p>
 
+            <div class="mt-6">
+                <h2 class="text-lg font-semibold text-[#292929]">Kepala Kompetensi</h2>
+                <div class="flex items-center space-x-4 mt-2">
+                    @if($major->competency_head_photo)
+                        <img src="{{ asset('storage/' . $major->competency_head_photo) }}" alt="Foto Kepala Kompetensi" class="w-20 h-20 object-cover rounded-full shadow-sm">
+                    @endif
+                    <div class="font-medium">
+                        <p class="text-gray-700">{{ $major->competency_head }}</p>
+                    </div>
+                </div>
+            </div>
+
             <div class="mt-4 text-sm font-medium text-gray-500">
-                <p>Kepala Kompetensi: <span class="text-gray-700">{{ $major->competency_head }}</span></p>
                 <p>Dipublikasikan oleh: <span class="text-gray-700">{{ $major->publisher }}</span></p>
             </div>
         </div>

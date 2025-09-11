@@ -36,6 +36,7 @@ class MajorController extends Controller
             'description' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'competency_head' => 'required|string|max:255',
+            'competency_head_photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'name.required' => 'Nama jurusan harus diisi.',
             'description.required' => 'Deskripsi harus diisi.',
@@ -44,6 +45,10 @@ class MajorController extends Controller
             'image.mimes' => 'Format gambar yang diizinkan adalah jpeg, png, atau jpg.',
             'image.max' => 'Ukuran gambar tidak boleh lebih dari 2MB.',
             'competency_head.required' => 'Nama kepala kompetensi harus diisi.',
+            'competency_head_photo.required' => 'Foto kepala kompetensi harus diunggah.',
+            'competency_head_photo.image' => 'File harus berupa gambar.',
+            'competency_head_photo.mimes' => 'Format gambar yang diizinkan adalah jpeg, png, atau jpg.',
+            'competency_head_photo.max' => 'Ukuran gambar tidak boleh lebih dari 2MB.',
         ]);
 
         $validatedData['publisher'] = Auth::user()->name;
@@ -51,6 +56,11 @@ class MajorController extends Controller
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('major_images', 'public');
             $validatedData['image'] = $imagePath;
+        }
+
+        if ($request->hasFile('competency_head_photo')) {
+            $photoPath = $request->file('competency_head_photo')->store('head_photos', 'public');
+            $validatedData['competency_head_photo'] = $photoPath;
         }
 
         Major::create($validatedData);
@@ -84,6 +94,7 @@ class MajorController extends Controller
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'competency_head' => 'required|string|max:255',
+            'competency_head_photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'name.required' => 'Nama jurusan harus diisi.',
             'description.required' => 'Deskripsi harus diisi.',
@@ -91,6 +102,9 @@ class MajorController extends Controller
             'image.mimes' => 'Format gambar yang diizinkan adalah jpeg, png, atau jpg.',
             'image.max' => 'Ukuran gambar tidak boleh lebih dari 2MB.',
             'competency_head.required' => 'Nama kepala kompetensi harus diisi.',
+            'competency_head_photo.image' => 'File harus berupa gambar.',
+            'competency_head_photo.mimes' => 'Format gambar yang diizinkan adalah jpeg, png, atau jpg.',
+            'competency_head_photo.max' => 'Ukuran gambar tidak boleh lebih dari 2MB.',
         ]);
 
         $validatedData['publisher'] = Auth::user()->name;
@@ -101,6 +115,14 @@ class MajorController extends Controller
             }
             $imagePath = $request->file('image')->store('major_images', 'public');
             $validatedData['image'] = $imagePath;
+        }
+
+        if ($request->hasFile('competency_head_photo')) {
+            if ($major->competency_head_photo) {
+                Storage::disk('public')->delete($major->competency_head_photo);
+            }
+            $photoPath = $request->file('competency_head_photo')->store('head_photos', 'public');
+            $validatedData['competency_head_photo'] = $photoPath;
         }
 
         $major->update($validatedData);
@@ -115,6 +137,9 @@ class MajorController extends Controller
     {
         if ($major->image) {
             Storage::disk('public')->delete($major->image);
+        }
+        if ($major->competency_head_photo) {
+            Storage::disk('public')->delete($major->competency_head_photo);
         }
 
         $major->delete();
