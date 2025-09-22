@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>@yield('title', 'Admin Dashboard')</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Times+New+Roman&display=swap"
         rel="stylesheet" />
     {{-- Bootstrap CSS & JS --}}
@@ -56,13 +56,23 @@
         }
 
         /* Sembunyikan scrollbar untuk WebKit (Chrome, Safari) */
+        .sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Sembunyikan scrollbar untuk Firefox */
+        .sidebar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Sembunyikan scrollbar untuk WebKit (Chrome, Safari) */
         ::-webkit-scrollbar {
             width: 0.5em;
             /* Atau atur lebar menjadi 0 jika Anda ingin menyembunyikannya sepenuhnya */
             display: none;
             /* Opsional: untuk memastikan scrollbar tidak muncul sama sekali */
         }
-
     </style>
 </head>
 
@@ -81,16 +91,17 @@
                 </div>
             </div>
 
+            <!-- Search -->
             <div class="mb-6 relative">
-                <input
+                <input id="sidebar-search"
                     class="w-full rounded-full bg-[#D9D9D9] text-xs text-black placeholder-gray-600 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#6CF600] pl-10"
-                    placeholder="Search..." type="search" />
+                    placeholder="Search menu..." type="search" />
                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
             </div>
             <nav class="text-white text-sm space-y-1 flex-1 overflow-y-auto pr-2">
                 {{-- Home --}}
                 <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700
-                @if(request()->routeIs('admin.dashboard')) sidebar-link-active @endif"
+                    @if(request()->routeIs('admin.dashboard')) sidebar-link-active @endif"
                     href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-home w-5 text-center"></i>
                     <span>Home</span>
@@ -100,48 +111,72 @@
                 <div class="relative">
                     <button id="editor-toggle"
                         class="w-full text-left relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700 focus:outline-none
-                        @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*', 'admin.facilities.*', 'admin.programs.*', 'admin.teachers.*'])) sidebar-link-active @endif">
+                            @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*', 'admin.facilities.*', 'admin.programs.*', 'admin.teachers.*', 'admin.achievements.*', 'admin.extracurriculars.*'])) sidebar-link-active @endif">
                         <i class="fas fa-pen-alt w-5 text-center"></i>
                         <span class="flex-1">Editor</span>
                         <i id="editor-arrow"
                             class="fas fa-chevron-right text-xs transition-transform duration-300
-                            @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*', 'admin.facilities.*', 'admin.programs.*', 'admin.teachers.*'])) rotate-90 @endif">
+                                @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*', 'admin.facilities.*', 'admin.programs.*', 'admin.teachers.*', 'admin.achievements.*', 'admin.extracurriculars.*'])) rotate-90 @endif">
                         </i>
                     </button>
                     <div id="editor-submenu"
                         class="pl-10 space-y-1 collapsible-content
-                        @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*', 'admin.facilities.*', 'admin.programs.*', 'admin.teachers.*'])) expanded @endif">
+                            @if(request()->routeIs(['admin.majors.*', 'admin.news.*', 'admin.testimonials.*', 'admin.partners.*', 'admin.facilities.*', 'admin.programs.*', 'admin.teachers.*', 'admin.achievements.*', 'admin.extracurriculars.*'])) expanded @endif">
                         {{-- Sub-menu items --}}
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">Landing Page</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700" href="#">History</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.facilities.*')) sidebar-link-active @endif"
+                        <a id="submenu-mainimage" class="block p-2 text-xs rounded-md transition hover:bg-gray-700"
+                            href="#">Main Image</a>
+                        <a id="submenu-history" class="block p-2 text-xs rounded-md transition hover:bg-gray-700"
+                            href="#">History</a>
+                        <a id="submenu-facility"
+                            class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.facilities.*')) sidebar-link-active @endif"
                             href="{{ route('admin.facilities.index') }}">Facility</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.programs.*')) sidebar-link-active @endif"
+                        <a id="submenu-programs"
+                            class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.programs.*')) sidebar-link-active @endif"
                             href="{{ route('admin.programs.index') }}">Programs</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.majors.*')) sidebar-link-active @endif"
+                        <a id="submenu-major"
+                            class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.majors.*')) sidebar-link-active @endif"
                             href="{{ route('admin.majors.index') }}">
                             Major
                         </a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.news.*')) sidebar-link-active @endif"
+                        <a id="submenu-news"
+                            class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.news.*')) sidebar-link-active @endif"
                             href="{{ route('admin.news.index') }}">News</a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.testimonials.*')) sidebar-link-active @endif"
+                        <a id="submenu-testimonials"
+                            class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.testimonials.*')) sidebar-link-active @endif"
                             href="{{ route('admin.testimonials.index') }}">
                             Testimonials
                         </a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.partners.*')) sidebar-link-active @endif"
+                        <a id="submenu-partners"
+                            class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.partners.*')) sidebar-link-active @endif"
                             href="{{ route('admin.partners.index') }}">
                             Partners
                         </a>
-                        <a class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.teachers.*')) sidebar-link-active @endif"
+                        <a id="submenu-teachers"
+                            class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.teachers.*')) sidebar-link-active @endif"
                             href="{{ route('admin.teachers.index') }}">
                             Teachers
                         </a>
+                        <a id="submenu-achievement"
+                            class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.achievements.*')) sidebar-link-active @endif"
+                            href="{{ route('admin.achievements.index') }}">
+                            Achievement
+                        </a>
+                        <a id="submenu-extracurricular"
+                            class="block p-2 text-xs rounded-md transition hover:bg-gray-700 @if(request()->routeIs('admin.extracurriculars.*')) sidebar-link-active @endif"
+                            href="{{ route('admin.extracurriculars.index') }}">
+                            Extracurricular
+                        </a>
+
                     </div>
                 </div>
+                <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700" href="#">
+                    <i class="fa-solid fa-circle-user w-5 text-center"></i>
+                    <span>Users Management</span>
+                </a>
 
                 <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700" href="#">
-                    <i class="fas fa-cog w-5 text-center"></i>
-                    <span>Curator.io</span>
+                    <i class="fas fa-bullhorn w-5 text-center"></i>
+                    <span>Notification</span>
                 </a>
 
                 <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700" href="#">
@@ -180,22 +215,44 @@
         @yield('content')
     </main>
 
+
+    <!-- Script -->
+
     <script>
+        // Toggle Sidebar
         const sidebar = document.getElementById("sidebar");
         const toggleBtn = document.getElementById("toggleSidebar");
         toggleBtn.addEventListener("click", () => {
             sidebar.classList.toggle("-translate-x-full");
         });
 
+        // Editor Submenu
         const editorToggle = document.getElementById("editor-toggle");
         const editorSubmenu = document.getElementById("editor-submenu");
         const editorArrow = document.getElementById("editor-arrow");
-
         editorToggle.addEventListener("click", () => {
             editorSubmenu.classList.toggle("expanded");
             editorArrow.classList.toggle("rotate-90");
         });
+
+        // Search functionality
+        const searchInput = document.getElementById("sidebar-search");
+        const sidebarLinks = document.querySelectorAll("#sidebar-nav .sidebar-link");
+
+        searchInput.addEventListener("keyup", () => {
+            let filter = searchInput.value.toLowerCase();
+            sidebarLinks.forEach(link => {
+                let text = link.textContent.toLowerCase();
+                let id = link.id.toLowerCase();
+                if (text.includes(filter) || id.includes(filter)) {
+                    link.style.display = "";
+                } else {
+                    link.style.display = "none";
+                }
+            });
+        });
     </script>
+
 </body>
 
-</html>
+</html> 

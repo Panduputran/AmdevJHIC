@@ -9,7 +9,9 @@ use App\Http\Controllers\PartnerController; // Mengimpor PartnerController
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\FacilityController; // Mengimpor FacilityController
 use App\Http\Controllers\SchoolProgramController;
-use App\Http\Controllers\TeacherController; // Mengimpor TeacherControlleruse App\Http\Controllers\TeacherController; // Mengimpor TeacherController
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\AchievementController; // Mengimpor AchievementController
+use App\Http\Controllers\ExtracurricularController; // Mengimpor ExtracurricularController
 use App\Models\SchoolProgram;
 
 Route::get('/', function () {
@@ -53,6 +55,14 @@ Route::middleware(['auth'])->group(function () {
         // Rute untuk Fasilitas 
         Route::resource('programs', SchoolProgramController::class);
 
-        Route::resource('teachers', TeacherController::class); // Rute untuk Guru
+        // Rute untuk Guru
+        Route::resource('teachers', TeacherController::class);
+
+        // Rute untuk Prestasi
+        Route::resource('achievements', AchievementController::class);
+
+        Route::resource('extracurriculars', ExtracurricularController::class); // Rute untuk Ekstrakurikuler
+
+
     });
 });
