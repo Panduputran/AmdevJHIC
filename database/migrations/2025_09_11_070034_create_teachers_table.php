@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teacher', function (Blueprint $table) {
+        Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('photo')->nullable();
+            $table->string('position');
+            $table->string('subject');
+            $table->enum('school', ['Amaliah 1', 'Amaliah 2']);
+            $table->enum('category', ['Produktif', 'Normatif', 'Adaptif', 'Umum']);
             $table->timestamps();
         });
     }
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('teacher');
+        Schema::dropIfExists('teachers');
     }
 };

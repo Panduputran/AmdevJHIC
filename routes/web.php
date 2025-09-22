@@ -9,6 +9,7 @@ use App\Http\Controllers\PartnerController; // Mengimpor PartnerController
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\FacilityController; // Mengimpor FacilityController
 use App\Http\Controllers\SchoolProgramController;
+use App\Http\Controllers\TeacherController; // Mengimpor TeacherControlleruse App\Http\Controllers\TeacherController; // Mengimpor TeacherController
 use App\Models\SchoolProgram;
 
 Route::get('/', function () {
@@ -44,12 +45,14 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('partners', PartnerController::class);
 
         // Rute untuk Testimoni
-        Route::resource('testimonials', TestimonialController::class); 
+        Route::resource('testimonials', TestimonialController::class);
 
         // Rute untuk Fasilitas
         Route::resource('facilities', FacilityController::class);
-         
+
         // Rute untuk Fasilitas 
         Route::resource('programs', SchoolProgramController::class);
+
+        Route::resource('teachers', TeacherController::class); // Rute untuk Guru
     });
 });
