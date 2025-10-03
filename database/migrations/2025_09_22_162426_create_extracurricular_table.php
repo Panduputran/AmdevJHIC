@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->enum('type', ['Wajib', 'Pilihan']);
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('contact');
             $table->string('coach'); // Penambahan kolom coach
             $table->string('publisher');

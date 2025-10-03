@@ -9,69 +9,58 @@
     {{-- Tailwind CSS --}}
     <script src="https://cdn.tailwindcss.com"></script>
 
-    {{-- Font Awesome (Versi 6.7.2) --}}
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css" />
+    {{-- Alpine.js (Untuk Interaktivitas) --}}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    {{-- Font Awesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
     {{-- Google Fonts --}}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Times+New+Roman&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Times+New+Roman&display=swap"
         rel="stylesheet" />
 
     <style>
-        /* Poppins default */
         body {
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
         }
 
-        /* Times New Roman untuk teks khusus */
         .font-times {
             font-family: 'Times New Roman', serif;
         }
 
-        /* Nav Link Umum */
         .nav-link {
-            @apply relative text-white px-4 py-7 transition-colors duration-300 flex items-center;
+            @apply relative text-white px-3 py-2 transition-colors duration-300 flex items-center text-[15px];
         }
 
-        /* Garis bawah animasi */
         .nav-link::after {
             content: '';
-            @apply absolute left-0 bottom-0 w-0 h-[3px] bg-white transition-all duration-300 ease-in-out;
+            @apply absolute left-0 -bottom-1 w-0 h-[3px] bg-white transition-all duration-300 ease-in-out;
         }
 
         .nav-link:hover {
-            color: #59E300;
+            color: #EEFFD9;
         }
 
         .nav-link:hover::after {
             @apply w-full;
-            background-color: #59E300;
+            background-color: #EEFFD9;
         }
 
-        /* Active */
         .nav-active {
-            @apply text-white font-semibold;
+            @apply font-semibold;
         }
 
         .nav-active::after {
             @apply w-full bg-white;
         }
 
-        /* Dropdown */
-        .dropdown-item {
-            @apply transition-colors duration-200;
-        }
-
-        .dropdown-item:hover {
-            color: #59E300;
-        }
-
-        /* Animasi dropdown */
         .dropdown-content {
             opacity: 0;
             transform: translateY(-10px);
             visibility: hidden;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
         }
 
         .group:hover .dropdown-content {
@@ -79,165 +68,196 @@
             transform: translateY(0);
             visibility: visible;
         }
+
+        [x-cloak] {
+            display: none !important;
+        }
+
+        /* Penyesuaian di sini: Style untuk link aktif di top bar (garis bawah hijau) */
+        .top-bar-active {
+            @apply text-[#63cd00] font-semibold;
+            border-bottom: 2px solid #63cd00;
+            padding-bottom: 4px;
+        }
     </style>
 </head>
 
 <body class="bg-gray-50">
 
-    {{-- NAVBAR --}}
-    <header class="sticky top-0 z-50 shadow items-center">
+    <header x-data="{ mobileMenuOpen: false }" class="sticky top-0 z-50 bg-white shadow-md">
         {{-- TOP BAR --}}
-        <div class="bg-white border-b border-gray-200">
-            <div class="max-w-8xl mx-auto flex items-center px-4 py-2 ml-10">
+        <div class="border-b border-gray-200">
+            <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
 
-                {{-- 1. Logo & Nama (KIRI) --}}
-                <div class="flex items-center    space-x-5 mr-8">
-                    <div
-                        class="h-12 w-12  flex items-center justify-center font-bold text-sm text-gray-700 rounded-full">
-                        <img src="{{ asset('assets/logo/amaliah.png') }}" alt="">
-                    </div>
+                {{-- Grup 1: Logo & Nama (Kiri) --}}
+                <div class="flex-shrink-0 flex items-center space-x-4">
+                    <img src="{{ asset('assets/logo/amaliah.png') }}" alt="Logo SMK Amaliah" class="h-12 w-12">
                     <div class="flex flex-col">
-                        <span class="text-gray-900 font-times"><b><i>SMK <span class="text-bold">AMALIAH 1&2 </span>CIAWI</i></b></span>
-                        <span class="text-sm font-times text-gray-600"><i>Tauhid Is Our Fundament</i></span>
+                        <span class="text-gray-900 font-times text-base font-bold whitespace-nowrap"><i>SMK AMALIAH 1&2
+                                CIAWI</i></span>
+                        <span class="text-xs font-times text-gray-600"><i>Tauhid Is Our Fundament</i></span>
                     </div>
                 </div>
 
-                {{-- 2. Search (Desktop) - Mengikuti Logo di KIRI --}}
-                <div class="hidden md:flex flex-none justify-start ml-7">
-                    <div class="relative w-full max-w-sm">
-                        <input type="text" placeholder="Find About SMK AMALIAH"
-                            class="w-full rounded-full border border-gray-300 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6EE700] bg-gray-100">
-                        <i
-                            class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i>
-                    </div>
-                </div>
+                <div class="hidden lg:flex items-center space-x-10">
 
-                {{-- 3. Right Links (Desktop - Didorong ke KANAN menggunakan ml-auto) --}}
-                {{-- Perubahan utama: space-x-12 untuk jarak yang lebih besar antar tautan --}}
-                <div class="hidden md:flex items-center text-sm ml-16">
+                    {{-- Grup 2: Search Bar (Style Baru) --}}
+                    <a href="#"
+                        class="flex items-center space-x-3 bg-gray-100 rounded-full px-6 py-2.5 text-sm text-gray-500 hover:bg-gray-200 transition">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Find About SMK AMALIAH</span>
+                    </a>
 
-                    {{-- Tautan Cepat: Meningkatkan jarak antar tautan menjadi space-x-12 --}}
-                    <div class="flex items-center space-x-20">
-                        <a href="#"
-                            class="text-gray-700 hover:text-[#63cd00] transition-colors duration-300 border-b-2 border-transparent hover:border-[#63cd00] py-2">Info
+                    {{-- Grup 3: Tautan Cepat --}}
+                    <div class="flex items-center space-x-8 text-sm text-gray-700">
+                        <a href="#" class="hover:text-[#63cd00] transition-colors whitespace-nowrap ">Info
                             PPDB</a>
-                        <a href="#" class="text-gray-700 hover:text-[#6EE700] transition-colors duration-300">Info
-                            BKK</a>
-                        <a href="#"
-                            class="text-gray-700 hover:text-[#6EE700] transition-colors duration-300">E-Learning</a>
-                        <a href="#" class="text-gray-700 hover:text-[#6EE700] transition-colors duration-300">Teaching
+                        <a href="#" class="hover:text-[#63cd00] transition-colors whitespace-nowrap">Info BKK</a>
+                        <a href="#" class="hover:text-[#63cd00] transition-colors whitespace-nowrap">E-Learning</a>
+                        <a href="#" class="hover:text-[#63cd00] transition-colors whitespace-nowrap">Teaching
                             Factory</a>
                     </div>
 
-                    {{-- Tombol Contact Us: Tetap di ujung kanan --}}
+                    {{-- Grup 4: Tombol Contact Us (Style Baru) --}}
                     <a href="#"
-                        class="bg-[#63cd00] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#59E300] transition-colors duration-300 ml-20">
-                        Contact Us
-                    </a>
+                        class="bg-[#282829] text-white px-6 py-2.5 rounded-full font-semibold hover:bg-opacity-80 transition-colors whitespace-nowrap text-sm">Contact
+                        Us</a>
                 </div>
 
-                {{-- Mobile BTN --}}
-                <div class="md:hidden ml-auto">
-                    <button id="mobile-menu-button" class="text-2xl text-gray-700 p-2">
-                        <i class="fa-solid fa-bars"></i>
+                {{-- Tombol Hamburger (Mobile) --}}
+                <div class="lg:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-2xl text-gray-700 p-2">
+                        <i class="fa-solid fa-bars" x-show="!mobileMenuOpen"></i>
+                        <i class="fa-solid fa-times" x-show="mobileMenuOpen" x-cloak></i>
                     </button>
                 </div>
             </div>
         </div>
 
-
-
-        {{-- MAIN NAV (GREEN) --}}
-        <nav class="bg-[#63cd00] hidden md:block text-white">
-            <div class="max-w-7xl mx-auto flex items-center justify-center space-x-20 px-4 h-10">
-                <a href="/" class="nav-link {{ Request::is('/') ? 'nav-active' : '' }} hover:text-gray-200">Home</a>
-
-                {{-- Dropdown Discover Amaliah --}}
+        {{-- MAIN NAV (HIJAU - Desktop) --}}
+        <nav class="bg-[#63cd00] hidden lg:block text-white">
+            <div class="max-w-screen-xl mx-auto flex items-center justify-center gap-x-14 px-4 h-12">
+                <a href="/" class="nav-link {{ Request::is('/') ? 'nav-active' : '' }}">Home</a>
                 <div class="relative group">
-                    <button class="nav-link hover:text-gray-200">
-                        Discover Amaliah <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-                    <div class="absolute dropdown-content bg-white shadow-lg mt-0 rounded-md py-1 w-48 z-10">
-                        <a href="#" class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100">Sejarah</a>
-                        <a href="#" class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100">Visi Misi</a>
+                    <button class="nav-link">Discover Amaliah <i
+                            class="fa-solid fa-chevron-down ml-1.5 text-xs"></i></button>
+                    <div class="absolute dropdown-content bg-white shadow-lg mt-2 rounded-md py-1 w-48 z-10">
+                        <a href="#"
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Sejarah</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Visi
+                            Misi</a>
                     </div>
                 </div>
-
-                {{-- Dropdown Major Competency --}}
                 <div class="relative group">
-                    <button class="nav-link hover:text-gray-200">
-                        Major Competency <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-                    <div class="absolute dropdown-content bg-white shadow-lg mt-0 rounded-md py-1 w-48 z-10">
-                        <a href="#" class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100">SMK Amaliah 1</a>
-                        <a href="#" class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100">SMK Amaliah 2</a>
+                    <button class="nav-link">Major Competency <i
+                            class="fa-solid fa-chevron-down ml-1.5 text-xs"></i></button>
+                    <div class="absolute dropdown-content bg-white shadow-lg mt-2 rounded-md py-1 w-48 z-10">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">SMK
+                            Amaliah 1</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">SMK
+                            Amaliah 2</a>
                     </div>
                 </div>
-
-                {{-- Dropdown Education Preview --}}
                 <div class="relative group">
-                    <button class="nav-link hover:text-gray-200">
-                        Education Preview <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-                    <div class="absolute dropdown-content bg-white shadow-lg mt-0 rounded-md py-1 w-48 z-10">
-                        <a href="#" class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100">Gallery</a>
-                        <a href="#" class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100">Prestasi</a>
+                    <button class="nav-link">Education Preview <i
+                            class="fa-solid fa-chevron-down ml-1.5 text-xs"></i></button>
+                    <div class="absolute dropdown-content bg-white shadow-lg mt-2 rounded-md py-1 w-48 z-10">
+                        <a href="#"
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Gallery</a>
+                        <a href="#"
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Prestasi</a>
                     </div>
                 </div>
-
-                {{-- Dropdown Facilitation --}}
                 <div class="relative group">
-                    <button class="nav-link hover:text-gray-200">
-                        Facilitation <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-                    <div class="absolute dropdown-content bg-white shadow-lg mt-0 rounded-md py-1 w-48 z-10">
-                        <a href="#" class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100">Lab
+                    <button class="nav-link">Facilitation <i
+                            class="fa-solid fa-chevron-down ml-1.5 text-xs"></i></button>
+                    <div class="absolute dropdown-content bg-white shadow-lg mt-2 rounded-md py-1 w-48 z-10">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Lab
                             Komputer</a>
                         <a href="#"
-                            class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100">Perpustakaan</a>
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Perpustakaan</a>
                     </div>
                 </div>
-
-                <a href="#" class="nav-link hover:text-gray-200">Bursa Kerja Khusus</a>
+                <a href="#" class="nav-link">Bursa Kerja Khusus</a>
             </div>
         </nav>
 
-
-
         {{-- MOBILE MENU --}}
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
-            <a href="/"
-                class="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[#59E300] transition-colors duration-200">Home</a>
-            <a href="#"
-                class="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[#59E300] transition-colors duration-200">Discover
-                Amaliah</a>
-            <a href="#"
-                class="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[#59E300] transition-colors duration-200">Major
-                Competency</a>
-            <a href="#"
-                class="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[#59E300] transition-colors duration-200">Education
-                Preview</a>
-            <a href="#"
-                class="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[#59E300] transition-colors duration-200">Facilitation</a>
-            <a href="#"
-                class="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[#59E300] transition-colors duration-200">Bursa
-                Kerja Khusus</a>
-            <a href="#"
-                class="block px-4 py-3 text-[#50B70E] font-semibold hover:bg-gray-100 hover:text-[#59E300] transition-colors duration-200">Contact
-                Us</a>
+        <div x-show="mobileMenuOpen" x-cloak @click.away="mobileMenuOpen = false"
+            x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-4"
+            x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-4"
+            class="lg:hidden bg-white w-full absolute shadow-xl">
+            <div class="flex flex-col space-y-1 p-4 text-sm max-h-[calc(100vh-80px)] overflow-y-auto">
+                <a href="/"
+                    class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Home</a>
+                <div x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full flex justify-between items-center px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]"><span>Discover
+                            Amaliah</span><i class="fa-solid fa-chevron-down text-xs transition-transform"
+                            :class="{ 'rotate-180': open }"></i></button>
+                    <div x-show="open" x-transition class="pl-6 pt-2 pb-1 space-y-1"><a href="#"
+                            class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Sejarah</a><a
+                            href="#"
+                            class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Visi
+                            Misi</a></div>
+                </div>
+                <div x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full flex justify-between items-center px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]"><span>Major
+                            Competency</span><i class="fa-solid fa-chevron-down text-xs transition-transform"
+                            :class="{ 'rotate-180': open }"></i></button>
+                    <div x-show="open" x-transition class="pl-6 pt-2 pb-1 space-y-1"><a href="#"
+                            class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">SMK
+                            Amaliah 1</a><a href="#"
+                            class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">SMK
+                            Amaliah 2</a></div>
+                </div>
+                <div x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full flex justify-between items-center px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]"><span>Education
+                            Preview</span><i class="fa-solid fa-chevron-down text-xs transition-transform"
+                            :class="{ 'rotate-180': open }"></i></button>
+                    <div x-show="open" x-transition class="pl-6 pt-2 pb-1 space-y-1"><a href="#"
+                            class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Gallery</a><a
+                            href="#"
+                            class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Prestasi</a>
+                    </div>
+                </div>
+                <div x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full flex justify-between items-center px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]"><span>Facilitation</span><i
+                            class="fa-solid fa-chevron-down text-xs transition-transform"
+                            :class="{ 'rotate-180': open }"></i></button>
+                    <div x-show="open" x-transition class="pl-6 pt-2 pb-1 space-y-1"><a href="#"
+                            class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Lab
+                            Komputer</a><a href="#"
+                            class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Perpustakaan</a>
+                    </div>
+                </div>
+                <a href="#"
+                    class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Bursa Kerja
+                    Khusus</a>
+                <hr class="my-2">
+                <a href="#" class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Info
+                    PPDB</a>
+                <a href="#" class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Info
+                    BKK</a>
+                <a href="#"
+                    class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">E-Learning</a>
+                <a href="#"
+                    class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Teaching
+                    Factory</a>
+                <a href="#" class="block px-4 py-3 text-[#50B70E] font-semibold rounded-md hover:bg-gray-100">Contact
+                    Us</a>
+            </div>
         </div>
     </header>
 
-    {{-- CONTENT --}}
     <main>
         @yield('content')
     </main>
 
-    <script>
-        document.getElementById('mobile-menu-button').addEventListener('click', function () {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-    </script>
 </body>
 
 </html>

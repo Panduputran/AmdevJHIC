@@ -16,7 +16,7 @@ return new class extends Migration
             $table->enum('category', ['Individual', 'Institutional']);
             $table->string('title');
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('level');
             $table->string('winner');
             $table->date('date');

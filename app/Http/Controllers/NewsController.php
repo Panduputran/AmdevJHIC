@@ -17,6 +17,8 @@ class NewsController extends Controller
         $news = News::latest()->get();
         // Mengubah path view dari 'news.index' menjadi 'admin.tables.news.index'
         return view("admin.tables.news.index", compact("news"));
+
+        
     }
 
     /**

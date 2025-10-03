@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('alumni_year');
             $table->foreignId('major_id')->constrained('majors')->onDelete('cascade');
             $table->text('description');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->string('publisher');
             $table->timestamps();
         });

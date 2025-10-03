@@ -12,11 +12,14 @@ use App\Http\Controllers\SchoolProgramController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AchievementController; // Mengimpor AchievementController
 use App\Http\Controllers\ExtracurricularController; // Mengimpor ExtracurricularController
+use App\Http\Controllers\HomeController;
 use App\Models\SchoolProgram;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', [HomeController::class, 'index']);
 
 // Authentication Routes
 // Tambahkan rute untuk menampilkan form login dan beri nama 'login'
@@ -60,9 +63,7 @@ Route::middleware(['auth'])->group(function () {
 
         // Rute untuk Prestasi
         Route::resource('achievements', AchievementController::class);
-
-        Route::resource('extracurriculars', ExtracurricularController::class); // Rute untuk Ekstrakurikuler
-
-
+        // Rute untuk Ekstrakurikuler
+        Route::resource('extracurriculars', ExtracurricularController::class);
     });
 });

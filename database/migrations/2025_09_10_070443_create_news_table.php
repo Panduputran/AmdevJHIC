@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image'); // Path gambar
+            $table->string('image')->nullable();
+
             $table->text('description');
             $table->string('publisher'); // Nama penerbit
             $table->date('date_published');

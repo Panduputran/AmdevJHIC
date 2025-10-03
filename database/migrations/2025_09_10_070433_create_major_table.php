@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();;
             $table->string('competency_head');
             $table->string('competency_head_photo')->nullable(); // Kolom tidak wajib diisi
             $table->string('publisher');
