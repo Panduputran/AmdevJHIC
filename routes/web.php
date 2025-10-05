@@ -12,6 +12,7 @@ use App\Http\Controllers\SchoolProgramController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AchievementController; // Mengimpor AchievementController
 use App\Http\Controllers\ExtracurricularController; // Mengimpor ExtracurricularController
+use App\Http\Controllers\ImageController; // Mengimpor ImageController
 use App\Http\Controllers\HomeController;
 use App\Models\SchoolProgram;
 
@@ -63,7 +64,11 @@ Route::middleware(['auth'])->group(function () {
 
         // Rute untuk Prestasi
         Route::resource('achievements', AchievementController::class);
+
         // Rute untuk Ekstrakurikuler
         Route::resource('extracurriculars', ExtracurricularController::class);
+
+        // Rute untuk Galeri Media (menggunakan nama singular 'image')
+        Route::resource('image', ImageController::class)->except(['create']); // Biasanya create tidak diperlukan karena form upload ada di index
     });
 });

@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('image', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();      // Judul Gambar (Baru)
+            $table->text('description')->nullable(); // Deskripsi Gambar (Baru)
+            $table->string('filename');             // Nama asli file
+            $table->string('path');                 // Jalur penyimpanan di storage
+            $table->string('mime_type')->nullable(); // Tipe file
+            $table->unsignedBigInteger('size')->nullable(); // Ukuran file
             $table->timestamps();
         });
     }

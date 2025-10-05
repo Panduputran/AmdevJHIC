@@ -16,6 +16,8 @@
         {{-- Link Font Awesome & Google Font (Poppins) agar Font termuat --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
 
     <style>
@@ -23,61 +25,68 @@
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), calc(100% - 4rem) 100%, 0 100%);
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
     <body class="font-['Poppins'] bg-gray-100">
 
         @php
             $amaliahGreen = '#63cd00';
             $amaliahDark = '#282829';
-            // Menambahkan warna biru untuk divider
             $amaliahBlue = '#E0E7FF';
-
-
-
-            // Data untuk kartu jurusan
-            $jurusan = [
-                [
-                    'title' => 'PPLG',
-                    'desc' => '...',
-                    'img' => asset('assets/image/DroneView.jpg') // <--- TAMBAHKAN DI SINI
-                ],
-                [
-                    'title' => 'AN',
-                    'desc' => '...',
-                    'img' => asset('assets/image/DroneView.jpg') // <--- TAMBAHKAN DI SINI
-                ],
-                [
-                    'title' => 'TJKT',
-                    'desc' => '...',
-                    'img' => asset('assets/image/DroneView.jpg') // <--- TAMBAHKAN DI SINI
-                ],
-                [
-                    'title' => 'LPS',
-                    'desc' => '...',
-                    'img' => asset('assets/image/DroneView.jpg') // <--- TAMBAHKAN DI SINI
-                ],
-            ];
-
         @endphp
 
         <main style="margin-top: 10px;">
-            <section class="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-4 items-center justify-center">
+            @php
+                // Cek apakah variabel $mainImages ada dan tidak kosong
+                $hasImages = isset($mainImages) && $mainImages->isNotEmpty();
+            @endphp
 
-                <div
-                    class="hero-shape relative flex items-center justify-center p-10 lg:p-12 bg-green rounded-tl-3xl rounded-tr-xl rounded-br-xl h-[550px] overflow-hidden center">
-                    {{-- Gaya gambar disesuaikan --}}
-                    <div class="absolute inset-0 bg-gray-400 -z-10">
-                        <img style=" width: 100%; height: auto;" src="{{ asset('assets/image/DroneView.jpg') }}" alt="">
+            <section class="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+
+                @if($hasImages)
+                    <div x-data="{ activeSlide: 1, totalSlides: {{ $mainImages->count() }} }"
+                        x-init="setInterval(() => { activeSlide = activeSlide % totalSlides + 1 }, 5000)">
+
+                        <style>
+                            .hero-clip-path {
+                                clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), calc(100% - 4rem) 100%, 0 100%);
+                            }
+                        </style>
+
+                        <div class="relative h-[550px] overflow-hidden hero-clip-path rounded-3xl">
+
+                            @foreach($mainImages as $image)
+                                <div x-show="activeSlide === {{ $loop->iteration }}"
+                                    x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="opacity-0"
+                                    x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-1000"
+                                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                    class="absolute inset-0">
+
+                                    {{-- Menggunakan Storage::url() untuk mendapatkan URL publik dari file --}}
+                                    <img src="{{ Storage::url($image->path) }}" alt="{{ $image->description ?? $image->filename }}"
+                                        class="w-full h-full object-cover">
+                                </div>
+                            @endforeach
+
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div>
+                        <style>
+                            .hero-clip-path {
+                                clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), calc(100% - 4rem) 100%, 0 100%);
+                            }
+                        </style>
+                        <div class="relative h-[550px] overflow-hidden hero-clip-path rounded-3xl bg-black">
+                            {{-- Layar hitam sebagai fallback --}}
+                        </div>
+                    </div>
+                @endif
 
-
-                <div class="absolute top-1/2 left-4 md:left-10 transform -translate-y-1/2 z-10 mt-36 ml-4">
-
+                <div class="absolute bottom-12 left-8 md:left-12 z-10">
                     <div class="bg-white p-4 md:p-6 max-w-xs w-full rounded-lg shadow-xl">
-                        {{-- 4. Perubahan: Ukuran font judul diperkecil sedikit --}}
                         <h1 class="text-base font-normal text-gray-800 leading-snug">
-                            Menuju Karir Impian
+                            Menuju Karir Impian Bersama
                             <br><span class="text-lg md:text-xl font-semibold">SMK AMALIAH 1&2 CIAWI</span>
                         </h1>
                         <p class="text-xs mt-2 mb-4 text-gray-500">
@@ -91,17 +100,12 @@
                         </div>
                     </div>
                 </div>
-
             </section>
-
 
             <section class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-16">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
                     @php
-                        // Definisikan warna utama agar mudah diubah
-                        $amaliahGreen = '#63cd00';
-
                         // Data untuk setiap kartu fitur
                         $fitur = [
                             [
@@ -165,7 +169,8 @@
                 </h2>
                 <div class="flex items-center justify-center gap-x-2 mx-auto mt-4">
                     <div class="w-20 h-1.5 rounded-full" style="background-color: {{ $amaliahGreen }};"></div>
-                    <div class="w-5 h-1.5 rounded-full" style="background-color: {{ $amaliahGreen }};"></div>
+                    <div class="w-4 h-1.5 rounded-full" style="background-color: {{ $amaliahGreen }};"></div>
+                    <div class="w-4 h-1.5 rounded-full" style="background-color: {{ $amaliahGreen }};"></div>
                 </div>
             </section>
 
@@ -204,13 +209,49 @@
                         </div>
                     </div>
 
-                    {{-- Kolom Kanan: Grid Gambar Placeholder (Tidak diubah) --}}
+                    {{-- Kolom Kanan: Grid Gambar Dinamis dari Database --}}
                     <div class="grid grid-cols-3 grid-rows-3 gap-4 h-96">
-                        <div class="bg-gray-200 rounded-lg row-span-2 animate-pulse"></div>
-                        <div class="bg-gray-200 rounded-lg col-span-2 row-span-2 animate-pulse"></div>
-                        <div class="bg-gray-200 rounded-lg animate-pulse"></div>
-                        <div class="bg-gray-200 rounded-lg animate-pulse"></div>
-                        <div class="bg-gray-200 rounded-lg animate-pulse"></div>
+
+                        {{-- Gambar 1 (Slot Paling Kiri, Tinggi) --}}
+                        @if(isset($gridImages[0]))
+                            <img src="{{ Storage::url($gridImages[0]->path) }}" alt="Grid Image 1"
+                                class="w-full h-full object-cover rounded-lg row-span-2">
+                        @else
+                            <div class="bg-gray-200 rounded-lg row-span-2"></div>
+                        @endif
+
+                        {{-- Gambar 2 (Slot Kanan Atas, Besar) --}}
+                        @if(isset($gridImages[1]))
+                            <img src="{{ Storage::url($gridImages[1]->path) }}" alt="Grid Image 2"
+                                class="w-full h-full object-cover rounded-lg col-span-2 row-span-2">
+                        @else
+                            <div class="bg-gray-200 rounded-lg col-span-2 row-span-2"></div>
+                        @endif
+
+                        {{-- Gambar 3 (Slot Kiri Bawah) --}}
+                        @if(isset($gridImages[2]))
+                            <img src="{{ Storage::url($gridImages[2]->path) }}" alt="Grid Image 3"
+                                class="w-full h-full object-cover rounded-lg">
+                        @else
+                            <div class="bg-gray-200 rounded-lg"></div>
+                        @endif
+
+                        {{-- Gambar 4 (Slot Tengah Bawah) --}}
+                        @if(isset($gridImages[3]))
+                            <img src="{{ Storage::url($gridImages[3]->path) }}" alt="Grid Image 4"
+                                class="w-full h-full object-cover rounded-lg">
+                        @else
+                            <div class="bg-gray-200 rounded-lg"></div>
+                        @endif
+
+                        {{-- Gambar 5 (Slot Kanan Bawah) --}}
+                        @if(isset($gridImages[4]))
+                            <img src="{{ Storage::url($gridImages[4]->path) }}" alt="Grid Image 5"
+                                class="w-full h-full object-cover rounded-lg">
+                        @else
+                            <div class="bg-gray-200 rounded-lg"></div>
+                        @endif
+
                     </div>
                 </div>
             </section>
@@ -338,7 +379,6 @@
             </section>
 
 
-
             {{-- CSS Tambahan untuk menyembunyikan scrollbar --}}
             <style>
                 .scrollbar-hide::-webkit-scrollbar {
@@ -353,15 +393,15 @@
 
             <section class="py-16 sm:py-24" style="background-color: {{ $amaliahDark }};">
                 <div x-data="{
-                                                    scrollSlider(direction) {
-                                                        const slider = this.$refs.slider;
-                                                        const scrollAmount = slider.querySelector('.slider-item').offsetWidth + 32; // Lebar kartu + gap
-                                                        slider.scrollBy({
-                                                            left: direction === 'next' ? scrollAmount : -scrollAmount,
-                                                            behavior: 'smooth'
-                                                        });
-                                                    }
-                                                }" class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                                                        scrollSlider(direction) {
+                                                            const slider = this.$refs.slider;
+                                                            const scrollAmount = slider.querySelector('.slider-item').offsetWidth + 32; // Lebar kartu + gap
+                                                            slider.scrollBy({
+                                                                left: direction === 'next' ? scrollAmount : -scrollAmount,
+                                                                behavior: 'smooth'
+                                                            });
+                                                        }
+                                                    }" class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
                     {{-- Dekorasi Titik --}}
                     <div class="absolute top-8 left-8 md:left-12 flex items-center space-x-2">
@@ -382,14 +422,31 @@
 
                         {{-- KOLOM 1: KONTEN STATIS (TIDAK IKUT SCROLL) --}}
                         <div class="lg:col-span-1 hidden lg:flex flex-col justify-between">
-                            {{-- Placeholder Gambar Statis --}}
+                            {{-- Gambar Grid Jurusan Dinamis --}}
                             <div class="flex flex-col space-y-6">
-                                <div class="bg-gray-700 h-48 w-full rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-image text-4xl text-gray-500"></i>
-                                </div>
-                                <div class="bg-gray-700 h-48 w-full rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-image text-4xl text-gray-500"></i>
-                                </div>
+                                {{-- Gambar 1 --}}
+                                @if (isset($majorGridImages[0]) && $majorGridImages[0]->path)
+                                    <img src="{{ asset('storage/' . $majorGridImages[0]->path) }}"
+                                        alt="{{ $majorGridImages[0]->description ?? 'Gambar Grid Jurusan 1' }}"
+                                        class="h-48 w-full rounded-xl object-cover">
+                                @else
+                                    {{-- Fallback jika gambar tidak ada --}}
+                                    <div class="bg-gray-700 h-48 w-full rounded-xl flex items-center justify-center">
+                                        <i class="fas fa-image text-4xl text-gray-500"></i>
+                                    </div>
+                                @endif
+
+                                {{-- Gambar 2 --}}
+                                @if (isset($majorGridImages[1]) && $majorGridImages[1]->path)
+                                    <img src="{{ asset('storage/' . $majorGridImages[1]->path) }}"
+                                        alt="{{ $majorGridImages[1]->description ?? 'Gambar Grid Jurusan 2' }}"
+                                        class="h-48 w-full rounded-xl object-cover">
+                                @else
+                                    {{-- Fallback jika gambar tidak ada --}}
+                                    <div class="bg-gray-700 h-48 w-full rounded-xl flex items-center justify-center">
+                                        <i class="fas fa-image text-4xl text-gray-500"></i>
+                                    </div>
+                                @endif
                             </div>
                             {{-- Tombol Navigasi Statis --}}
                             <div class="mt-6 flex items-center space-x-4">
@@ -408,14 +465,26 @@
                         <div x-ref="slider"
                             class="lg:col-span-3 flex space-x-8 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide pb-4 -mx-4 px-4">
 
-                            {{-- Loop untuk Kartu Jurusan --}}
-                            @foreach ($jurusan as $item)
+                            {{-- Loop dinamis untuk Kartu Jurusan dari database --}}
+                            @foreach ($majors as $major)
                                 <div class="flex-shrink-0 w-80 snap-start flex flex-col slider-item">
-                                    {{-- Menampilkan Gambar Jurusan --}}
-                                    <img src="{{ $item['img'] }}" alt="Gambar Jurusan {{ $item['title'] }}"
-                                        class="h-48 w-full rounded-lg object-cover mb-4">
-                                    <h3 class="text-xl font-bold text-white">{{ $item['title'] }}</h3>
-                                    <p class="text-sm text-gray-400 mt-2 flex-grow">{{ $item['desc'] }}</p>
+
+                                    {{-- Menampilkan Gambar Jurusan dengan fallback --}}
+                                    @if ($major->image)
+                                        <img src="{{ asset('storage/' . $major->image) }}" alt="Gambar Jurusan {{ $major->name }}"
+                                            class="h-48 w-full rounded-lg object-cover mb-4">
+                                    @else
+                                        {{-- Placeholder jika tidak ada gambar --}}
+                                        <div
+                                            class="h-48 w-full rounded-lg object-cover mb-4 bg-gray-700 flex items-center justify-center">
+                                            <i class="fas fa-image text-4xl text-gray-500"></i>
+                                        </div>
+                                    @endif
+
+                                    {{-- Menggunakan properti objek, bukan array --}}
+                                    <h3 class="text-xl font-bold text-white">{{ $major->name }}</h3>
+                                    <p class="text-sm text-gray-400 mt-2 flex-grow">{{ $major->description }}</p>
+
                                     <a href="#" class="inline-flex items-center group mt-4">
                                         <span class="text-sm font-semibold text-white mr-3">Selengkapnya</span>
                                         <div class="bg-gray-200 rounded-full p-2 group-hover:bg-gray-300 transition-colors">
@@ -441,7 +510,6 @@
                     </div>
                 </div>
             </section>
-
 
 
             <section class="bg-gray-50 py-16 sm:py-24">
@@ -510,6 +578,413 @@
                     </div>
                 </div>
             </section>
+
+            <section class="py-16 sm:py-24" style="background-color: {{ $amaliahDark }};">
+                {{-- Container Utama --}}
+                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+                    {{-- Dekorasi Titik --}}
+                    <div class="absolute top-8 left-8 md:left-12 flex items-center space-x-2">
+                        <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+                        <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                    </div>
+
+                    {{-- Header Section --}}
+                    <div class="text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Fasilitas</h2>
+                        <p class="mt-2 text-gray-400">Stay in the know with insights from industry experts.</p>
+                        <div class="w-24 h-px bg-gray-600 mx-auto mt-4"></div>
+                    </div>
+
+                    {{-- Galeri Gambar Mozaik Dinamis --}}
+                    <div class="mt-12 w-full h-[30rem] md:h-[32rem] grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4">
+
+                        {{-- Gambar 1 (Tinggi di Kiri) --}}
+                        <div class="col-span-1 row-span-2 rounded-xl overflow-hidden">
+                            @if (isset($facilities[0]) && $facilities[0]->image)
+                                <img src="{{ asset('storage/' . $facilities[0]->image) }}" alt="{{ $facilities[0]->name }}"
+                                    class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            @else
+                                {{-- Placeholder jika gambar tidak ada --}}
+                                <div class="w-full h-full bg-black"></div>
+                            @endif
+                        </div>
+
+                        {{-- Gambar 2 (Tengah Atas) --}}
+                        <div class="col-span-1 row-span-1 rounded-xl overflow-hidden">
+                            @if (isset($facilities[1]) && $facilities[1]->image)
+                                <img src="{{ asset('storage/' . $facilities[1]->image) }}" alt="{{ $facilities[1]->name }}"
+                                    class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            @else
+                                <div class="w-full h-full bg-black"></div>
+                            @endif
+                        </div>
+
+                        {{-- Gambar 3 (Kanan Atas) --}}
+                        <div class="col-span-1 md:col-span-2 row-span-1 rounded-xl overflow-hidden">
+                            @if (isset($facilities[2]) && $facilities[2]->image)
+                                <img src="{{ asset('storage/' . $facilities[2]->image) }}" alt="{{ $facilities[2]->name }}"
+                                    class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            @else
+                                <div class="w-full h-full bg-black"></div>
+                            @endif
+                        </div>
+
+                        {{-- Gambar 4 (Tengah Bawah) --}}
+                        <div class="col-span-1 row-span-1 rounded-xl overflow-hidden">
+                            @if (isset($facilities[3]) && $facilities[3]->image)
+                                <img src="{{ asset('storage/' . $facilities[3]->image) }}" alt="{{ $facilities[3]->name }}"
+                                    class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            @else
+                                <div class="w-full h-full bg-black"></div>
+                            @endif
+                        </div>
+
+                        {{-- Gambar 5 (Kanan Bawah) --}}
+                        <div class="col-span-1 md:col-span-2 row-span-1 rounded-xl overflow-hidden">
+                            @if (isset($facilities[4]) && $facilities[4]->image)
+                                <img src="{{ asset('storage/' . $facilities[4]->image) }}" alt="{{ $facilities[4]->name }}"
+                                    class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            @else
+                                <div class="w-full h-full bg-black"></div>
+                            @endif
+                        </div>
+                    </div>
+
+                    {{-- Tombol Selengkapnya --}}
+                    <div class="text-right mt-6">
+                        <a href="#" class="inline-flex items-center group">
+                            <span class="text-sm font-semibold text-white mr-3">Selengkapnya</span>
+                            <div class="bg-gray-200 rounded-full p-2 group-hover:bg-gray-300 transition-colors">
+                                <i class="fas fa-arrow-right text-gray-800 text-sm"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+
+
+
+            {{-- CSS Tambahan untuk menyembunyikan scrollbar --}}
+            <style>
+                .scrollbar-hide::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .scrollbar-hide {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+            </style>
+
+            <section class="bg-gray-50 py-16 sm:py-24">
+                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                    {{-- Header Section --}}
+                    <div class="text-center">
+                        {{-- ... Kode header tetap sama ... --}}
+                        <h2 class="text-3xl md:text-4xl font-bold" style="color: {{ $amaliahDark }};">Testimoni</h2>
+                        <div class="flex items-center justify-center gap-x-2 mx-auto mt-4">
+                            <div class="w-20 h-1.5 rounded-full" style="background-color: {{ $amaliahGreen }};"></div>
+                            <div class="w-4 h-1.5 rounded-full" style="background-color: {{ $amaliahGreen }};"></div>
+                            <div class="w-4 h-1.5 rounded-full" style="background-color: {{ $amaliahGreen }};"></div>
+                        </div>
+                    </div>
+
+                    {{-- Slider Testimoni (Alpine.js + Tailwind CSS) --}}
+                    <div x-data="{
+                                                                                                                                                    slider: null,
+                                                                                                                                                    init() {
+                                                                                                                                                        this.slider = this.$refs.sliderContainer;
+                                                                                                                                                    },
+                                                                                                                                                    scroll(direction) {
+                                                                                                                                                        // Geser sejauh 80% dari lebar area yang terlihat
+                                                                                                                                                        let scrollAmount = this.slider.offsetWidth * 0.8;
+                                                                                                                                                        this.slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+                                                                                                                                                    }
+                                                                                                                                                }"
+                        class="mt-12 relative">
+                        {{-- Tombol Panah Kiri --}}
+                        <button @click="scroll(-1)"
+                            class="absolute top-1/2 -left-2 md:-left-8 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-10 hover:bg-opacity-80 transition"
+                            style="background-color: {{ $amaliahDark }};">
+                            <i class="fas fa-chevron-left text-white"></i>
+                        </button>
+                        {{-- Container yang bisa di-scroll --}}
+                        <div x-ref="sliderContainer"
+                            class="flex space-x-8 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide py-4">
+
+                            @forelse ($testimonials as $testimonial)
+                                {{-- Setiap Kartu Testimoni --}}
+                                <div class="flex-shrink-0 w-full sm:w-[48%] snap-start">
+                                    <div
+                                        class="bg-white border border-gray-200 rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-8 h-full">
+                                        {{-- Kolom Teks --}}
+                                        <div class="flex-1 text-center sm:text-left">
+                                            <p class="text-gray-700 leading-relaxed">"{{ $testimonial->description }}"</p>
+                                            <p class="mt-4 text-gray-800 font-semibold italic">-{{ $testimonial->name }}</p>
+                                            <div class="mt-6 flex flex-col sm:flex-row justify-between items-center text-sm">
+                                                <span
+                                                    class="text-gray-400">{{ $testimonial->created_at->format('Y-m-d') }}</span>
+                                                <span class="font-semibold mt-2 sm:mt-0" style="color: {{ $amaliahGreen }};">
+                                                    Alumni Jurusan {{ $testimonial->major->name ?? 'N/A' }}
+                                                    {{ $testimonial->alumni_year }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        {{-- Kolom Gambar --}}
+                                        <div class="flex-shrink-0 order-first sm:order-last">
+                                            <img src="{{ asset('storage/' . $testimonial->photo) }}"
+                                                alt="Foto {{ $testimonial->name }}"
+                                                class="w-32 h-32 rounded-full object-cover shadow-md">
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="w-full text-center py-12">
+                                    <p class="text-gray-500">Belum ada testimoni untuk ditampilkan.</p>
+                                </div>
+                            @endforelse
+                        </div>
+
+                        {{-- Tombol Panah Kanan --}}
+                        <button @click="scroll(1)"
+                            class="absolute top-1/2 -right-2 md:-right-8 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-10 hover:bg-opacity-80 transition"
+                            style="background-color: {{ $amaliahDark }};">
+                            <i class="fas fa-chevron-right text-white"></i>
+                        </button>
+                    </div>
+
+                    {{-- Tombol "Baca Semua" --}}
+                    <div class="text-center mt-12">
+                        <a href="#"
+                            class="inline-block bg-white border border-gray-300 rounded-xl px-6 py-3 text-sm font-semibold text-gray-800 shadow-sm hover:shadow-lg hover:border-gray-400 transition-all duration-300">
+                            Baca Testimoni Alumni SMK Amaliah
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+
+            @php
+                // Definisikan warna utama
+                $amaliahGreen = '#63cd00';
+                $amaliahDark = '#282829';
+            @endphp
+
+            <section class="bg-white py-16 sm:py-24">
+                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                    {{-- Header Section --}}
+                    <div class="text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold" style="color: {{ $amaliahDark }};">
+                            Our Latest Instagram Post
+                        </h2>
+                        <div class="flex items-center justify-center gap-x-2 mx-auto mt-4">
+                            <div class="w-20 h-1 rounded-full" style="background-color: {{ $amaliahDark }};"></div>
+                            <div class="w-8 h-1 rounded-full" style="background-color: {{ $amaliahDark }};"></div>
+                            <div class="w-4 h-1 rounded-full" style="background-color: {{ $amaliahDark }};"></div>
+                        </div>
+                    </div>
+
+                    {{-- Konten Utama (Layout Dua Kolom) --}}
+                    <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+
+                        {{-- Kolom Kiri: Statis --}}
+                        <div class="lg:col-span-1">
+                            {{-- Placeholder untuk Post Utama --}}
+                            <div class="bg-gray-200 aspect-square w-full rounded-2xl flex items-center justify-center">
+                                <i class="fas fa-image text-5xl text-gray-400"></i>
+                            </div>
+                            <div class="mt-6 flex items-start gap-4">
+                                <i class="fab fa-instagram text-4xl" style="color: {{ $amaliahDark }};"></i>
+                                <div>
+                                    <p class="text-gray-600 leading-relaxed">
+                                        Read our latest news, and know about smk amaliah. Read our latest news, and know
+                                        about smk amaliah.
+                                    </p>
+                                    <a href="#"
+                                        class="inline-flex items-center mt-4 text-blue-600 font-semibold hover:underline">
+                                        <span>Buka Instagram</span>
+                                        <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Kolom Kanan: Untuk Widget Curator.io --}}
+                        <div class="lg:col-span-2">
+                            {{--
+                            KOTAK UNTUK WIDGET CURATOR.IO ANDA
+                            - Ganti div ini dengan kode embed dari Curator.io.
+                            - Jika kode gagal dimuat, div ini akan tampil sebagai kotak hitam sesuai permintaan.
+                            --}}
+                            <div id="curator-feed-default-layout"
+                                class="bg-black w-full min-h-[600px] rounded-2xl flex items-center justify-center">
+                                <p class="text-gray-500 text-center">Menunggu koneksi dari Curator.io...</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            @php
+                // Definisikan warna utama
+                $amaliahGreen = '#63cd00';
+                $amaliahDark = '#282829';
+
+                // Definisikan informasi kontak
+                $alamat = 'Jl. Raya Jl. Tol Jagorawi No.1, Ciawi, Kec. Ciawi, Kabupaten Bogor, Jawa Barat 16720';
+                $email = 'example@email.com';
+                $phone = '123-456-7890';
+            @endphp
+
+            <section class="bg-gray-50 py-16 sm:py-24">
+                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                    {{-- Tombol Virtual Tour di Atas --}}
+                    <div class="text-center mb-10">
+                        <a href="#"
+                            class="inline-flex items-center bg-white border border-gray-300 rounded-full px-8 py-4 text-base font-semibold shadow-md hover:shadow-lg hover:border-gray-400 transition-all duration-300 group">
+                            <span class="text-gray-800">Mau Lihat SMK Amaliah?</span>
+                            <span class="ml-2 font-bold" style="color: {{ $amaliahGreen }};">Masuk Ke Virtual Tour!</span>
+                            <div
+                                class="ml-4 bg-white rounded-full p-2 flex items-center justify-center border border-gray-300 group-hover:border-gray-400 transition-all">
+                                <i class="fas fa-chevron-right text-sm" style="color: {{ $amaliahGreen }};"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                    {{-- Container Utama untuk Peta dan Info --}}
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+
+                        {{-- KODE IFRAME GOOGLE MAPS --}}
+                        {{-- Pastikan Anda mengganti src="..." dengan kode embed Anda --}}
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.945187355167!2d106.8462900750414!3d-6.653716393341009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c8eec16c788f%3A0x4680dbde73e8b763!2sSMK%20Amaliah%201%20dan%202%20Ciawi!5e0!3m2!1sid!2sid!4v1759652507072!5m2!1sid!2sid"
+                            width="1280" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        {{-- KARTU INFORMASI DI ATAS PETA --}}
+                        <div class="absolute bottom-10 left-10 right-10 bg-white rounded-2xl shadow-xl p-8">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                {{-- Alamat --}}
+                                <div>
+                                    <h4 class="text-sm font-bold text-gray-400 tracking-wider uppercase">Alamat</h4>
+                                    <p class="mt-2 text-gray-800 leading-relaxed">{{ $alamat }}</p>
+                                </div>
+                                {{-- Email & Phone --}}
+                                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                                    <div>
+                                        <h4 class="text-sm font-bold text-gray-400 tracking-wider uppercase">Email</h4>
+                                        <a href="mailto:{{ $email }}"
+                                            class="mt-2 text-gray-800 hover:text-green-600 transition-colors">{{ $email }}</a>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-gray-400 tracking-wider uppercase">Phone</h4>
+                                        <a href="tel:{{ $phone }}"
+                                            class="mt-2 text-gray-800 hover:text-green-600 transition-colors">{{ $phone }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+            <footer style="background-color: {{ $amaliahDark }};">
+                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+                    {{-- Konten Utama Footer (Multi-kolom) --}}
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+                        {{-- Kolom 1: Logo, Deskripsi, dan Sosial Media --}}
+                        <div class="text-white">
+                            {{-- Ganti dengan logo Anda --}}
+                            <img src="https://placehold.co/150x50/FFFFFF/282829?text=Logo+Sekolah" alt="Logo SMK Amaliah"
+                                class="h-10 mb-4">
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                SMK Amaliah 1 & 2 Ciawi berkomitmen untuk mencetak lulusan yang kompeten, berakhlak mulia,
+                                dan siap bersaing di dunia industri.
+                            </p>
+                            <div class="flex space-x-4 mt-6">
+                                <a href="#"
+                                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-red-600 hover:opacity-80 transition">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-pink-600 hover:opacity-80 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-blue-600 hover:opacity-80 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black hover:opacity-80 transition">
+                                    <i class="fab fa-tiktok"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        {{-- Kolom 2: Link Navigasi Cepat --}}
+                        <div>
+                            <h4 class="font-bold text-white tracking-wider uppercase">Jelajahi</h4>
+                            <ul class="mt-4 space-y-3 text-sm">
+                                <li><a href="#" class="text-gray-400 hover:text-white transition">Beranda</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white transition">Tentang Kami</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white transition">Berita</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white transition">Jurusan</a></li>
+                            </ul>
+                        </div>
+
+                        {{-- Kolom 3: Link Informasi --}}
+                        <div>
+                            <h4 class="font-bold text-white tracking-wider uppercase">Informasi</h4>
+                            <ul class="mt-4 space-y-3 text-sm">
+                                <li><a href="#" class="text-gray-400 hover:text-white transition">Info PPDB</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white transition">Fasilitas</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white transition">Virtual Tour</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white transition">Kontak</a></li>
+                            </ul>
+                        </div>
+
+                        {{-- Kolom 4: Informasi Kontak --}}
+                        <div>
+                            <h4 class="font-bold text-white tracking-wider uppercase">Hubungi Kami</h4>
+                            <div class="mt-4 space-y-4 text-sm">
+                                <div class="flex items-start text-gray-400">
+                                    <i class="fas fa-map-marker-alt w-5 mt-1"></i>
+                                    <span>{{ $alamat }}</span>
+                                </div>
+                                <div class="flex items-center text-gray-400">
+                                    <i class="fas fa-envelope w-5"></i>
+                                    <a href="mailto:{{ $email }}" class="hover:text-white transition">{{ $email }}</a>
+                                </div>
+                                <div class="flex items-center text-gray-400">
+                                    <i class="fas fa-phone-alt w-5"></i>
+                                    <a href="tel:{{ $phone }}" class="hover:text-white transition">{{ $phone }}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                {{-- Bagian Copyright di Bawah --}}
+                <div class="bg-black bg-opacity-20 py-4">
+                    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <p class="text-center text-xs text-gray-500">
+                            &copy; {{ date('Y') }} Tim IT SMK Amaliah 1 & 2 Ciawi, Bogor. All Rights Reserved.
+                        </p>
+                    </div>
+                </div>
+            </footer>
 
         </main>
     </body>
