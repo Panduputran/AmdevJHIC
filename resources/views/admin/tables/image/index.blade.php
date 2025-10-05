@@ -38,9 +38,15 @@
                         <p class="text-sm text-white mb-3">Gunakan judul spesifik berikut agar gambar terhubung dengan
                             fungsi di sistem:</p>
                         <ul class="list-disc list-inside text-sm text-white space-y-1 ml-4">
-                            <li><span class="text-[#eaf600]">MainImage</span> : Untuk gambar utama di <span class="text-[#6CF600] text-bold">Home</span>.</li>
-                            <li><span class="text-[#eaf600]">GridImage</span> : Untuk gambar grid utama di <span class="text-[#6CF600] text-bold">Home</span>.
-                            <li><span class="text-[#eaf600]">MajorGrid</span> : Untuk gambar grid jurusan utama di <span class="text-[#6CF600] text-bold">Home</span>.
+                            <li><span class="text-[#eaf600]">MainImage</span> : Untuk gambar utama di <span
+                                    class="text-[#6CF600] text-bold">Home</span>.</li>
+                            <li><span class="text-[#eaf600]">GridImage</span> : Untuk gambar grid utama di <span
+                                    class="text-[#6CF600] text-bold">Home</span>.
+                            <li><span class="text-[#eaf600]">MajorGrid</span> : Untuk gambar grid jurusan utama di <span
+                                    class="text-[#6CF600] text-bold">Home</span>.
+                            </li>
+                            <li><span class="text-[#eaf600]">MajorsImage</span> : Untuk gambar utama jurusan utama di <span
+                                    class="text-[#6CF600] text-bold">Major Competency</span>.
                             </li>
                         </ul>
                         <p class="text-xs mt-3 text-red-500">Gambar yang memiliki judul di atas akan diprioritaskan oleh
@@ -67,17 +73,38 @@
                             class="space-y-4">
                             @csrf
 
-                            {{-- Kolom Title --}}
+                            {{-- Kolom Title (SUDAH DIUBAH MENJADI DROPDOWN) --}}
                             <div>
-                                <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Judul Gambar
-                                    (Opsional)</label>
-                                <input type="text" name="title" id="title"
-                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('title') border-red-500 @enderror"
-                                    value="{{ old('title') }}">
+                                <label for="title_option" class="block text-sm font-medium text-gray-700 mb-1">Judul Gambar
+                                    (Wajib)</label>
+
+                                {{-- Dropdown untuk pilihan judul --}}
+                                <select id="title_option"
+                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('title') border-red-500 @enderror">
+                                    <option value="" disabled selected>Pilih Judul</option>
+                                    <option value="MainImage">MainImage</option>
+                                    <option value="GridImage">GridImage</option>
+                                    <option value="MajorGrid">MajorGrid</option>
+                                    <option value="custom">MajorsImage</option>
+                                </select>
+
+                                {{-- Input teks untuk judul kustom, disembunyikan secara default --}}
+                                <div id="custom_title_wrapper" class="hidden mt-2">
+                                    <label for="title_custom" class="block text-sm font-medium text-gray-700 mb-1">Judul
+                                        Kustom:</label>
+                                    <input type="text" id="title_custom" name="title_custom"
+                                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600]"
+                                        placeholder="Contoh: Foto Kegiatan PPLG">
+                                </div>
+
+                                {{-- Input tersembunyi yang akan mengirimkan nilai judul final ke server --}}
+                                <input type="hidden" name="title" id="final_title">
+
                                 @error('title')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
+
 
                             {{-- Kolom Description --}}
                             <div>
@@ -109,6 +136,45 @@
                         </form>
                     </div>
                     {{-- END FORM UPLOAD --}}
+
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const titleOptionSelect = document.getElementById('title_option');
+                            const customTitleWrapper = document.getElementById('custom_title_wrapper');
+                            const customTitleInput = document.getElementById('title_custom');
+                            const finalTitleInput = document.getElementById('final_title');
+
+                            // Fungsi untuk mengupdate nilai input tersembunyi
+                            function updateFinalTitle() {
+                                const selectedValue = titleOptionSelect.value;
+                                if (selectedValue === 'custom') {
+                                    finalTitleInput.value = customTitleInput.value;
+                                } else {
+                                    finalTitleInput.value = selectedValue;
+                                }
+                            }
+
+                            // Event listener untuk dropdown
+                            titleOptionSelect.addEventListener('change', function () {
+                                if (this.value === 'custom') {
+                                    customTitleWrapper.classList.remove('hidden');
+                                    customTitleInput.focus();
+                                } else {
+                                    customTitleWrapper.classList.add('hidden');
+                                }
+                                updateFinalTitle();
+                            });
+
+                            // Event listener untuk input kustom
+                            customTitleInput.addEventListener('input', function () {
+                                updateFinalTitle();
+                            });
+
+                            // Panggil sekali saat load untuk inisialisasi
+                            updateFinalTitle();
+                        });
+                    </script>
 
                 </div>
                 {{-- END CONTAINER --}}

@@ -16,9 +16,21 @@ use App\Http\Controllers\ImageController; // Mengimpor ImageController
 use App\Http\Controllers\HomeController;
 use App\Models\SchoolProgram;
 
+
+use App\Http\Controllers\PublicPage\PublicMajorsController;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index']);
+
+
+// Rute Halaman Publik Jurusan
+Route::get('/majors', [PublicMajorsController::class, 'index'])->name('public.majors.index');
+Route::get('/majors/{major}', [PublicMajorsController::class, 'show'])->name('public.majors.show');
+
 
 Route::get('/', [HomeController::class, 'index']);
 

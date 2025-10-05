@@ -45,6 +45,7 @@
                         <thead>
                             <tr class="bg-[#292929] text-white uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left">Nama Jurusan</th>
+                                <th class="py-3 px-6 text-left">Logo</th> {{-- KOLOM BARU --}}
                                 <th class="py-3 px-6 text-left">Gambar</th>
                                 <th class="py-3 px-6 text-left">Deskripsi</th>
                                 <th class="py-3 px-6 text-left">Kepala Kompetensi</th>
@@ -57,6 +58,17 @@
                             @forelse($majors as $major)
                                 <tr class="border-b border-gray-200 hover:bg-gray-100 transition-colors duration-200">
                                     <td class="py-4 px-6 text-left font-medium">{{ $major->name }}</td>
+                                    
+                                    {{-- TAMPILAN LOGO (BARU) --}}
+                                    <td class="py-4 px-6 text-left">
+                                        @if($major->logo)
+                                            <img src="{{ asset('storage/' . $major->logo) }}" alt="Logo {{ $major->name }}"
+                                                class="w-10 h-10 object-contain rounded-md shadow-sm">
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+
                                     <td class="py-4 px-6 text-left">
                                         @if($major->image)
                                             <img src="{{ asset('storage/' . $major->image) }}" alt="{{ $major->name }}"
@@ -102,7 +114,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="py-8 text-center text-gray-500">Belum ada jurusan yang ditambahkan.
+                                    <td colspan="8" class="py-8 text-center text-gray-500">Belum ada jurusan yang ditambahkan.
                                     </td>
                                 </tr>
                             @endforelse
@@ -115,5 +127,4 @@
     </body>
 
     </html>
-
 @endsection

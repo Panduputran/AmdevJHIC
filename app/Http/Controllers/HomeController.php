@@ -27,7 +27,7 @@ class HomeController extends Controller
         $facilities = Facility::latest()->take(5)->get();
         $facilities_padded = $facilities->pad(5, null);
 
-        $majors = Major::orderBy('name', 'asc')->get();
+        $majors = Major::orderBy('id', 'asc')->get();
 
 
         // Kode di bawah ini tidak akan dijalankan karena dd() akan menghentikan program

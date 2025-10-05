@@ -69,6 +69,23 @@
                         @enderror
                     </div>
 
+                    {{-- INPUT DAN PREVIEW LOGO JURUSAN (BARU) --}}
+                    <div class="mb-4">
+                        <label for="logo" class="block text-sm font-medium text-gray-700 mb-1">Logo Jurusan
+                            (PNG/SVG)</label>
+                        <input type="file" name="logo" id="logo"
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('logo') border-red-500 @enderror">
+                        @if($major->logo)
+                            <p class="text-xs text-gray-500 mt-2">Logo saat ini:</p>
+                            <img src="{{ asset('storage/' . $major->logo) }}" alt="Logo Jurusan"
+                                class="w-20 h-20 object-contain rounded-md mt-2 border border-gray-200 p-1">
+                        @endif
+                        @error('logo')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    {{-- AKHIR INPUT LOGO --}}
+
                     <div class="mb-4">
                         <label for="competency_head" class="block text-sm font-medium text-gray-700 mb-1">Kepala
                             Kompetensi</label>
@@ -108,5 +125,4 @@
     </body>
 
     </html>
-
 @endsection

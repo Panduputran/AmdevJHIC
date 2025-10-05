@@ -33,9 +33,9 @@ class ImageController extends Controller
     {
         // 1. Validasi
         $request->validate([
-            'image_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120', // Maks 5MB
-            'title' => 'nullable|string|max:255',      // Validasi Title
-            'description' => 'nullable|string',        // Validasi Description
+            'image_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'title' => 'required|string|max:255', // Diubah dari nullable
+            'description' => 'nullable|string',
         ], [
             'image_file.required' => 'File gambar harus diunggah.',
             'image_file.image' => 'File harus berupa gambar.',

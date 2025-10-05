@@ -42,6 +42,16 @@
                     <h2 class="text-lg font-semibold text-[#292929]">Deskripsi</h2>
                     <p>{{ $major->description }}</p>
 
+                    {{-- INFORMASI LOGO (BARU) --}}
+                    @if($major->logo)
+                        <div class="mt-4 pb-4 border-b border-gray-200">
+                            <h3 class="text-base font-semibold text-gray-700 mb-2">Logo Jurusan</h3>
+                            <img src="{{ asset('storage/' . $major->logo) }}" alt="Logo {{ $major->name }}"
+                                class="w-16 h-16 object-contain border border-gray-300 p-1 rounded-md">
+                        </div>
+                    @endif
+                    {{-- AKHIR INFORMASI LOGO --}}
+
                     <div class="mt-6">
                         <h2 class="text-lg font-semibold text-[#292929]">Kepala Kompetensi</h2>
                         <div class="flex items-center space-x-4 mt-2">
@@ -81,5 +91,4 @@
     </body>
 
     </html>
-
 @endsection

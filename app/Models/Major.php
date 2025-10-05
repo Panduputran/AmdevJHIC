@@ -19,6 +19,7 @@ class Major extends Model
         'name',
         'description',
         'image',
+        'logo', // Ditambahkan: Kolom logo untuk penyimpanan path gambar
         'competency_head',
         'competency_head_photo', // The new field for the photo
         'publisher',

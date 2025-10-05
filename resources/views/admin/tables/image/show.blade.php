@@ -1,155 +1,113 @@
 @extends('layouts.admin-app')
 
-
 @section('content')
+    <div class="main-content flex-1 p-6">
+        <div class="bg-white rounded-lg shadow-md p-6">
 
-    <!DOCTYPE html>
-    <html lang="id">
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Galeri Media</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Poppins', sans-serif;
-                background-color: #f0f2f5;
-            }
-        </style>
-    </head>
-
-    <body class="bg-gray-100">
-
-        <div class="main-content flex-1 p-6">
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h1 class="text-2xl font-bold text-[#292929] mb-6">Galeri Media</h1>
-
-                {{-- Form Upload --}}
-                <div class="mb-8 border border-gray-200 p-4 rounded-lg">
-                    <h2 class="text-xl font-semibold mb-3">Unggah Gambar Baru</h2>
-                    @if(session('success'))
-                        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded-lg shadow-sm"
-                            role="alert">
-                            <p>{{ session('success') }}</p>
-                        </div>
-                    @endif
-                    @if(session('error'))
-                        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-lg shadow-sm"
-                            role="alert">
-                            <p>{{ session('error') }}</p>
-                        </div>
-                    @endif
-
-                    <form action="{{ route('admin.image.store') }}" method="POST" enctype="multipart/form-data"
-                        class="space-y-4">
-                        @csrf
-
-                        {{-- Kolom Title --}}
-                        <div>
-                            <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Judul Gambar
-                                (Opsional)</label>
-                            <input type="text" name="title" id="title"
-                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('title') border-red-500 @enderror"
-                                value="{{ old('title') }}">
-                            @error('title')
-                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        {{-- Kolom Description --}}
-                        <div>
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Deskripsi
-                                (Opsional)</label>
-                            <textarea name="description" id="description" rows="3"
-                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('description') border-red-500 @enderror">{{ old('description') }}</textarea>
-                            @error('description')
-                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        {{-- Kolom File Input --}}
-                        <div class="flex flex-col md:flex-row items-end space-y-3 md:space-y-0 md:space-x-3">
-                            <div class="flex-1 w-full">
-                                <label for="image_file" class="block text-sm font-medium text-gray-700 mb-1">Pilih File
-                                    Gambar (Max 5MB)</label>
-                                <input type="file" name="image_file" id="image_file"
-                                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('image_file') border-red-500 @enderror">
-                                @error('image_file')
-                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <button type="submit"
-                                class="bg-[#6CF600] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#5bd300] transition-colors duration-200 w-full md:w-auto">
-                                <i class="fas fa-upload mr-2"></i> Unggah
-                            </button>
-                        </div>
-                    </form>
+            {{-- 1. HEADER: Judul dan Tombol Aksi Utama --}}
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold text-[#292929]">Detail Gambar</h1>
+                    <p class="text-sm text-gray-500 mt-1">Lihat informasi lengkap mengenai aset media.</p>
                 </div>
-
-                {{-- Daftar Gambar --}}
-                <h2 class="text-xl font-semibold mb-4 mt-6">Daftar Gambar Tersedia</h2>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full rounded-lg overflow-hidden border-collapse">
-                        <thead>
-                            <tr class="bg-[#292929] text-white uppercase text-sm leading-normal">
-                                <th class="py-3 px-6 text-left">Preview</th>
-                                <th class="py-3 px-6 text-left">Judul</th>
-                                <th class="py-3 px-6 text-left">Path</th>
-                                <th class="py-3 px-6 text-left">Ukuran</th>
-                                <th class="py-3 px-6 text-center">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-gray-600 text-sm font-light">
-                            @forelse($images as $image)
-                                <tr class="border-b border-gray-200 hover:bg-gray-100 transition-colors duration-200">
-                                    <td class="py-4 px-6 text-left">
-                                        <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $image->filename }}"
-                                            class="w-16 h-16 object-cover rounded-md shadow-sm cursor-pointer"
-                                            onclick="window.open(this.src)">
-                                    </td>
-                                    <td class="py-4 px-6 text-left font-medium">{{ $image->title ?? 'N/A' }}</td>
-                                    <td class="py-4 px-6 text-left max-w-sm text-xs break-all">
-                                        <code>{{ 'storage/' . $image->path }}</code>
-                                    </td>
-                                    <td class="py-4 px-6 text-left">{{ number_format($image->size / 1024 / 1024, 2) }} MB</td>
-                                    <td class="py-4 px-6 text-center">
-                                        <div class="flex items-center justify-center space-x-2">
-                                            <a href="{{ route('admin.image.show', $image->id) }}"
-                                                class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-blue-500 transition-colors duration-200">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a href="{{ route('admin.image.edit', $image->id) }}"
-                                                class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-green-500 transition-colors duration-200">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form action="{{ route('admin.image.destroy', $image->id) }}" method="POST"
-                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus gambar ini? Ini akan menghapusnya secara permanen.');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors duration-200">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="py-8 text-center text-gray-500">Belum ada gambar yang diunggah.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                <div class="flex items-center space-x-2 mt-4 sm:mt-0">
+                    <a href="{{ route('admin.image.index') }}"
+                        class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors duration-200 text-sm">
+                        <i class="fas fa-arrow-left mr-2"></i> Kembali
+                    </a>
+                    <a href="{{ route('admin.image.edit', $image->id) }}"
+                        class="bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 transition-colors duration-200 text-sm">
+                        <i class="fas fa-edit mr-2"></i> Edit
+                    </a>
                 </div>
             </div>
+            
+            <hr class="mb-6">
+
+            @if(session('success'))
+                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded-lg shadow-sm" role="alert">
+                    <p>{{ session('success') }}</p>
+                </div>
+            @endif
+
+            {{-- 2. KONTEN: Layout Grid untuk Gambar dan Metadata --}}
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                {{-- Kolom Kiri: Pratinjau Gambar --}}
+                <div class="lg:col-span-2">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-2">Pratinjau</h2>
+                    <div class="bg-gray-100 p-4 rounded-lg border">
+                        <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $image->filename }}"
+                            class="w-full h-auto object-contain rounded-md shadow-sm max-h-[500px]">
+                    </div>
+                </div>
+
+                {{-- Kolom Kanan: Detail Metadata --}}
+                <div class="lg:col-span-1">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-2">Metadata</h2>
+                    <div class="bg-gray-50 border rounded-lg p-4 space-y-4">
+                        
+                        <div>
+                            <label class="text-xs font-bold text-gray-500 uppercase">Judul</label>
+                            <p class="text-md text-gray-900 font-semibold">{{ $image->title ?? 'Tidak ada judul' }}</p>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-gray-500 uppercase">Deskripsi</label>
+                            <p class="text-sm text-gray-700 italic">
+                                {{ $image->description ?? 'Tidak ada deskripsi.' }}
+                            </p>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <label class="text-xs font-bold text-gray-500 uppercase">Nama File Asli</label>
+                            <p class="text-sm text-gray-700">{{ $image->filename }}</p>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-gray-500 uppercase">Path Penyimpanan</label>
+                            <code class="text-xs text-gray-700 bg-gray-200 p-1 rounded">{{ 'storage/' . $image->path }}</code>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-gray-500 uppercase">Tipe File</label>
+                            <p class="text-sm text-gray-700">{{ $image->mime_type }}</p>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-gray-500 uppercase">Ukuran File</label>
+                            <p class="text-sm text-gray-700">{{ number_format($image->size / 1024, 2) }} KB</p>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-gray-500 uppercase">Tanggal Upload</label>
+                            <p class="text-sm text-gray-700">{{ $image->created_at->format('d F Y, H:i') }}</p>
+                        </div>
+                        
+                        <div>
+                            <label class="text-xs font-bold text-gray-500 uppercase">Terakhir Diperbarui</label>
+                            <p class="text-sm text-gray-700">{{ $image->updated_at->format('d F Y, H:i') }}</p>
+                        </div>
+
+                    </div>
+
+                    {{-- 3. AKSI BERBAHAYA: Tombol Hapus --}}
+                    <div class="mt-6">
+                         <form action="{{ route('admin.image.destroy', $image->id) }}" method="POST"
+                            onsubmit="return confirm('PERINGATAN: Tindakan ini akan menghapus file gambar secara permanen dari server dan database. Apakah Anda benar-benar yakin?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="w-full bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-200 flex items-center justify-center">
+                                <i class="fas fa-trash-alt mr-2"></i> Hapus Gambar Ini
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
         </div>
-
-    </body>
-
-    </html>
-
+    </div>
 @endsection

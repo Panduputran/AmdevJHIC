@@ -13,15 +13,14 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>@yield('title')</title>
 
-        {{-- Link Font Awesome & Google Font (Poppins) agar Font termuat --}}
+        {{-- Link Extensions --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
-
     <style>
-        .hero-shape {
+        .hero-clip-path {
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), calc(100% - 4rem) 100%, 0 100%);
         }
     </style>
@@ -33,28 +32,18 @@
             $amaliahGreen = '#63cd00';
             $amaliahDark = '#282829';
             $amaliahBlue = '#E0E7FF';
+
+            // Cek Variabel 
+            $hasImages = isset($mainImages) && $mainImages->isNotEmpty();
         @endphp
 
         <main style="margin-top: 10px;">
-            @php
-                // Cek apakah variabel $mainImages ada dan tidak kosong
-                $hasImages = isset($mainImages) && $mainImages->isNotEmpty();
-            @endphp
-
             <section class="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-
+                {{-- Slider Gambar Dinamis --}}
                 @if($hasImages)
                     <div x-data="{ activeSlide: 1, totalSlides: {{ $mainImages->count() }} }"
                         x-init="setInterval(() => { activeSlide = activeSlide % totalSlides + 1 }, 5000)">
-
-                        <style>
-                            .hero-clip-path {
-                                clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), calc(100% - 4rem) 100%, 0 100%);
-                            }
-                        </style>
-
                         <div class="relative h-[550px] overflow-hidden hero-clip-path rounded-3xl">
-
                             @foreach($mainImages as $image)
                                 <div x-show="activeSlide === {{ $loop->iteration }}"
                                     x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="opacity-0"
@@ -62,7 +51,6 @@
                                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
                                     class="absolute inset-0">
 
-                                    {{-- Menggunakan Storage::url() untuk mendapatkan URL publik dari file --}}
                                     <img src="{{ Storage::url($image->path) }}" alt="{{ $image->description ?? $image->filename }}"
                                         class="w-full h-full object-cover">
                                 </div>
@@ -72,11 +60,6 @@
                     </div>
                 @else
                     <div>
-                        <style>
-                            .hero-clip-path {
-                                clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), calc(100% - 4rem) 100%, 0 100%);
-                            }
-                        </style>
                         <div class="relative h-[550px] overflow-hidden hero-clip-path rounded-3xl bg-black">
                             {{-- Layar hitam sebagai fallback --}}
                         </div>
@@ -393,15 +376,16 @@
 
             <section class="py-16 sm:py-24" style="background-color: {{ $amaliahDark }};">
                 <div x-data="{
-                                                        scrollSlider(direction) {
-                                                            const slider = this.$refs.slider;
-                                                            const scrollAmount = slider.querySelector('.slider-item').offsetWidth + 32; // Lebar kartu + gap
-                                                            slider.scrollBy({
-                                                                left: direction === 'next' ? scrollAmount : -scrollAmount,
-                                                                behavior: 'smooth'
-                                                            });
-                                                        }
-                                                    }" class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                                                                    scrollSlider(direction) {
+                                                                        const slider = this.$refs.slider;
+                                                                        const scrollAmount = slider.querySelector('.slider-item').offsetWidth + 32; // Lebar kartu + gap
+                                                                        slider.scrollBy({
+                                                                            left: direction === 'next' ? scrollAmount : -scrollAmount,
+                                                                            behavior: 'smooth'
+                                                                        });
+                                                                    }
+                                                                }"
+                    class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
                     {{-- Dekorasi Titik --}}
                     <div class="absolute top-8 left-8 md:left-12 flex items-center space-x-2">
@@ -695,16 +679,16 @@
 
                     {{-- Slider Testimoni (Alpine.js + Tailwind CSS) --}}
                     <div x-data="{
-                                                                                                                                                    slider: null,
-                                                                                                                                                    init() {
-                                                                                                                                                        this.slider = this.$refs.sliderContainer;
-                                                                                                                                                    },
-                                                                                                                                                    scroll(direction) {
-                                                                                                                                                        // Geser sejauh 80% dari lebar area yang terlihat
-                                                                                                                                                        let scrollAmount = this.slider.offsetWidth * 0.8;
-                                                                                                                                                        this.slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-                                                                                                                                                    }
-                                                                                                                                                }"
+                                                                                                                                                                slider: null,
+                                                                                                                                                                init() {
+                                                                                                                                                                    this.slider = this.$refs.sliderContainer;
+                                                                                                                                                                },
+                                                                                                                                                                scroll(direction) {
+                                                                                                                                                                    // Geser sejauh 80% dari lebar area yang terlihat
+                                                                                                                                                                    let scrollAmount = this.slider.offsetWidth * 0.8;
+                                                                                                                                                                    this.slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+                                                                                                                                                                }
+                                                                                                                                                            }"
                         class="mt-12 relative">
                         {{-- Tombol Panah Kiri --}}
                         <button @click="scroll(-1)"
@@ -898,77 +882,108 @@
 
 
             <footer style="background-color: {{ $amaliahDark }};">
-                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
                     {{-- Konten Utama Footer (Multi-kolom) --}}
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 
                         {{-- Kolom 1: Logo, Deskripsi, dan Sosial Media --}}
-                        <div class="text-white">
-                            {{-- Ganti dengan logo Anda --}}
-                            <img src="https://placehold.co/150x50/FFFFFF/282829?text=Logo+Sekolah" alt="Logo SMK Amaliah"
-                                class="h-10 mb-4">
+                        <div class="space-y-6">
+                            {{-- 1. Struktur Branding yang lebih rapi --}}
+                            <a href="/" class="flex items-center gap-3">
+                                <img src="{{ asset('assets/logo/amaliah_white.png') }}" alt="Logo SMK Amaliah" class="h-10">
+                                <div>
+                                    <span class="text-white font-semibold text-lg leading-tight">SMK Amaliah 1 & 2</span>
+                                    <span class="block text-gray-400 text-xs">Ciawi - Bogor</span>
+                                </div>
+                            </a>
+
                             <p class="text-gray-400 text-sm leading-relaxed">
-                                SMK Amaliah 1 & 2 Ciawi berkomitmen untuk mencetak lulusan yang kompeten, berakhlak mulia,
-                                dan siap bersaing di dunia industri.
+                                Berkomitmen untuk mencetak lulusan yang kompeten, berakhlak mulia, dan siap bersaing di
+                                dunia industri global.
                             </p>
-                            <div class="flex space-x-4 mt-6">
-                                <a href="#"
-                                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-red-600 hover:opacity-80 transition">
-                                    <i class="fab fa-youtube"></i>
+
+                            {{-- 2. Ikon Sosial Media dengan efek hover modern --}}
+                            <div class="flex items-center space-x-3">
+                                <a href="#" target="_blank"
+                                    class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
+                                    <i
+                                        class="fab fa-youtube text-gray-400 text-xl group-hover:text-red-600 transition-colors"></i>
                                 </a>
-                                <a href="#"
-                                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-pink-600 hover:opacity-80 transition">
-                                    <i class="fab fa-instagram"></i>
+                                <a href="#" target="_blank"
+                                    class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
+                                    <i
+                                        class="fab fa-instagram text-gray-400 text-xl group-hover:text-pink-600 transition-colors"></i>
                                 </a>
-                                <a href="#"
-                                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-blue-600 hover:opacity-80 transition">
-                                    <i class="fab fa-facebook-f"></i>
+                                <a href="#" target="_blank"
+                                    class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
+                                    <i
+                                        class="fab fa-facebook-f text-gray-400 text-xl group-hover:text-blue-600 transition-colors"></i>
                                 </a>
-                                <a href="#"
-                                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black hover:opacity-80 transition">
-                                    <i class="fab fa-tiktok"></i>
+                                <a href="#" target="_blank"
+                                    class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
+                                    <i
+                                        class="fab fa-tiktok text-gray-400 text-xl group-hover:text-black transition-colors"></i>
                                 </a>
                             </div>
                         </div>
 
                         {{-- Kolom 2: Link Navigasi Cepat --}}
                         <div>
-                            <h4 class="font-bold text-white tracking-wider uppercase">Jelajahi</h4>
+                            <h4 class="font-semibold text-white tracking-wider uppercase">Jelajahi</h4>
                             <ul class="mt-4 space-y-3 text-sm">
-                                <li><a href="#" class="text-gray-400 hover:text-white transition">Beranda</a></li>
-                                <li><a href="#" class="text-gray-400 hover:text-white transition">Tentang Kami</a></li>
-                                <li><a href="#" class="text-gray-400 hover:text-white transition">Berita</a></li>
-                                <li><a href="#" class="text-gray-400 hover:text-white transition">Jurusan</a></li>
+                                {{-- 3. Efek hover yang lebih interaktif --}}
+                                <li><a href="#"
+                                        class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Beranda</a>
+                                </li>
+                                <li><a href="#"
+                                        class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Tentang
+                                        Kami</a></li>
+                                <li><a href="#"
+                                        class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Berita</a>
+                                </li>
+                                <li><a href="#"
+                                        class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Jurusan</a>
+                                </li>
                             </ul>
                         </div>
 
                         {{-- Kolom 3: Link Informasi --}}
                         <div>
-                            <h4 class="font-bold text-white tracking-wider uppercase">Informasi</h4>
+                            <h4 class="font-semibold text-white tracking-wider uppercase">Informasi</h4>
                             <ul class="mt-4 space-y-3 text-sm">
-                                <li><a href="#" class="text-gray-400 hover:text-white transition">Info PPDB</a></li>
-                                <li><a href="#" class="text-gray-400 hover:text-white transition">Fasilitas</a></li>
-                                <li><a href="#" class="text-gray-400 hover:text-white transition">Virtual Tour</a></li>
-                                <li><a href="#" class="text-gray-400 hover:text-white transition">Kontak</a></li>
+                                <li><a href="#"
+                                        class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Info
+                                        PPDB</a></li>
+                                <li><a href="#"
+                                        class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Fasilitas</a>
+                                </li>
+                                <li><a href="#"
+                                        class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Virtual
+                                        Tour</a></li>
+                                <li><a href="#"
+                                        class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Kontak</a>
+                                </li>
                             </ul>
                         </div>
 
                         {{-- Kolom 4: Informasi Kontak --}}
                         <div>
-                            <h4 class="font-bold text-white tracking-wider uppercase">Hubungi Kami</h4>
-                            <div class="mt-4 space-y-4 text-sm">
-                                <div class="flex items-start text-gray-400">
-                                    <i class="fas fa-map-marker-alt w-5 mt-1"></i>
-                                    <span>{{ $alamat }}</span>
+                            <h4 class="font-semibold text-white tracking-wider uppercase">Hubungi Kami</h4>
+                            <div class="mt-4 flex flex-col gap-4 text-sm">
+                                <div class="flex items-start gap-3 text-gray-400">
+                                    <i class="fas fa-map-marker-alt w-4 h-4 mt-1 flex-shrink-0"></i>
+                                    <span>{{ $alamat ?? 'Jl. Raya Veteran III, Banjarwaru, Ciawi, Kab. Bogor, Jawa Barat 16720' }}</span>
                                 </div>
-                                <div class="flex items-center text-gray-400">
-                                    <i class="fas fa-envelope w-5"></i>
-                                    <a href="mailto:{{ $email }}" class="hover:text-white transition">{{ $email }}</a>
+                                <div class="flex items-start gap-3 text-gray-400">
+                                    <i class="fas fa-envelope w-4 h-4 mt-1 flex-shrink-0"></i>
+                                    <a href="mailto:{{ $email ?? 'info@smkamaliah.sch.id' }}"
+                                        class="hover:text-white transition">{{ $email ?? 'info@smkamaliah.sch.id' }}</a>
                                 </div>
-                                <div class="flex items-center text-gray-400">
-                                    <i class="fas fa-phone-alt w-5"></i>
-                                    <a href="tel:{{ $phone }}" class="hover:text-white transition">{{ $phone }}</a>
+                                <div class="flex items-start gap-3 text-gray-400">
+                                    <i class="fas fa-phone-alt w-4 h-4 mt-1 flex-shrink-0"></i>
+                                    <a href="tel:{{ $phone ?? '+622518241416' }}"
+                                        class="hover:text-white transition">{{ $phone ?? '(0251) 8241416' }}</a>
                                 </div>
                             </div>
                         </div>
@@ -977,15 +992,21 @@
                 </div>
 
                 {{-- Bagian Copyright di Bawah --}}
-                <div class="bg-black bg-opacity-20 py-4">
-                    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <p class="text-center text-xs text-gray-500">
-                            &copy; {{ date('Y') }} Tim IT SMK Amaliah 1 & 2 Ciawi, Bogor. All Rights Reserved.
-                        </p>
+                {{-- 4. Pemisah visual dan struktur copyright yang lebih profesional --}}
+                <div class="border-t border-gray-800">
+                    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                        <div class="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-4">
+                            <p class="text-sm text-gray-500">
+                                &copy; {{ date('Y') }} Tim IT SMK Amaliah. All Rights Reserved.
+                            </p>
+                            <div class="flex space-x-6 text-sm text-gray-500">
+                                <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
+                                <a href="#" class="hover:text-white transition">Syarat & Ketentuan</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </footer>
-
         </main>
     </body>
 
