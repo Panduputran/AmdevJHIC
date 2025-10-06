@@ -86,60 +86,71 @@
             </section>
 
             <section class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-16">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
                     @php
-                        // Data untuk setiap kartu fitur
+                        // Data untuk setiap kartu fitur (ditambahkan 'link' dan 'button_text')
                         $fitur = [
                             [
                                 'icon' => 'fa-file-lines',
-                                'title' => 'PPDB',
-                                'desc' => 'Ayo daftarkan dirimu di SMK Amaliah secara online'
+                                'title' => 'PPDB Online',
+                                'desc' => 'Ayo daftarkan dirimu di SMK Amaliah secara mudah melalui sistem online kami.',
+                                'link' => 'http://spmb.smkamaliah.sch.id', // Ganti dengan route atau URL PPDB Anda
+                                'button_text' => 'Daftar Sekarang',
                             ],
                             [
                                 'icon' => 'fa-chart-simple',
                                 'title' => 'E-Learning',
-                                'desc' => 'Sistem pembelajaran berbasis online di SMK Amaliah'
+                                'desc' => 'Akses materi, tugas, dan sumber belajar kapan saja melalui platform E-Learning terintegrasi.',
+                                'link' => 'http://lms.smkamaliah.sch.id', // Ganti dengan URL E-Learning Anda
+                                'button_text' => 'Mulai Belajar',
                             ],
                             [
                                 'icon' => 'fa-vr-cardboard',
                                 'title' => 'Virtual Tour',
-                                'desc' => 'Kunjungi SMK AMALIAH Lewat Virtual Tour'
+                                'desc' => 'Jelajahi setiap sudut dan fasilitas sekolah kami secara virtual dari kenyamanan rumah Anda.',
+                                'link' => '#', // Ganti dengan route atau URL Virtual Tour
+                                'button_text' => 'Jelajahi Sekarang',
                             ],
                             [
                                 'icon' => 'fa-building-columns',
-                                'title' => 'Bank Digital',
-                                'desc' => 'Bank digital di SMK Amaliah yang dikelola oleh jurusan LPS'
+                                'title' => 'Ujian Online',
+                                'desc' => 'Laksanakan berbagai ujian sekolah dengan mudah dan aman melalui platform ujian online kami.',
+                                'link' => 'https://play.google.com/store/apps/details?id=com.amexam', // Ganti dengan URL Ujian Online
+                                'button_text' => 'Masuk Ujian',
                             ],
                         ];
+
+                        // Asumsi variabel $amaliahGreen dan $amaliahDark sudah ada
+                        $amaliahGreen = $amaliahGreen ?? '#63cd00';
+                        $amaliahDark = $amaliahDark ?? '#282829';
                     @endphp
 
                     {{-- Loop untuk menampilkan setiap kartu fitur --}}
                     @foreach ($fitur as $item)
-                        <div class="bg-white p-6 border rounded-2xl flex flex-col items-start hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
-                            style="border-color: {{ $amaliahGreen }};">
+                        {{-- Seluruh kartu sekarang adalah sebuah link --}}
+                        <a href="{{ $item['link'] }}"
+                            class=" border-[{{ $amaliahGreen }}] group bg-gray-50 p-6 rounded-2xl flex flex-col items-start border-2  hover:border-[{{ $amaliahGreen }}] hover:bg-white transition-all duration-300 shadow-sm hover:shadow-lg transform hover:-translate-y-1">
 
                             {{-- Bagian Ikon --}}
-                            <div class="p-4 rounded-lg mb-4" style="background-color: {{ $amaliahGreen }};">
+                            <div class="p-4 rounded-xl mb-4" style="background-color: {{ $amaliahGreen }};">
                                 <i class="fas {{ $item['icon'] }} text-2xl text-white"></i>
                             </div>
 
                             {{-- Bagian Teks --}}
-                            <h2 class="text-lg font-bold text-gray-800 mb-2">{{ $item['title'] }}</h2>
+                            <h2 class="text-lg font-bold mb-2" style="color: {{ $amaliahDark }};">{{ $item['title'] }}</h2>
                             <p class="text-sm text-gray-600 mb-4 flex-grow">{{ $item['desc'] }}</p>
 
-                            {{-- Tombol Link --}}
-                            <a href="#" class="text-sm font-semibold flex items-center mt-auto group"
-                                style="color: {{ $amaliahGreen }};">
-                                Daftar Sekarang
+                            {{-- Tombol Link dengan teks dinamis --}}
+                            <div class="text-sm font-semibold flex items-center mt-auto" style="color: {{ $amaliahGreen }};">
+                                <span>{{ $item['button_text'] }}</span>
                                 <i class="fas fa-chevron-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     @endforeach
 
                 </div>
             </section>
-
             @php
                 // Definisikan warna di sini agar mudah diakses
                 $amaliahGreen = '#63cd00'; // Warna hijau sesuai permintaan
@@ -376,15 +387,15 @@
 
             <section class="py-16 sm:py-24" style="background-color: {{ $amaliahDark }};">
                 <div x-data="{
-                                                                            scrollSlider(direction) {
-                                                                                const slider = this.$refs.slider;
-                                                                                const scrollAmount = slider.querySelector('.slider-item').offsetWidth + 32; // Lebar kartu + gap
-                                                                                slider.scrollBy({
-                                                                                    left: direction === 'next' ? scrollAmount : -scrollAmount,
-                                                                                    behavior: 'smooth'
-                                                                                });
-                                                                            }
-                                                                        }"
+                                                                                                            scrollSlider(direction) {
+                                                                                                                const slider = this.$refs.slider;
+                                                                                                                const scrollAmount = slider.querySelector('.slider-item').offsetWidth + 32; // Lebar kartu + gap
+                                                                                                                slider.scrollBy({
+                                                                                                                    left: direction === 'next' ? scrollAmount : -scrollAmount,
+                                                                                                                    behavior: 'smooth'
+                                                                                                                });
+                                                                                                            }
+                                                                                                        }"
                     class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
                     {{-- Dekorasi Titik --}}
@@ -680,16 +691,16 @@
 
                     {{-- Slider Testimoni (Alpine.js + Tailwind CSS) --}}
                     <div x-data="{
-                                                                                                                                                                        slider: null,
-                                                                                                                                                                        init() {
-                                                                                                                                                                            this.slider = this.$refs.sliderContainer;
-                                                                                                                                                                        },
-                                                                                                                                                                        scroll(direction) {
-                                                                                                                                                                            // Geser sejauh 80% dari lebar area yang terlihat
-                                                                                                                                                                            let scrollAmount = this.slider.offsetWidth * 0.8;
-                                                                                                                                                                            this.slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-                                                                                                                                                                        }
-                                                                                                                                                                    }"
+                                                                                                                                                                                                        slider: null,
+                                                                                                                                                                                                        init() {
+                                                                                                                                                                                                            this.slider = this.$refs.sliderContainer;
+                                                                                                                                                                                                        },
+                                                                                                                                                                                                        scroll(direction) {
+                                                                                                                                                                                                            // Geser sejauh 80% dari lebar area yang terlihat
+                                                                                                                                                                                                            let scrollAmount = this.slider.offsetWidth * 0.8;
+                                                                                                                                                                                                            this.slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                    }"
                         class="mt-12 relative">
                         {{-- Tombol Panah Kiri --}}
                         <button @click="scroll(-1)"
@@ -753,11 +764,117 @@
                 </div>
             </section>
 
-            @php
-                // Definisikan warna utama
-                $amaliahGreen = '#63cd00';
-                $amaliahDark = '#282829';
-            @endphp
+        
+
+            <section class="bg-[#282829] py-16 sm:py-20 overflow-hidden">
+                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{ activeTab: 'amaliah1' }">
+
+                    {{-- Bagian Header: Judul dan Tombol Tab --}}
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+                            Get To Know Our School Leaders
+                        </h2>
+                        <div class="flex justify-center items-center space-x-2 mt-8">
+                            <button @click="activeTab = 'amaliah1'" :class="{
+                            'bg-[#63cd00] text-white shadow-lg': activeTab === 'amaliah1',
+                            'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'amaliah1'
+                        }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                SMK Amaliah 1
+                            </button>
+                            <button @click="activeTab = 'amaliah2'" :class="{
+                            'bg-[#63cd00] text-white shadow-lg': activeTab === 'amaliah2',
+                            'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'amaliah2'
+                        }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                SMK Amaliah 2
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Bagian Konten: Grid 2 Kolom --}}
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-16">
+
+                        {{-- Kolom Kiri: Konten Teks --}}
+                        <div class="relative min-h-[280px] text-center lg:text-left">
+                            {{-- PROFIL KEPALA SEKOLAH 1 --}}
+                            <div x-show="activeTab === 'amaliah1'" x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0 transform -translate-x-4"
+                                x-transition:enter-end="opacity-100 transform translate-x-0"
+                                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0" class="absolute w-full">
+                                <h3 class="text-2xl lg:text-3xl font-bold text-white">Tisna Sudrajat S.Kom., Gr., ACA</h3>
+                                <p class="text-base text-[#63cd00] mt-1 mb-4">Kepala Sekolah SMK Amaliah 1</p>
+                                <blockquote class="text-md text-gray-300 italic max-w-lg mx-auto lg:mx-0">
+                                    "Pendidikan adalah paspor masa depan karena hari esok adalah milik mereka yang
+                                    mempersiapkannya hari ini."
+                                </blockquote>
+                                <div class="flex items-center space-x-3 mt-6 justify-center lg:justify-start">
+                                    <a href="#" aria-label="Facebook"
+                                        class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
+                                            class="fab fa-facebook-f"></i></a>
+                                    <a href="#" aria-label="Instagram"
+                                        class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
+                                            class="fab fa-instagram"></i></a>
+                                    <a href="#" aria-label="LinkedIn"
+                                        class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
+                                            class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+
+                            {{-- PROFIL KEPALA SEKOLAH 2 --}}
+                            <div x-show="activeTab === 'amaliah2'" x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0 transform -translate-x-4"
+                                x-transition:enter-end="opacity-100 transform translate-x-0"
+                                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0" class="absolute w-full" style="display: none;">
+                                <h3 class="text-2xl lg:text-3xl font-bold text-white">Nama Kepala Sekolah 2</h3>
+                                <p class="text-base text-[#63cd00] mt-1 mb-4">Kepala Sekolah SMK Amaliah 2</p>
+                                <blockquote class="text-md text-gray-300 italic max-w-lg mx-auto lg:mx-0">
+                                    "Quote atau kutipan inspiratif dari kepala sekolah yang kedua ditempatkan di sini."
+                                </blockquote>
+                                <div class="flex items-center space-x-3 mt-6 justify-center lg:justify-start">
+                                    <a href="#" aria-label="Facebook"
+                                        class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
+                                            class="fab fa-facebook-f"></i></a>
+                                    <a href="#" aria-label="Instagram"
+                                        class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
+                                            class="fab fa-instagram"></i></a>
+                                    <a href="#" aria-label="LinkedIn"
+                                        class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
+                                            class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Kolom Kanan: Gambar --}}
+                        <div class="relative flex justify-center items-center min-h-[320px] lg:min-h-0">
+                            {{-- GAMBAR KEPALA SEKOLAH 1 --}}
+                            <div x-show="activeTab === 'amaliah1'" x-transition:enter="transition ease-out duration-500"
+                                x-transition:enter-start="opacity-0 transform scale-90"
+                                x-transition:enter-end="opacity-100 transform scale-100" class="absolute">
+                                <div
+                                    class="w-64 h-64 sm:w-80 sm:h-80 bg-gray-400 rounded-full flex items-center justify-center text-gray-600 shadow-2xl">
+                                    Foto 1
+                                </div>
+                            </div>
+                            {{-- GAMBAR KEPALA SEKOLAH 2 --}}
+                            <div x-show="activeTab === 'amaliah2'" x-transition:enter="transition ease-out duration-500"
+                                x-transition:enter-start="opacity-0 transform scale-90"
+                                x-transition:enter-end="opacity-100 transform scale-100" class="absolute"
+                                style="display: none;">
+                                <div
+                                    class="w-64 h-64 sm:w-80 sm:h-80 bg-gray-400 rounded-full flex items-center justify-center text-gray-600 shadow-2xl">
+                                    Foto 2
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+
 
             <section class="bg-white py-16 sm:py-24">
                 <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -879,6 +996,9 @@
                     </div>
                 </div>
             </section>
+
+
+
 
 
 
