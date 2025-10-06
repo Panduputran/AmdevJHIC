@@ -55,6 +55,29 @@
                         @enderror
                     </div>
 
+                    {{-- INPUT TAG (BARU) --}}
+                    <div class="mb-4">
+                        <label for="tag" class="block text-sm font-medium text-gray-700 mb-1">Tag/Kata Kunci (Dipisahkan
+                            koma)</label>
+                        <textarea name="tag" id="tag" rows="2"
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('tag') border-red-500 @enderror">{{ old('tag') }}</textarea>
+                        @error('tag')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- INPUT ADVANTAGE (BARU) --}}
+                    <div class="mb-4">
+                        <label for="advantage" class="block text-sm font-medium text-gray-700 mb-1">Poin Keunggulan
+                            (Dipisahkan baris baru)</label>
+                        <textarea name="advantage" id="advantage" rows="4"
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('advantage') border-red-500 @enderror">{{ old('advantage') }}</textarea>
+                        @error('advantage')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    {{-- AKHIR INPUT FIELD BARU --}}
+
                     <div class="mb-4">
                         <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Gambar Jurusan</label>
                         <input type="file" name="image" id="image"
@@ -64,7 +87,7 @@
                         @enderror
                     </div>
 
-                    {{-- INPUT LOGO JURUSAN (BARU) --}}
+                    {{-- INPUT LOGO JURUSAN --}}
                     <div class="mb-4">
                         <label for="logo" class="block text-sm font-medium text-gray-700 mb-1">Logo Jurusan
                             (PNG/SVG)</label>

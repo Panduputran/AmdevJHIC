@@ -21,4 +21,6 @@ class News extends Model
         'publisher',
         'date_published',
     ];
+
+    
 }

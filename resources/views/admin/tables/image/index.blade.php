@@ -48,6 +48,9 @@
                             <li><span class="text-[#eaf600]">MajorsImage</span> : Untuk gambar utama jurusan utama di <span
                                     class="text-[#6CF600] text-bold">Major Competency</span>.
                             </li>
+                            <li><span class="text-[#eaf600]">NewsImage</span> : Untuk gambar utama jurusan utama di <span
+                                    class="text-[#6CF600] text-bold">News</span>.
+                            </li>
                         </ul>
                         <p class="text-xs mt-3 text-red-500">Gambar yang memiliki judul di atas akan diprioritaskan oleh
                             sistem.</p>
@@ -85,7 +88,9 @@
                                     <option value="MainImage">MainImage</option>
                                     <option value="GridImage">GridImage</option>
                                     <option value="MajorGrid">MajorGrid</option>
-                                    <option value="custom">MajorsImage</option>
+                                    <option value="MajorsImage">MajorsImage</option>
+                                    <option value="NewsImage">NewsImage</option>
+                                    <option value="custom">Custom</option>
                                 </select>
 
                                 {{-- Input teks untuk judul kustom, disembunyikan secara default --}}

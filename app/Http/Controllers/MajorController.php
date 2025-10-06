@@ -34,8 +34,10 @@ class MajorController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'tag' => 'nullable|string', // BARU
+            'advantage' => 'nullable|string', // BARU
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'logo' => 'required|image|max:512', // BARU: Validasi Logo (wajib diisi, maks 512KB)
+            'logo' => 'required|image|mimes:jpeg,png,jpg,svg,webp|max:512',
             'competency_head' => 'required|string|max:255',
             'competency_head_photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ], [
@@ -45,10 +47,10 @@ class MajorController extends Controller
             'image.image' => 'File harus berupa gambar.',
             'image.mimes' => 'Format gambar yang diizinkan adalah jpeg, png, atau jpg.',
             'image.max' => 'Ukuran gambar tidak boleh lebih dari 2MB.',
-            'logo.required' => 'Logo harus diunggah.', // BARU
-            'logo.image' => 'Logo harus berupa gambar.', // BARU
-            'logo.mimes' => 'Format logo yang diizinkan adalah png atau svg.', // BARU
-            'logo.max' => 'Ukuran logo tidak boleh lebih dari 512KB.', // BARU
+            'logo.required' => 'Logo harus diunggah.',
+            'logo.image' => 'Logo harus berupa gambar.',
+            'logo.mimes' => 'Format logo yang diizinkan adalah jpeg, png, jpg, svg, atau webp.',
+            'logo.max' => 'Ukuran logo tidak boleh lebih dari 512KB.',
             'competency_head.required' => 'Nama kepala kompetensi harus diisi.',
             'competency_head_photo.required' => 'Foto kepala kompetensi harus diunggah.',
             'competency_head_photo.image' => 'File harus berupa gambar.',
@@ -58,16 +60,15 @@ class MajorController extends Controller
 
         $validatedData['publisher'] = Auth::user()->name;
 
+        // Proses Uploads
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('major_images', 'public');
             $validatedData['image'] = $imagePath;
         }
-
-        if ($request->hasFile('logo')) { // BARU: Logika penyimpanan logo
+        if ($request->hasFile('logo')) {
             $logoPath = $request->file('logo')->store('major_logos', 'public');
             $validatedData['logo'] = $logoPath;
         }
-
         if ($request->hasFile('competency_head_photo')) {
             $photoPath = $request->file('competency_head_photo')->store('head_photos', 'public');
             $validatedData['competency_head_photo'] = $photoPath;
@@ -102,8 +103,10 @@ class MajorController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'logo' => 'nullable|image|mimes:png,svg|max:512', // BARU: Validasi Logo (nullable saat update)
+            'tag' => 'nullable|string', // BARU
+            'advantage' => 'nullable|string', // BARU
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:3048',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:512',
             'competency_head' => 'required|string|max:255',
             'competency_head_photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ], [
@@ -111,10 +114,10 @@ class MajorController extends Controller
             'description.required' => 'Deskripsi harus diisi.',
             'image.image' => 'File harus berupa gambar.',
             'image.mimes' => 'Format gambar yang diizinkan adalah jpeg, png, atau jpg.',
-            'image.max' => 'Ukuran gambar tidak boleh lebih dari 2MB.',
-            'logo.image' => 'Logo harus berupa gambar.', // BARU
-            'logo.mimes' => 'Format logo yang diizinkan adalah png atau svg.', // BARU
-            'logo.max' => 'Ukuran logo tidak boleh lebih dari 512KB.', // BARU
+            'image.max' => 'Ukuran gambar tidak boleh lebih dari 3MB.',
+            'logo.image' => 'Logo harus berupa gambar.',
+            'logo.mimes' => 'Format logo yang diizinkan adalah jpeg, png, jpg, svg, atau webp.',
+            'logo.max' => 'Ukuran logo tidak boleh lebih dari 512KB.',
             'competency_head.required' => 'Nama kepala kompetensi harus diisi.',
             'competency_head_photo.image' => 'File harus berupa gambar.',
             'competency_head_photo.mimes' => 'Format gambar yang diizinkan adalah jpeg, png, atau jpg.',
@@ -123,15 +126,16 @@ class MajorController extends Controller
 
         $validatedData['publisher'] = Auth::user()->name;
 
+        // Logika Upload dan Penghapusan Gambar Lama
         if ($request->hasFile('image')) {
-            if ($major->image) {
+            if ($major->image) { 
                 Storage::disk('public')->delete($major->image);
             }
             $imagePath = $request->file('image')->store('major_images', 'public');
             $validatedData['image'] = $imagePath;
         }
 
-        if ($request->hasFile('logo')) { // BARU: Logika update logo
+        if ($request->hasFile('logo')) {
             if ($major->logo) {
                 Storage::disk('public')->delete($major->logo);
             }
@@ -147,9 +151,15 @@ class MajorController extends Controller
             $validatedData['competency_head_photo'] = $photoPath;
         }
 
-        // Hapus logo dari validatedData jika tidak diunggah agar tidak menimpa data lama
+        // Hapus file dari validatedData jika tidak diunggah agar tidak menimpa data lama
         if (!$request->hasFile('logo')) {
             unset($validatedData['logo']);
+        }
+        if (!$request->hasFile('image')) {
+            unset($validatedData['image']);
+        }
+        if (!$request->hasFile('competency_head_photo')) {
+            unset($validatedData['competency_head_photo']);
         }
 
         // Perbarui data
@@ -166,7 +176,7 @@ class MajorController extends Controller
         if ($major->image) {
             Storage::disk('public')->delete($major->image);
         }
-        if ($major->logo) { // BARU: Hapus file logo
+        if ($major->logo) {
             Storage::disk('public')->delete($major->logo);
         }
         if ($major->competency_head_photo) {

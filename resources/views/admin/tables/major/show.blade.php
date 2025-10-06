@@ -42,7 +42,7 @@
                     <h2 class="text-lg font-semibold text-[#292929]">Deskripsi</h2>
                     <p>{{ $major->description }}</p>
 
-                    {{-- INFORMASI LOGO (BARU) --}}
+                    {{-- INFORMASI LOGO --}}
                     @if($major->logo)
                         <div class="mt-4 pb-4 border-b border-gray-200">
                             <h3 class="text-base font-semibold text-gray-700 mb-2">Logo Jurusan</h3>
@@ -51,6 +51,30 @@
                         </div>
                     @endif
                     {{-- AKHIR INFORMASI LOGO --}}
+
+                    {{-- INFORMASI TAG DAN ADVANTAGE --}}
+                    <div class="mt-6 border-b border-gray-200 pb-4">
+                        <h2 class="text-lg font-semibold text-[#292929]">Keunggulan & Kata Kunci</h2>
+
+                        <h3 class="text-base font-semibold text-gray-700 mt-3 mb-1">Tag (Kata Kunci)</h3>
+                        @if($major->tag)
+                            <p class="text-sm text-gray-600">{{ $major->tag }}</p>
+                        @else
+                            <p class="text-sm text-gray-400 italic">Tidak ada tag.</p>
+                        @endif
+
+                        <h3 class="text-base font-semibold text-gray-700 mt-4 mb-2">Poin Keunggulan (Advantage)</h3>
+                        @if($major->advantage)
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                                @foreach(explode("\n", $major->advantage) as $advantage)
+                                    <li>{{ trim($advantage) }}</li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p class="text-sm text-gray-400 italic">Tidak ada poin keunggulan.</p>
+                        @endif
+                    </div>
+                    {{-- AKHIR INFORMASI TAG DAN ADVANTAGE --}}
 
                     <div class="mt-6">
                         <h2 class="text-lg font-semibold text-[#292929]">Kepala Kompetensi</h2>

@@ -376,15 +376,15 @@
 
             <section class="py-16 sm:py-24" style="background-color: {{ $amaliahDark }};">
                 <div x-data="{
-                                                                    scrollSlider(direction) {
-                                                                        const slider = this.$refs.slider;
-                                                                        const scrollAmount = slider.querySelector('.slider-item').offsetWidth + 32; // Lebar kartu + gap
-                                                                        slider.scrollBy({
-                                                                            left: direction === 'next' ? scrollAmount : -scrollAmount,
-                                                                            behavior: 'smooth'
-                                                                        });
-                                                                    }
-                                                                }"
+                                                                            scrollSlider(direction) {
+                                                                                const slider = this.$refs.slider;
+                                                                                const scrollAmount = slider.querySelector('.slider-item').offsetWidth + 32; // Lebar kartu + gap
+                                                                                slider.scrollBy({
+                                                                                    left: direction === 'next' ? scrollAmount : -scrollAmount,
+                                                                                    behavior: 'smooth'
+                                                                                });
+                                                                            }
+                                                                        }"
                     class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
                     {{-- Dekorasi Titik --}}
@@ -469,7 +469,8 @@
                                     <h3 class="text-xl font-bold text-white">{{ $major->name }}</h3>
                                     <p class="text-sm text-gray-400 mt-2 flex-grow">{{ $major->description }}</p>
 
-                                    <a href="#" class="inline-flex items-center group mt-4">
+                                    <a href="{{ route('public.majors.show', $major) }}"
+                                        class="inline-flex items-center group mt-4">
                                         <span class="text-sm font-semibold text-white mr-3">Selengkapnya</span>
                                         <div class="bg-gray-200 rounded-full p-2 group-hover:bg-gray-300 transition-colors">
                                             <i class="fas fa-arrow-right text-gray-800 text-sm"></i>
@@ -523,7 +524,7 @@
                             <div
                                 class="bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                                 {{-- Ganti '#' dengan link detail berita jika ada, misal: route('news.show', $newsItem->id) --}}
-                                <a href="#" class="block">
+                                <a href="{{ route('public.news.show', $newsItem->id) }}" class="block">
 
                                     {{-- GAMBAR: Mengambil dari storage --}}
                                     <img src="{{ asset('storage/' . $newsItem->image) }}" alt="{{ $newsItem->title }}"
@@ -553,7 +554,7 @@
                     {{-- Tombol "Lihat Lebih Banyak" --}}
                     <div class="text-center mt-12">
                         {{-- Ganti '#' dengan link ke halaman daftar berita --}}
-                        <a href="#"
+                        <a href="{{ route('public.news.index') }}"
                             class="inline-block bg-white border border-gray-200 rounded-xl px-6 py-4 text-sm font-semibold shadow-sm hover:shadow-lg hover:border-gray-300 transition-all duration-300">
                             <span class="text-gray-600">Mau Baca Lebih Banyak?</span>
                             <span class="ml-1 font-bold" style="color: {{ $amaliahGreen }};">Ayo Kesini</span>
@@ -679,16 +680,16 @@
 
                     {{-- Slider Testimoni (Alpine.js + Tailwind CSS) --}}
                     <div x-data="{
-                                                                                                                                                                slider: null,
-                                                                                                                                                                init() {
-                                                                                                                                                                    this.slider = this.$refs.sliderContainer;
-                                                                                                                                                                },
-                                                                                                                                                                scroll(direction) {
-                                                                                                                                                                    // Geser sejauh 80% dari lebar area yang terlihat
-                                                                                                                                                                    let scrollAmount = this.slider.offsetWidth * 0.8;
-                                                                                                                                                                    this.slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-                                                                                                                                                                }
-                                                                                                                                                            }"
+                                                                                                                                                                        slider: null,
+                                                                                                                                                                        init() {
+                                                                                                                                                                            this.slider = this.$refs.sliderContainer;
+                                                                                                                                                                        },
+                                                                                                                                                                        scroll(direction) {
+                                                                                                                                                                            // Geser sejauh 80% dari lebar area yang terlihat
+                                                                                                                                                                            let scrollAmount = this.slider.offsetWidth * 0.8;
+                                                                                                                                                                            this.slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+                                                                                                                                                                        }
+                                                                                                                                                                    }"
                         class="mt-12 relative">
                         {{-- Tombol Panah Kiri --}}
                         <button @click="scroll(-1)"

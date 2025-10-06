@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->text('tag')->nullable();         // BARU: Tag atau kata kunci
+            $table->text('advantage')->nullable();   // BARU: Poin-poin keunggulan
             $table->string('image')->nullable();
-            $table->string('logo')->nullable(); // Kolom baru untuk logo
+            $table->string('logo')->nullable();
             $table->string('competency_head');
-            $table->string('competency_head_photo')->nullable(); // Kolom tidak wajib diisi
+            $table->string('competency_head_photo')->nullable();
             $table->string('publisher');
             $table->timestamps();
         });

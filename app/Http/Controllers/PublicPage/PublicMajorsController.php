@@ -5,7 +5,6 @@ namespace App\Http\Controllers\PublicPage;
 use App\Http\Controllers\Controller;
 use App\Models\Major;
 use App\Models\Image;
-use App\Models\Facility;
 use Illuminate\Http\Request;
 
 class PublicMajorsController extends Controller
@@ -15,15 +14,14 @@ class PublicMajorsController extends Controller
      */
     public function index()
     {
-        // Mengambil semua data jurusan (Major)
-        $majors = Major::latest()->get();
+        // Mengambil semua data jurusan (Major) dengan eager loading untuk testimonials
+        $majors = Major::with('testimonials')->latest()->get();
 
         // Mengambil gambar hero untuk halaman jurusan
         $majorsImages = Image::where('title', 'MajorsImage')->get();
         $hasImages = !$majorsImages->isEmpty();
 
-
-        // Mengirimkan KEDUA variabel ('majors' dan 'MajorsImage') ke view
+        // Mengirimkan semua variabel yang diperlukan ke view
         return view('PublicSide.majors.index', compact('majors', 'majorsImages', 'hasImages'));
     }
 
@@ -32,8 +30,11 @@ class PublicMajorsController extends Controller
      */
     public function show(Major $major)
     {
-        // Ambil semua jurusan LAIN, kecuali jurusan yang sedang dilihat saat ini
-        $otherMajors = Major::where('id', '!=', $major->id)->latest()->get();
+        // Ambil semua jurusan LAIN, dengan eager loading (jika diperlukan untuk sidebar card)
+        $otherMajors = Major::where('id', '!=', $major->id)
+            ->with('testimonials') // Contoh eager loading untuk sidebar
+            ->latest()
+            ->get();
 
         // Kirim data jurusan yang sedang dilihat DAN daftar jurusan lain ke view
         return view('PublicSide.majors.show', [

@@ -146,7 +146,8 @@
                             class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Sejarah</a>
                         <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Visi
                             Misi</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">
+                        <a href="{{ route('public.news.index') }}"
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">
                             Berita</a>
                     </div>
                 </div>

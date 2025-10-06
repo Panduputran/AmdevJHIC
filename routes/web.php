@@ -18,6 +18,8 @@ use App\Models\SchoolProgram;
 
 
 use App\Http\Controllers\PublicPage\PublicMajorsController;
+use App\Http\Controllers\PublicPage\PublicNewsController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +32,10 @@ Route::get('/', [HomeController::class, 'index']);
 // Rute Halaman Publik Jurusan
 Route::get('/majors', [PublicMajorsController::class, 'index'])->name('public.majors.index');
 Route::get('/majors/{major}', [PublicMajorsController::class, 'show'])->name('public.majors.show');
+
+
+Route::get('/news', [PublicNewsController::class, 'index'])->name('public.news.index');
+Route::get('/news/{news}', [PublicNewsController::class, 'show'])->name('public.news.show');
 
 
 Route::get('/', [HomeController::class, 'index']);

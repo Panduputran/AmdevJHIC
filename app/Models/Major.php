@@ -18,10 +18,12 @@ class Major extends Model
     protected $fillable = [
         'name',
         'description',
+        'tag',          // BARU: Tag atau kata kunci
+        'advantage',    // BARU: Poin-poin keunggulan
         'image',
-        'logo', // Ditambahkan: Kolom logo untuk penyimpanan path gambar
+        'logo',
         'competency_head',
-        'competency_head_photo', // The new field for the photo
+        'competency_head_photo',
         'publisher',
     ];
 
