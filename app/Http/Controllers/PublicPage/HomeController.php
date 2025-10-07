@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\PublicPage;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Partner;
@@ -19,7 +20,7 @@ class HomeController extends Controller
         $testimonials = Testimonial::with('major')->latest()->take(6)->get();
 
         // 1. Ambil semua gambar dari database yang memiliki title 'MainImage'
-        $mainImages = Image::where('title', 'MainImage')->get();
+        $mainImages = Image::whereIn('title', ['MainImage'])->get();
         $gridImages = Image::where('title', 'GridImage')->take(5)->get();
         $majorGridImages = Image::where('title', 'MajorGrid')->latest()->take(2)->get();
         $majorGridImages_padded = $majorGridImages->pad(2, null);

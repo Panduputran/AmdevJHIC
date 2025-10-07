@@ -13,12 +13,14 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AchievementController; // Mengimpor AchievementController
 use App\Http\Controllers\ExtracurricularController; // Mengimpor ExtracurricularController
 use App\Http\Controllers\ImageController; // Mengimpor ImageController
-use App\Http\Controllers\HomeController;
+
 use App\Models\SchoolProgram;
 
-
+use App\Http\Controllers\PublicPage\HomeController;
 use App\Http\Controllers\PublicPage\PublicMajorsController;
 use App\Http\Controllers\PublicPage\PublicNewsController;
+use App\Http\Controllers\PublicPage\PublicPartnersController;
+use App\Http\Controllers\PublicPage\PublicFacilityController;
 
 
 Route::get('/', function () {
@@ -36,6 +38,13 @@ Route::get('/majors/{major}', [PublicMajorsController::class, 'show'])->name('pu
 
 Route::get('/news', [PublicNewsController::class, 'index'])->name('public.news.index');
 Route::get('/news/{news}', [PublicNewsController::class, 'show'])->name('public.news.show');
+
+Route::get('/partners', [PublicPartnersController::class, 'index'])->name('public.partners.index');
+Route::get('/partners/{partner}', [PublicPartnersController::class, 'show'])->name('public.partners.show');
+
+Route::get('/facilities', [PublicFacilityController::class, 'index'])->name('public.facilities.index');
+Route::get('/facilities/{facility}', [PublicFacilityController::class, 'show'])->name('public.facilities.show');
+
 
 
 Route::get('/', [HomeController::class, 'index']);

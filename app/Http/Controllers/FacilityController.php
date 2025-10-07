@@ -121,4 +121,6 @@ class FacilityController extends Controller
 
         return redirect()->route('admin.facilities.index')->with('success', 'Fasilitas berhasil dihapus!');
     }
+
+    
 }

@@ -38,18 +38,26 @@
                         <p class="text-sm text-white mb-3">Gunakan judul spesifik berikut agar gambar terhubung dengan
                             fungsi di sistem:</p>
                         <ul class="list-disc list-inside text-sm text-white space-y-1 ml-4">
-                            <li><span class="text-[#eaf600]">MainImage</span> : Untuk gambar utama di <span
+                            <li><span class="text-[#eaf600]">Main</span> : <span
+                                    class="text-[#6CF600] text-bold">All</span>.</li>
+                            <li><span class="text-[#eaf600]">MainImage</span> : <span
                                     class="text-[#6CF600] text-bold">Home</span>.</li>
-                            <li><span class="text-[#eaf600]">GridImage</span> : Untuk gambar grid utama di <span
+                            <li><span class="text-[#eaf600]">GridImage</span> : <span
                                     class="text-[#6CF600] text-bold">Home</span>.
-                            <li><span class="text-[#eaf600]">MajorGrid</span> : Untuk gambar grid jurusan utama di <span
+                            <li><span class="text-[#eaf600]">MajorGrid</span> : <span
                                     class="text-[#6CF600] text-bold">Home</span>.
                             </li>
-                            <li><span class="text-[#eaf600]">MajorsImage</span> : Untuk gambar utama jurusan utama di <span
+                            <li><span class="text-[#eaf600]">MajorsImage</span> : <span
                                     class="text-[#6CF600] text-bold">Major Competency</span>.
                             </li>
-                            <li><span class="text-[#eaf600]">NewsImage</span> : Untuk gambar utama jurusan utama di <span
+                            <li><span class="text-[#eaf600]">NewsImage</span> : <span
                                     class="text-[#6CF600] text-bold">News</span>.
+                            </li>
+                            <li><span class="text-[#eaf600]">PartnersImage</span> : <span
+                                    class="text-[#6CF600] text-bold">Industry Partners</span>.
+                            </li>
+                            <li><span class="text-[#eaf600]">FacilityImage</span> : <span
+                                    class="text-[#6CF600] text-bold">Facilities</span>.
                             </li>
                         </ul>
                         <p class="text-xs mt-3 text-red-500">Gambar yang memiliki judul di atas akan diprioritaskan oleh
@@ -85,11 +93,14 @@
                                 <select id="title_option"
                                     class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6CF600] @error('title') border-red-500 @enderror">
                                     <option value="" disabled selected>Pilih Judul</option>
+                                       <option value="Main">Main</option>
                                     <option value="MainImage">MainImage</option>
                                     <option value="GridImage">GridImage</option>
                                     <option value="MajorGrid">MajorGrid</option>
                                     <option value="MajorsImage">MajorsImage</option>
                                     <option value="NewsImage">NewsImage</option>
+                                    <option value="PartnersImage">PartnersImage</option>
+                                    <option value="FacilityImage">FacilityImage</option>
                                     <option value="custom">Custom</option>
                                 </select>
 

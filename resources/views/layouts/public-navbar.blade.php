@@ -143,12 +143,14 @@
                             class="fa-solid fa-chevron-down ml-1.5 text-xs"></i></button>
                     <div class="absolute dropdown-content bg-white shadow-lg mt-2 rounded-md py-1 w-48 z-10">
                         <a href="#"
-                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Sejarah</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Visi
-                            Misi</a>
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">History</a>
                         <a href="{{ route('public.news.index') }}"
                             class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">
-                            Berita</a>
+                            News</a>
+                        <a href="{{ route('public.partners.index') }}"
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Industry
+                            Partners</a>
+
                     </div>
                 </div>
                 <div class="relative group">
@@ -166,14 +168,7 @@
                     </div>
                 </div>
                 <div class="relative group">
-                    <button class="nav-link">Facilitation <i
-                            class="fa-solid fa-chevron-down ml-1.5 text-xs"></i></button>
-                    <div class="absolute dropdown-content bg-white shadow-lg mt-2 rounded-md py-1 w-48 z-10">
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Lab
-                            Komputer</a>
-                        <a href="#"
-                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Perpustakaan</a>
-                    </div>
+                    <button class="nav-link"><a href="{{ route('public.facilities.index') }}">Facilities</a></button>
                 </div>
                 <a href="#" class="nav-link">Bursa Kerja Khusus</a>
             </div>

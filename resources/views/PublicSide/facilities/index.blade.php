@@ -18,24 +18,23 @@
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     </head>
-
     @php
         $amaliahGreen = '#63cd00';
         $amaliahDark = '#282829';
         $amaliahBlue = '#E0E7FF';
 
         // Cek Variabel 
-        $hasImages = isset($partnersImages) && $partnersImages->isNotEmpty();
+        $hasImages = isset($facilityImages) && $facilityImages->isNotEmpty();
     @endphp
 
     <body>
         <section class="relative max-w-screen">
             {{-- Slider Gambar Dinamis --}}
             @if($hasImages)
-                <div x-data="{ activeSlide: 1, totalSlides: {{ $partnersImages->count() }} }"
+                <div x-data="{ activeSlide: 1, totalSlides: {{ $facilityImages->count() }} }"
                     x-init="setInterval(() => { activeSlide = activeSlide % totalSlides + 1 }, 5000)">
                     <div class="relative w-full h-[300px] overflow-hidden">
-                        @foreach($partnersImages as $image)
+                        @foreach($facilityImages as $image)
                             <div x-show="activeSlide === {{ $loop->iteration }}"
                                 x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="opacity-0"
                                 x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-1000"
@@ -72,20 +71,8 @@
                             <li>
                                 <div class="flex items-center">
                                     <i class="fas fa-chevron-right text-white text-xs"></i>
-                                    <a href="{{ route('public.partners.index') }}"
-                                        class="ml-2 font-medium text-white hover:text-white md:ml-3 transition-colors">Industry
-                                        Partners</a>
-                                </div>
-                            </li>
-                            <li aria-current="page">
-                                <div class="flex items-center">
-                                    <i class="fas fa-chevron-right text-white text-xs"></i>
-
-                                    {{-- Cukup panggil properti 'name' dari objek $partner --}}
-                                    <span class="ml-2 font-medium md:ml-3 truncate max-w-xs" style="color: #ffffff;">
-                                        {{ $partner->name }}
-                                    </span>
-
+                                    <a href="{{ route('public.facilities.index') }}"
+                                        class="ml-2 font-medium text-white hover:text-white md:ml-3 transition-colors">Facilities</a>
                                 </div>
                             </li>
                         </ol>
@@ -95,111 +82,123 @@
         </div>
 
 
-
-
-        <section class="bg-[#333333] text-white py-16 sm:py-24">
+        <section class="bg-white py-16 sm:py-24">
             <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                {{-- WADAH UTAMA DENGAN LAYOUT 2 KOLOM --}}
-                <div class="lg:grid lg:grid-cols-3 lg:gap-x-12">
+                {{-- KEPALA BAGIAN (JUDUL DI KIRI, FILTER DI KANAN) --}}
+                {{-- Margin bawah dikurangi dari mb-12 menjadi mb-10 --}}
+                <div class="flex flex-col md:flex-row justify-between md:items-end gap-8 mb-10">
 
-                    {{-- ============================================= --}}
-                    {{-- KOLOM KIRI: DETAIL PARTNER UTAMA (`$partner`) --}}
-                    {{-- ============================================= --}}
-                    <div class="lg:col-span-2">
+                    {{-- Kolom Kiri: Judul dan Deskripsi --}}
+                    <div class="md:w-1/2">
+                        {{-- Ukuran font judul diperkecil --}}
+                        <h2 class="text-2xl lg:text-3xl font-extrabold text-gray-900 tracking-tight mt-[-50px]">
+                            Fasilitas Unggulan Kami
+                        </h2>
+                        {{-- Ukuran font deskripsi diperkecil --}}
+                        <p class="mt-3 text-base text-gray-600">
+                            Jelajahi beragam sarana dan prasarana modern yang kami sediakan untuk mendukung proses belajar.
+                        </p>
+                    </div>
 
-                        {{-- KOTAK HEADER: LOGO & NAMA PERUSAHAAN --}}
+                    {{-- Kolom Kanan: Tombol Filter --}}
+                    <div class="flex-shrink-0">
+                        <div class="flex flex-wrap items-center justify-start md:justify-end gap-3">
+                            <a href="{{ route('public.facilities.index') }}"
+                                class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors duration-200
+                                  {{ !$currentType ? 'bg-[#59E300] text-white shadow-sm' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                                Semua
+                            </a>
+                            @foreach($types as $type)
+                                <a href="{{ route('public.facilities.index', ['type' => $type]) }}"
+                                    class="px-4 py-2 text-sm font-semibold rounded-lg transition-colors duration-200
+                                          {{ $currentType == $type ? 'bg-[#59E300] text-white shadow-sm' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                                    {{ $type }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- GRID DAFTAR FASILITAS --}}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    @forelse($facilities as $facility)
+                        @php
+                            // Logika untuk menentukan ikon berdasarkan tipe fasilitas
+                            $iconClass = 'fa-star'; // Ikon default
+                            if ($facility->type == 'Akademik') {
+                                $iconClass = 'fa-book-open';
+                            } elseif ($facility->type == 'Olahraga') {
+                                $iconClass = 'fa-futbol';
+                            } elseif ($facility->type == 'Umum') {
+                                $iconClass = 'fa-building';
+                            }
+                        @endphp
+
                         <div
-                            class="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col sm:flex-row items-center mb-8">
-                            @if($partner->logo)
-                                <img src="{{ Storage::url($partner->logo) }}" alt="Logo {{ $partner->name }}"
-                                    class="h-24 w-24 object-contain bg-white rounded-lg p-2 shadow-md mb-4 sm:mb-0 sm:mr-6 flex-shrink-0">
-                            @endif
-                            <div>
-                                <h1 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-center sm:text-left">
-                                    {{ $partner->name }}
-                                </h1>
-                                <p class="text-gray-400 mt-1 text-center sm:text-left">Sektor:
-                                    {{ $partner->sector ?? 'N/A' }}
-                                </p>
-                            </div>
-                        </div>
+                            class="group bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
 
-                        {{-- KONTEN UTAMA: DESKRIPSI & INFO LAINNYA --}}
-                        <div class="bg-white/5 border border-white/10 rounded-xl p-8">
-                            <h2 class="text-2xl font-bold text-white border-b border-white/10 pb-3 mb-5">Tentang Mitra</h2>
-
-                            {{-- Deskripsi --}}
-                            <div class="prose prose-invert lg:prose-lg max-w-none mb-6">
-                                <p>{{ $partner->description }}</p>
-                            </div>
-
-                            {{-- Detail dalam bentuk daftar --}}
-                            <ul class="space-y-3">
-                                <li>
-                                    <strong><i class="fas fa-map-marker-alt w-5 mr-2 text-[#6CF600]"></i> Lokasi:</strong>
-                                    <span class="text-gray-300">{{ $partner->city ?? 'N/A' }}</span>
-                                </li>
-                                <li>
-                                    <strong><i class="fas fa-phone-alt w-5 mr-2 text-[#6CF600]"></i> Kontak:</strong>
-                                    <span class="text-gray-300">{{ $partner->company_contact ?? 'N/A' }}</span>
-                                </li>
-                                <li>
-                                    <strong><i class="fas fa-calendar-alt w-5 mr-2 text-[#6CF600]"></i> Bergabung
-                                        Sejak:</strong>
-                                    <span
-                                        class="text-gray-300">{{ \Carbon\Carbon::parse($partner->partnership_date)->translatedFormat('d F Y') }}</span>
-                                </li>
-                                @if($partner->website)
-                                    <li>
-                                        <strong><i class="fas fa-globe w-5 mr-2 text-[#6CF600]"></i> Website:</strong>
-                                        <a href="{{ $partner->website }}" target="_blank" rel="noopener noreferrer"
-                                            class="text-blue-400 hover:underline">{{ $partner->website }}</a>
-                                    </li>
+                            {{-- GAMBAR FASILITAS --}}
+                            <div class="relative h-56 w-full">
+                                @if ($facility->image)
+                                    <img src="{{ Storage::url($facility->image) }}" alt="Gambar {{ $facility->name }}"
+                                        class="w-full h-full object-cover">
+                                @else
+                                    <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                                        <i class="fas fa-image text-4xl text-gray-400"></i>
+                                    </div>
                                 @endif
-                            </ul>
-                        </div>
-                    </div>
-
-                    {{-- ==================================================== --}}
-                    {{-- KOLOM KANAN: SIDEBAR SUGESTI (`$randomPartners`) --}}
-                    {{-- ==================================================== --}}
-                    <div class="lg:col-span-1 mt-12 lg:mt-0">
-                        <div class="bg-white/5 border border-white/10 rounded-xl p-6 sticky top-24">
-                            <h3 class="text-xl font-bold text-white mb-6 border-b border-white/10 pb-3">Mitra Industri
-                                Lainnya</h3>
-
-                            <div class="space-y-5">
-                                @forelse ($randomPartners as $suggestedPartner)
-                                    <a href="{{ route('public.partners.show', $suggestedPartner) }}"
-                                        class="flex items-center group p-2 rounded-lg hover:bg-white/5 transition-colors">
-                                        <div
-                                            class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center p-1 shadow-inner mr-4 flex-shrink-0">
-                                            @if($suggestedPartner->logo)
-                                                <img src="{{ Storage::url($suggestedPartner->logo) }}"
-                                                    alt="Logo {{ $suggestedPartner->name }}" class="max-h-12 w-auto object-contain">
-                                            @endif
-                                        </div>
-                                        <div>
-                                            <p
-                                                class="font-bold text-white group-hover:text-[#6CF600] transition-colors leading-tight">
-                                                {{ $suggestedPartner->name }}
-                                            </p>
-                                            <p class="text-sm text-gray-400">{{ $suggestedPartner->sector }}</p>
-                                        </div>
-                                    </a>
-                                @empty
-                                    <p class="text-gray-400 text-sm">Tidak ada mitra lain untuk ditampilkan.</p>
-                                @endforelse
                             </div>
+
+                                        {{-- KONTEN CARD --}}
+                                        <div class="p-6 flex flex-col flex-grow">
+                                            {{-- TIPE & IKON --}}
+                                            <div class="flex items-center text-sm font-semibold text-blue-600 mb-2">
+                                                <i class="fas {{ $iconClass }} mr-2 w-4 text-center"></i>
+                                                <span>{{ $facility->type }}</span>
+                                            </div>
+
+                                            {{-- NAMA FASILITAS --}}
+                                            <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight">
+                                                {{ $facility->name }}
+                                            </h3>
+
+                                            {{-- DESKRIPSI SINGKAT --}}
+                                            <p class="text-gray-600 text-sm flex-grow mb-6">
+                                                {{ Str::limit($facility->description, 120) }}
+                                            </p>
+
+                                            {{-- TOMBOL AKSI --}}
+                                            <div class="mt-auto">
+                                                <a href="{{ route('public.facilities.show', $facility) }}"
+                                                    class="inline-flex items-center font-semibold text-blue-600 group/link">
+                                                    Baca Selengkapnya
+                                                    <i
+                                                        class="fas fa-arrow-right ml-2 text-xs transition-transform duration-300 group-hover/link:translate-x-1"></i>
+                                                </a>
+                                            </div>
+                                        </div>
                         </div>
-                    </div>
+                    @empty
+                        {{-- TAMPILAN JIKA TIDAK ADA FASILITAS --}}
+                        <div
+                            class="col-span-1 md:col-span-2 lg:col-span-3 border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
+                            <p class="text-gray-500 font-medium">Fasilitas dengan kriteria ini tidak ditemukan.</p>
+                        </div>
+                    @endforelse
 
                 </div>
             </div>
         </section>
 
-         <footer style="background-color: {{ $amaliahDark }};">
+
+
+
+
+
+        <footer style="background-color: {{ $amaliahDark }};">
             <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
                 {{-- Konten Utama Footer (Multi-kolom) --}}
@@ -325,6 +324,7 @@
                 </div>
             </div>
         </footer>
+
 
     </body>
 

@@ -87,7 +87,16 @@
         </div>
 
         <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 class="text-3xl font-bold mb-8 text-gray-800">Berita Terbaru</h1>
+            <div class="md:w-1/2 mb-8">
+                {{-- Ukuran font judul diperkecil --}}
+                <h2 class="text-2xl lg:text-3xl font-extrabold text-gray-900 tracking-tight">
+                    Berita Terbaru
+                </h2>
+                {{-- Ukuran font deskripsi diperkecil --}}
+                <p class="mt-3 text-base text-gray-600">
+                    Jelajahi beragam berita terbaru yang kami sajikan untuk Anda.
+                </p>
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @forelse ($news as $item)

@@ -18,7 +18,7 @@ class PublicMajorsController extends Controller
         $majors = Major::with('testimonials')->latest()->get();
 
         // Mengambil gambar hero untuk halaman jurusan
-        $majorsImages = Image::where('title', 'MajorsImage')->get();
+        $majorsImages = Image::whereIn('title', ['MajorsImage', 'main'])->get();
         $hasImages = !$majorsImages->isEmpty();
 
         // Mengirimkan semua variabel yang diperlukan ke view

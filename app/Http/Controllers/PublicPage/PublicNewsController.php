@@ -18,7 +18,7 @@ class PublicNewsController extends Controller
         // Mengambil semua berita, diurutkan dari yang terbaru
         $news = News::latest()->paginate(10);
 
-        $newsImages = Image::where('title', 'NewsImage')->get();
+        $newsImages = Image::whereIn('title', ['NewsImage', 'main'])->get();
 
         return view('PublicSide.news.index', [
             'news' => $news,

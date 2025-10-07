@@ -18,13 +18,14 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     </head>
+
     <style>
         .hero-clip-path {
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), calc(100% - 4rem) 100%, 0 100%);
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
     <body class="font-['Poppins'] bg-gray-100">
 
@@ -151,11 +152,22 @@
 
                 </div>
             </section>
-            @php
-                // Definisikan warna di sini agar mudah diakses
-                $amaliahGreen = '#63cd00'; // Warna hijau sesuai permintaan
-                $amaliahDark = '#282829';   // Warna gelap sesuai permintaan
-            @endphp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             {{-- Bagian Header Judul --}}
             <section class="text-center px-4 sm:px-6 lg:px-8 mb-16">
@@ -179,25 +191,32 @@
                             dan Pelayanan Prima dan dibawah pengawasan Universitas Djuanda (UNIDA) berdiri pada tahun 2008.
                         </p>
 
-                        {{-- Wadah untuk Tombol (Diperbarui) --}}
+                        {{-- Wadah untuk Tombol --}}
                         <div
                             class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
 
-                            {{-- Tombol 1: Info PPDB (Style diperbarui) --}}
                             <a href="#"
-                                class="inline-flex items-center justify-center text-white px-6 py-3 rounded-lg font-semibold transition-transform hover:scale-105 shadow-lg"
+                                class="group inline-flex items-center justify-between text-white pl-6 pr-2 py-2 rounded-lg font-semibold shadow-lg transition-all duration-300 hover:shadow-xl hover:opacity-90"
                                 style="background-color: {{ $amaliahGreen }};">
-                                Info PPDB
+
+                                <span class="mr-4">Info PPDB</span>
+
+                                <span
+                                    class="bg-white rounded-full h-8 w-8 flex items-center justify-center transition-transform duration-300 group-hover/button:translate-x-1 ease-in-out group-hover:translate-x-1">
+                                    <i class="fas fa-arrow-right text-sm " style="color: {{ $amaliahGreen }};"></i>
+                                </span>
                             </a>
 
-                            {{-- Tombol 2: Selengkapnya (Style diperbarui sesuai referensi) --}}
                             <a href="#"
-                                class="inline-flex items-center justify-between text-white pl-6 pr-2 py-2 rounded-lg font-semibold transition-transform hover:scale-105 shadow-lg"
+                                class="group inline-flex items-center justify-between text-white pl-6 pr-2 py-2 rounded-lg font-semibold shadow-lg transition-all duration-300 hover:shadow-xl hover:opacity-90"
                                 style="background-color: {{ $amaliahGreen }};">
-                                <span class="mr-3">Selengkapnya</span>
-                                <div class="bg-white rounded-full h-8 w-8 flex items-center justify-center">
-                                    <i class="fas fa-arrow-right text-sm" style="color: {{ $amaliahGreen }};"></i>
-                                </div>
+
+                                <span class="mr-4">Selengkapnya</span>
+
+                                <span
+                                    class="bg-white rounded-full h-8 w-8 flex items-center justify-center transition-transform duration-300 group-hover/button:translate-x-1 ease-in-out group-hover:translate-x-1">
+                                    <i class="fas fa-arrow-right text-sm    " style="color: {{ $amaliahGreen }};"></i>
+                                </span>
                             </a>
 
                         </div>
@@ -249,6 +268,20 @@
                     </div>
                 </div>
             </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             @php
                 // Definisikan variabel warna di atas agar mudah diakses
@@ -309,6 +342,19 @@
             </section>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
             <section class="bg-white py-16 sm:py-24">
                 <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -332,12 +378,16 @@
                             </p>
 
                             {{-- Tombol Selengkapnya --}}
+
                             <a href="#"
-                                class="mt-8 inline-flex items-center text-white px-8 py-4 rounded-lg font-semibold transition-transform hover:scale-105 shadow-lg"
+                                class="group mt-8 inline-flex items-center text-white px-6 py-3 rounded-lg font-semibold shadow-lg group/button transition-opacity duration-300 hover:opacity-90"
                                 style="background-color: {{ $amaliahGreen }};">
-                                <span>Selengkapnya</span>
-                                <div class="ml-4 bg-white rounded-full p-2 flex items-center justify-center">
-                                    <i class="fas fa-arrow-right text-base" style="color: {{ $amaliahGreen }};"></i>
+
+                                <span class="mr-4 text-lg">Selengkapnya</span>
+
+                                <div
+                                    class="bg-white rounded-full p-2 flex items-center justify-center transition-transform duration-300 group-hover/button:translate-x-1 ease-in-out group-hover:translate-x-1">
+                                    <i class="fas fa-arrow-right text-base " style="color: {{ $amaliahGreen }};"></i>
                                 </div>
                             </a>
                         </div>
@@ -373,6 +423,18 @@
             </section>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             {{-- CSS Tambahan untuk menyembunyikan scrollbar --}}
             <style>
                 .scrollbar-hide::-webkit-scrollbar {
@@ -387,15 +449,15 @@
 
             <section class="py-16 sm:py-24" style="background-color: {{ $amaliahDark }};">
                 <div x-data="{
-                                                                                                            scrollSlider(direction) {
-                                                                                                                const slider = this.$refs.slider;
-                                                                                                                const scrollAmount = slider.querySelector('.slider-item').offsetWidth + 32; // Lebar kartu + gap
-                                                                                                                slider.scrollBy({
-                                                                                                                    left: direction === 'next' ? scrollAmount : -scrollAmount,
-                                                                                                                    behavior: 'smooth'
-                                                                                                                });
-                                                                                                            }
-                                                                                                        }"
+                                                                                                                                        scrollSlider(direction) {
+                                                                                                                                            const slider = this.$refs.slider;
+                                                                                                                                            const scrollAmount = slider.querySelector('.slider-item').offsetWidth + 32; // Lebar kartu + gap
+                                                                                                                                            slider.scrollBy({
+                                                                                                                                                left: direction === 'next' ? scrollAmount : -scrollAmount,
+                                                                                                                                                behavior: 'smooth'
+                                                                                                                                            });
+                                                                                                                                        }
+                                                                                                                                    }"
                     class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
                     {{-- Dekorasi Titik --}}
@@ -480,11 +542,19 @@
                                     <h3 class="text-xl font-bold text-white">{{ $major->name }}</h3>
                                     <p class="text-sm text-gray-400 mt-2 flex-grow">{{ $major->description }}</p>
 
+
                                     <a href="{{ route('public.majors.show', $major) }}"
                                         class="inline-flex items-center group mt-4">
-                                        <span class="text-sm font-semibold text-white mr-3">Selengkapnya</span>
-                                        <div class="bg-gray-200 rounded-full p-2 group-hover:bg-gray-300 transition-colors">
-                                            <i class="fas fa-arrow-right text-gray-800 text-sm"></i>
+
+                                        <span
+                                            class="text-sm font-semibold text-white mr-3 transition-colors duration-300 group-hover:text-gray-200">
+                                            Selengkapnya
+                                        </span>
+
+                                        <div
+                                            class="bg-gray-200 rounded-full p-2 transition-all duration-300 ease-in-out group-hover:bg-white group-hover:scale-110 group-hover:shadow-md">
+                                            <i
+                                                class="fas fa-arrow-right text-gray-800 text-sm transition-transform duration-300 ease-in-out group-hover:-rotate-45"></i>
                                         </div>
                                     </a>
                                 </div>
@@ -506,6 +576,21 @@
                     </div>
                 </div>
             </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             <section class="bg-gray-50 py-16 sm:py-24">
@@ -574,6 +659,18 @@
                     </div>
                 </div>
             </section>
+
+
+
+
+
+
+
+
+
+
+
+
 
             <section class="py-16 sm:py-24" style="background-color: {{ $amaliahDark }};">
                 {{-- Container Utama --}}
@@ -650,9 +747,10 @@
 
                     {{-- Tombol Selengkapnya --}}
                     <div class="text-right mt-6">
-                        <a href="#" class="inline-flex items-center group">
+                        <a href="{{ route('public.facilities.index') }}" class="inline-flex items-center group">
                             <span class="text-sm font-semibold text-white mr-3">Selengkapnya</span>
-                            <div class="bg-gray-200 rounded-full p-2 group-hover:bg-gray-300 transition-colors">
+                            <div
+                                class="bg-gray-200 rounded-full p-2 group-hover:bg-gray-300 transition-transform duration-300 group-hover/button:translate-x-1 ease-in-out group-hover:translate-x-1">
                                 <i class="fas fa-arrow-right text-gray-800 text-sm"></i>
                             </div>
                         </a>
@@ -660,6 +758,15 @@
 
                 </div>
             </section>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -691,16 +798,16 @@
 
                     {{-- Slider Testimoni (Alpine.js + Tailwind CSS) --}}
                     <div x-data="{
-                                                                                                                                                                                                        slider: null,
-                                                                                                                                                                                                        init() {
-                                                                                                                                                                                                            this.slider = this.$refs.sliderContainer;
-                                                                                                                                                                                                        },
-                                                                                                                                                                                                        scroll(direction) {
-                                                                                                                                                                                                            // Geser sejauh 80% dari lebar area yang terlihat
-                                                                                                                                                                                                            let scrollAmount = this.slider.offsetWidth * 0.8;
-                                                                                                                                                                                                            this.slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-                                                                                                                                                                                                        }
-                                                                                                                                                                                                    }"
+                                                                                                                                                                                                                                    slider: null,
+                                                                                                                                                                                                                                    init() {
+                                                                                                                                                                                                                                        this.slider = this.$refs.sliderContainer;
+                                                                                                                                                                                                                                    },
+                                                                                                                                                                                                                                    scroll(direction) {
+                                                                                                                                                                                                                                        // Geser sejauh 80% dari lebar area yang terlihat
+                                                                                                                                                                                                                                        let scrollAmount = this.slider.offsetWidth * 0.8;
+                                                                                                                                                                                                                                        this.slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                }"
                         class="mt-12 relative">
                         {{-- Tombol Panah Kiri --}}
                         <button @click="scroll(-1)"
@@ -764,7 +871,17 @@
                 </div>
             </section>
 
-        
+
+
+
+
+
+
+
+
+
+
+
 
             <section class="bg-[#282829] py-16 sm:py-20 overflow-hidden">
                 <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{ activeTab: 'amaliah1' }">
@@ -776,15 +893,17 @@
                         </h2>
                         <div class="flex justify-center items-center space-x-2 mt-8">
                             <button @click="activeTab = 'amaliah1'" :class="{
-                            'bg-[#63cd00] text-white shadow-lg': activeTab === 'amaliah1',
-                            'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'amaliah1'
-                        }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                                        'bg-[#63cd00] text-white shadow-lg': activeTab === 'amaliah1',
+                                                        'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'amaliah1'
+                                                    }"
+                                class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
                                 SMK Amaliah 1
                             </button>
                             <button @click="activeTab = 'amaliah2'" :class="{
-                            'bg-[#63cd00] text-white shadow-lg': activeTab === 'amaliah2',
-                            'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'amaliah2'
-                        }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                                        'bg-[#63cd00] text-white shadow-lg': activeTab === 'amaliah2',
+                                                        'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'amaliah2'
+                                                    }"
+                                class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
                                 SMK Amaliah 2
                             </button>
                         </div>
@@ -876,6 +995,16 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
             <section class="bg-white py-16 sm:py-24">
                 <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -932,6 +1061,18 @@
                     </div>
                 </div>
             </section>
+
+
+
+
+
+
+
+
+
+
+
+
 
             @php
                 // Definisikan warna utama
