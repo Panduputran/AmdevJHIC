@@ -1,4 +1,4 @@
-@extends('layouts.public-navbar')
+@extends('layouts.public-app')
 
 @section('title', 'Halaman Utama')
 
@@ -46,7 +46,7 @@
                 [
                     'title' => 'SMK Amaliah 2 (Bisnis & Pariwisata)',
                     'icon' => 'fa-briefcase',
-                'text' => 'Berfokus pada manajemen bisnis, pemasaran digital, dan pariwisata, menyiapkan lulusan untuk sektor jasa dan industri kreatif. (MP, AK, LPS, BR, DPB)',
+                    'text' => 'Berfokus pada manajemen bisnis, pemasaran digital, dan pariwisata, menyiapkan lulusan untuk sektor jasa dan industri kreatif. (MP, AK, LPS, BR, DPB)',
                     'class' => 'md:pl-8', // Padding di KIRI Amaliah 2
                 ],
             ];
@@ -151,105 +151,125 @@
                     </div>
                 </div>
 
-                {{-- Grid Kartu Jurusan --}}
+                <div x-data="{ activeTab: 'all' }">
 
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    @forelse ($majors as $major)
-                        <div
-                            class="bg-white rounded-2xl shadow-lg transition-all duration-300 group overflow-hidden flex flex-col">
+                    {{-- Bagian Header: Judul dan Tombol Tab (Sesuai Referensi) --}}
+                    <div class="text-center mb-12">
+                        <div class="flex justify-center items-center space-x-2 mt-8">
 
-                            {{-- BAGIAN GAMBAR UTAMA --}}
-                            <a href="{{ route('public.majors.show', $major) }}" class="block h-56 relative overflow-hidden">
-                                <img src="{{ asset('storage/' . $major->image) }}" alt="Gambar {{ $major->name }}"
-                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]">
-                                {{-- Tambahan efek zoom in pada gambar saat hover --}}
-                            </a>
+                            {{-- Tombol "Semua" (Ditambahkan kembali) --}}
+                            <button @click="activeTab = 'all'" :class="{
+                            'bg-[#63cd00] text-white shadow-lg': activeTab === 'all',
+                            'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'all'
+                        }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                Semua
+                            </button>
 
-                            {{-- KONTEN TEKS KARTU --}}
-                            <div class="p-6 relative flex flex-col flex-grow">
+                            {{-- Tombol "SMK Amaliah 1" --}}
+                            <button @click="activeTab = 'SMK Amaliah 1'" :class="{
+                            'bg-[#63cd00] text-white shadow-lg': activeTab === 'SMK Amaliah 1',
+                            'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'SMK Amaliah 1'
+                        }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                SMK Amaliah 1
+                            </button>
 
-                                {{-- LOGO JURUSAN --}}
-                                <div
-                                    class="absolute -top-12 left-6 bg-white p-3 rounded-2xl shadow-xl border border-gray-100 transition-shadow duration-300">
-                                    {{-- Logo menggunakan shadow yang lebih menonjol --}}
-                                    @if ($major->logo)
-                                        <img src="{{ asset('storage/' . $major->logo) }}"
-                                            alt="Logo {{ $major->abbreviation ?? $major->name }}" class="h-16 w-16 object-contain">
-                                    @else
-                                        <div
-                                            class="h-16 w-16 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-xs">
-                                            Logo
-                                        </div>
-                                    @endif
-                                </div>
+                            {{-- Tombol "SMK Amaliah 2" --}}
+                            <button @click="activeTab = 'SMK Amaliah 2'" :class="{
+                            'bg-[#63cd00] text-white shadow-lg': activeTab === 'SMK Amaliah 2',
+                            'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'SMK Amaliah 2'
+                        }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                SMK Amaliah 2
+                            </button>
 
-                                {{-- Header Teks --}}
-                                <div class="pt-8">
-                                    <h3 class="text-2xl font-semibold leading-tight" style="color: {{ $amaliahDark }};">
-                                        {{-- H3 diganti font-bold menjadi font-semibold --}}
-                                        {{ $major->abbreviation ?? $major->name }}
-                                    </h3>
-                                    <p class="text-sm text-gray-500 mt-0.5">{{ $major->name }}</p>
-                                </div>
+                        </div>
+                    </div>
 
-                                {{-- Body Kartu (Keunggulan menggunakan ADVANTAGE) --}}
-                                <div class="mt-4 flex-grow border-t border-gray-100 pt-4">
-                                    {{-- Garis pemisah ditambahkan --}}
-                                    <h4 class="font-medium text-gray-700">Poin Kunci</h4>
-                                    <ul class="mt-2 text-sm text-gray-600 leading-relaxed space-y-2">
-                                        @php
-                                            // Pisahkan string advantage berdasarkan baris baru dan ambil 3 poin pertama
-                                            $advantages = $major->advantage ? array_filter(explode("\n", $major->advantage)) : [];
-                                            $limitedAdvantages = array_slice($advantages, 0, 3);
-                                        @endphp
 
-                                        @forelse ($limitedAdvantages as $advantage)
-                                            <li class="flex items-start">
-                                                {{-- Ikon lebih kecil dan jelas --}}
-                                                <i class="fas fa-check-circle text-xs mt-1 mr-2 flex-shrink-0"
-                                                    style="color: {{ $amaliahDark }};"></i>
-                                                <span>{{ trim($advantage) }}</span>
-                                            </li>
-                                        @empty
-                                            <li class="text-gray-400 italic">Keunggulan belum diinput.</li>
-                                        @endforelse
-                                    </ul>
-                                </div>
+                    {{-- 2. Grid Kartu Jurusan --}}
+                    <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+                        @forelse ($majors as $major)
+                            {{-- Tambahkan x-show dan x-transition di sini --}}
+                            <div x-show="activeTab === 'all' || activeTab === '{{ $major->tag }}'"
+                                x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0 transform scale-95"
+                                x-transition:enter-end="opacity-100 transform scale-100"
+                                x-transition:leave="transition ease-in duration-200"
+                                x-transition:leave-start="opacity-100 transform scale-100"
+                                x-transition:leave-end="opacity-0 transform scale-95"
+                                class="bg-white rounded-2xl shadow-lg transition-all duration-300 group overflow-hidden flex flex-col">
 
-                                {{-- Footer Kartu (Tombol) --}}
-                                <div class="mt-6 flex items-center gap-4">
-                                    {{-- TOMBOL SELENGKAPNYA (DENGAN ARROW BERGERAK) --}}
-                                    <a href="{{ route('public.majors.show', $major) }}"
-                                        class="inline-flex items-center text-white px-5 py-2.5 rounded-lg text-sm font-semibold relative overflow-hidden group/button transition-opacity duration-300 hover:opacity-90"
-                                        style="background-color: {{ $amaliahDark }};">
-                                        <span>Selengkapnya</span>
-                                        {{-- Kontainer panah dengan animasi geser --}}
-                                        <div
-                                            class="ml-2 bg-white rounded-full p-1 flex items-center justify-center relative z-10 transition-transform duration-300 group-hover/button:translate-x-1">
-                                            <i class="fas fa-arrow-right text-xs" style="color: {{ $amaliahDark }};"></i>
-                                        </div>
-                                    </a>
+                                {{-- BAGIAN GAMBAR UTAMA --}}
+                                <a href="{{ route('public.majors.show', $major) }}" class="block h-56 relative overflow-hidden">
+                                    <img src="{{ asset('storage/' . $major->image) }}" alt="Gambar {{ $major->name }}"
+                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]">
+                                </a>
 
-                                    {{-- TOMBOL LABORATORIUM (DENGAN ARROW BERGERAK) --}}
-                                    <a href="#"
-                                        class="inline-flex items-center text-white px-5 py-2.5 rounded-lg text-sm font-medium relative overflow-hidden group/button transition-colors duration-300 hover:text-white"
-                                        style="background-color: {{ $amaliahDark }};">
-                                        {{-- Mengganti warna teks dan background saat hover --}}
-                                        <span
-                                            class="transition-colors duration-300 group-hover/button:text-white">Laboratorium</span>
-                                        <div
-                                            class="ml-2 bg-white rounded-full p-1 flex items-center justify-center relative z-10 transition-transform duration-300 group-hover/button:translate-x-1">
-                                            <i class="fas fa-arrow-right text-xs" style="color: {{ $amaliahDark }};"></i>
-                                        </div>
-                                    </a>
+                                {{-- KONTEN TEKS KARTU --}}
+                                <div class="p-6 relative flex flex-col flex-grow">
+
+                                    {{-- LOGO JURUSAN --}}
+                                    <div
+                                        class="absolute -top-12 left-6 bg-white p-3 rounded-2xl shadow-xl border border-gray-100 transition-shadow duration-300">
+                                        @if ($major->logo)
+                                            <img src="{{ asset('storage/' . $major->logo) }}"
+                                                alt="Logo {{ $major->abbreviation ?? $major->name }}"
+                                                class="h-16 w-16 object-contain">
+                                        @else
+                                            <div
+                                                class="h-16 w-16 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-xs">
+                                                Logo
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                    {{-- Header Teks --}}
+                                    <div class="pt-8">
+                                        <h3 class="text-2xl font-semibold leading-tight" style="color: {{ $amaliahDark }};">
+                                            {{ $major->abbreviation ?? $major->name }}
+                                        </h3>
+                                        <p class="text-sm text-gray-500 mt-0.5">{{ $major->name }}</p>
+                                    </div>
+
+                                    {{-- Body Kartu (Keunggulan menggunakan ADVANTAGE) --}}
+                                    <div class="mt-4 flex-grow border-t border-gray-100 pt-4">
+                                        <h4 class="font-medium text-gray-700">Skills</h4>
+                                        <ul class="mt-2 text-sm text-gray-600 leading-relaxed space-y-2">
+                                            @php
+                                                $advantages = $major->advantage ? array_filter(explode("\n", $major->advantage)) : [];
+                                                $limitedAdvantages = array_slice($advantages, 0, 3);
+                                            @endphp
+                                            @forelse ($limitedAdvantages as $advantage)
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-check-circle text-xs mt-1 mr-2 flex-shrink-0"
+                                                        style="color: {{ $amaliahDark }};"></i>
+                                                    <span>{{ trim($advantage) }}</span>
+                                                </li>
+                                            @empty
+                                                <li class="text-gray-400 italic">Keunggulan belum diinput.</li>
+                                            @endforelse
+                                        </ul>
+                                    </div>
+
+                                    {{-- Footer Kartu (Tombol) --}}
+                                    <div class="mt-6 flex items-center gap-4">
+                                        <a href="{{ route('public.majors.show', $major) }}"
+                                            class="inline-flex items-center text-white px-5 py-2.5 rounded-lg text-sm font-semibold relative overflow-hidden group/button transition-opacity duration-300 hover:opacity-90"
+                                            style="background-color: {{ $amaliahDark }};">
+                                            <span>Selengkapnya</span>
+                                            <div
+                                                class="ml-2 bg-white rounded-full p-1 flex items-center justify-center relative z-10 transition-transform duration-300 group-hover/button:translate-x-1">
+                                                <i class="fas fa-arrow-right text-xs" style="color: {{ $amaliahDark }};"></i>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @empty
-                        <div class="md:col-span-2 text-center py-12">
-                            <p class="text-gray-500">Belum ada jurusan yang ditambahkan.</p>
-                        </div>
-                    @endforelse
+                        @empty
+                            <div class="md:col-span-2 text-center py-12">
+                                <p class="text-gray-500">Belum ada jurusan yang ditambahkan.</p>
+                            </div>
+                        @endforelse
+                    </div>
                 </div>
         </section>
 
@@ -259,10 +279,12 @@
             $amaliahDark = '#282829';
         @endphp
 
-        <section class="bg-white py-16 sm:py-24">
-            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="bg-white py-16 sm:py-24 space-y-20">
 
-                {{-- Header Section --}}
+            {{-- BAGIAN 1: SLIDER (SWIPE) --}}
+            <div>
+                {{-- Header untuk slider diletakkan di dalam container agar rapi --}}
+                {{-- Header Section (Tidak ada perubahan) --}}
                 <div class="text-center">
                     <h2 class="text-3xl md:text-4xl font-bold" style="color: {{ $amaliahDark }};">
                         Our Latest Instagram Post
@@ -274,44 +296,29 @@
                     </div>
                 </div>
 
-                {{-- Konten Utama (Layout Dua Kolom) --}}
-                <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
 
-                    {{-- Kolom Kiri: Statis --}}
-                    <div class="lg:col-span-1">
-                        {{-- Placeholder untuk Post Utama --}}
-                        <div class="bg-gray-200 aspect-square w-full rounded-2xl flex items-center justify-center">
-                            <i class="fas fa-image text-5xl text-gray-400"></i>
-                        </div>
-                        <div class="mt-6 flex items-start gap-4">
-                            <i class="fab fa-instagram text-4xl" style="color: {{ $amaliahDark }};"></i>
-                            <div>
-                                <p class="text-gray-600 leading-relaxed">
-                                    Read our latest news, and know about smk amaliah. Read our latest news, and know
-                                    about smk amaliah.
-                                </p>
-                                <a href="#"
-                                    class="inline-flex items-center mt-4 text-blue-600 font-semibold hover:underline">
-                                    <span>Buka Instagram</span>
-                                    <i class="fas fa-external-link-alt ml-2 text-xs"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+            </div>
 
-                    {{-- Kolom Kanan: Untuk Widget Curator.io --}}
-                    <div class="lg:col-span-2">
-                        {{--
-                        KOTAK UNTUK WIDGET CURATOR.IO ANDA
-                        - Ganti div ini dengan kode embed dari Curator.io.
-                        - Jika kode gagal dimuat, div ini akan tampil sebagai kotak hitam sesuai permintaan.
-                        --}}
-                        <div id="curator-feed-default-layout"
-                            class="bg-black w-full min-h-[600px] rounded-2xl flex items-center justify-center">
-                            <p class="text-gray-500 text-center">Menunggu koneksi dari Curator.io...</p>
-                        </div>
-                    </div>
+            {{-- BAGIAN 2: GRID --}}
+            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8  ">
 
+
+                {{-- Wadah untuk grid Curator.io --}}
+                <div id="curator-feed-grid-layout">
+
+                    <!-- Place <div> tag where you want the feed to appear -->
+                    <div id="curator-feed-default-feed-layout"><a href="https://curator.io" target="_blank"
+                            class="crt-logo crt-tag">Powered by Curator.io</a></div>
+
+                    <!-- The Javascript can be moved to the end of the html page before the </body> tag -->
+                    <script type="text/javascript">
+                        /* curator-feed-default-feed-layout */
+                        (function () {
+                            var i, e, d = document, s = "script"; i = d.createElement("script"); i.async = 1; i.charset = "UTF-8";
+                            i.src = "https://cdn.curator.io/published/9b122a7e-d39e-40c4-abc3-8ab6bc446899.js";
+                            e = d.getElementsByTagName(s)[0]; e.parentNode.insertBefore(i, e);
+                        })();
+                    </script>
                 </div>
             </div>
         </section>
@@ -323,7 +330,7 @@
 
             // Definisikan informasi kontak
             $alamat = 'Jl. Raya Jl. Tol Jagorawi No.1, Ciawi, Kec. Ciawi, Kabupaten Bogor, Jawa Barat 16720';
-            $email = 'example@email.com';
+            $email = 'smkamaliahciawi@gmail.com';
             $phone = '123-456-7890';
         @endphp
 
@@ -379,137 +386,6 @@
                 </div>
             </div>
         </section>
-
-
-
-        <footer style="background-color: {{ $amaliahDark }};">
-            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-
-                {{-- Konten Utama Footer (Multi-kolom) --}}
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-
-                    {{-- Kolom 1: Logo, Deskripsi, dan Sosial Media --}}
-                    <div class="space-y-6">
-                        {{-- 1. Struktur Branding yang lebih rapi --}}
-                        <a href="/" class="flex items-center gap-3">
-                            <img src="{{ asset('assets/logo/amaliah_white.png') }}" alt="Logo SMK Amaliah" class="h-10">
-                            <div>
-                                <span class="text-white font-semibold text-lg leading-tight">SMK Amaliah 1 & 2</span>
-                                <span class="block text-gray-400 text-xs">Ciawi - Bogor</span>
-                            </div>
-                        </a>
-
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Berkomitmen untuk mencetak lulusan yang kompeten, berakhlak mulia, dan siap bersaing di
-                            dunia industri global.
-                        </p>
-
-                        {{-- 2. Ikon Sosial Media dengan efek hover modern --}}
-                        <div class="flex items-center space-x-3">
-                            <a href="#" target="_blank"
-                                class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
-                                <i
-                                    class="fab fa-youtube text-gray-400 text-xl group-hover:text-red-600 transition-colors"></i>
-                            </a>
-                            <a href="#" target="_blank"
-                                class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
-                                <i
-                                    class="fab fa-instagram text-gray-400 text-xl group-hover:text-pink-600 transition-colors"></i>
-                            </a>
-                            <a href="#" target="_blank"
-                                class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
-                                <i
-                                    class="fab fa-facebook-f text-gray-400 text-xl group-hover:text-blue-600 transition-colors"></i>
-                            </a>
-                            <a href="#" target="_blank"
-                                class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
-                                <i class="fab fa-tiktok text-gray-400 text-xl group-hover:text-black transition-colors"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    {{-- Kolom 2: Link Navigasi Cepat --}}
-                    <div>
-                        <h4 class="font-semibold text-white tracking-wider uppercase">Jelajahi</h4>
-                        <ul class="mt-4 space-y-3 text-sm">
-                            {{-- 3. Efek hover yang lebih interaktif --}}
-                            <li><a href="#"
-                                    class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Beranda</a>
-                            </li>
-                            <li><a href="#"
-                                    class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Tentang
-                                    Kami</a></li>
-                            <li><a href="#"
-                                    class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Berita</a>
-                            </li>
-                            <li><a href="#"
-                                    class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Jurusan</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {{-- Kolom 3: Link Informasi --}}
-                    <div>
-                        <h4 class="font-semibold text-white tracking-wider uppercase">Informasi</h4>
-                        <ul class="mt-4 space-y-3 text-sm">
-                            <li><a href="#"
-                                    class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Info
-                                    PPDB</a></li>
-                            <li><a href="#"
-                                    class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Fasilitas</a>
-                            </li>
-                            <li><a href="#"
-                                    class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Virtual
-                                    Tour</a></li>
-                            <li><a href="#"
-                                    class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Kontak</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {{-- Kolom 4: Informasi Kontak --}}
-                    <div>
-                        <h4 class="font-semibold text-white tracking-wider uppercase">Hubungi Kami</h4>
-                        <div class="mt-4 flex flex-col gap-4 text-sm">
-                            <div class="flex items-start gap-3 text-gray-400">
-                                <i class="fas fa-map-marker-alt w-4 h-4 mt-1 flex-shrink-0"></i>
-                                <span>{{ $alamat ?? 'Jl. Raya Veteran III, Banjarwaru, Ciawi, Kab. Bogor, Jawa Barat 16720' }}</span>
-                            </div>
-                            <div class="flex items-start gap-3 text-gray-400">
-                                <i class="fas fa-envelope w-4 h-4 mt-1 flex-shrink-0"></i>
-                                <a href="mailto:{{ $email ?? 'info@smkamaliah.sch.id' }}"
-                                    class="hover:text-white transition">{{ $email ?? 'info@smkamaliah.sch.id' }}</a>
-                            </div>
-                            <div class="flex items-start gap-3 text-gray-400">
-                                <i class="fas fa-phone-alt w-4 h-4 mt-1 flex-shrink-0"></i>
-                                <a href="tel:{{ $phone ?? '+622518241416' }}"
-                                    class="hover:text-white transition">{{ $phone ?? '(0251) 8241416' }}</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            {{-- Bagian Copyright di Bawah --}}
-            {{-- 4. Pemisah visual dan struktur copyright yang lebih profesional --}}
-            <div class="border-t border-gray-800">
-                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                    <div class="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-4">
-                        <p class="text-sm text-gray-500">
-                            &copy; {{ date('Y') }} Tim IT SMK Amaliah. All Rights Reserved.
-                        </p>
-                        <div class="flex space-x-6 text-sm text-gray-500">
-                            <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
-                            <a href="#" class="hover:text-white transition">Syarat & Ketentuan</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-
-
     </body>
 
     </html>

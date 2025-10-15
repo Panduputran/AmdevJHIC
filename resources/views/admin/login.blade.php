@@ -190,20 +190,33 @@
         <form id="loginForm" class="space-y-5" action="{{ route('login') }}" method="POST">
             @csrf
 
+            {{-- Notifikasi Error --}}
             @if ($errors->any())
-                <div class="bg-red-500 text-white text-xs rounded-lg p-2 font-medium">
+                <div class="bg-red-500 text-white text-xs rounded-lg p-3 font-medium">
                     @foreach ($errors->all() as $error)
                         <div>{{ $error }}</div>
                     @endforeach
+
+                    {{-- TAMPILKAN LINK RESET HANYA JIKA FLAG-NYA ADA --}}
+                    @if (session('show_reset_link'))
+                        <div class="mt-2 pt-2 border-t border-red-400">
+                            <a href="{{ route('password.request') }}" class="font-bold underline hover:text-gray-200">
+                                Lupa Password? Klik di sini untuk reset.
+                            </a>
+                        </div>
+                    @endif
+                    {{-- AKHIR BAGIAN KONDISIONAL --}}
                 </div>
             @endif
 
-            @if (session('success'))
+            {{-- Notifikasi Sukses --}}
+            @if (session('status'))
                 <div class="bg-[#4ED400] text-white text-xs rounded-lg p-2 font-medium">
-                    {{ session('success') }}
+                    {{ session('status') }}
                 </div>
             @endif
 
+            {{-- Input Email --}}
             <div class="relative group input-group">
                 <span class="absolute inset-y-0 left-4 flex items-center text-gray-400 input-icon">
                     <i class="fas fa-user"></i>
@@ -213,6 +226,7 @@
                     placeholder="admin@examples.com" type="email" name="email" value="{{ old('email') }}" required>
             </div>
 
+            {{-- Input Password --}}
             <div class="relative group input-group">
                 <span class="absolute inset-y-0 left-4 flex items-center text-gray-400 input-icon">
                     <i class="fas fa-lock"></i>
@@ -222,12 +236,14 @@
                     placeholder="password" type="password" name="password" required>
             </div>
 
+            {{-- Opsi Show Password --}}
             <div class="flex items-center justify-between text-xs font-medium">
                 <div class="flex items-center space-x-2 text-gray-300 cursor-pointer">
                     <input id="showPasswordToggle" type="checkbox"
                         class="form-checkbox h-4 w-4 text-[#4ED400] focus:ring-[#4ED400] rounded" name="show-password">
                     <span>Show Password</span>
                 </div>
+                {{-- Link Lupa Password permanen dihapus dari sini --}}
             </div>
 
             <button
@@ -238,7 +254,6 @@
         </form>
 
     </div>
-
     <script>
         const passwordField = document.getElementById("passwordField");
         const showPasswordToggle = document.getElementById("showPasswordToggle");
