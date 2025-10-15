@@ -105,7 +105,7 @@
                             <span class="text-lg">Kapan SMK Amaliah 1 & 2 didirikan?</span>
                             <svg :class="{'rotate-45': open === 1}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -122,7 +122,7 @@
                             <span class="text-lg">Di bawah naungan yayasan apa SMK Amaliah beroperasi?</span>
                             <svg :class="{'rotate-45': open === 2}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -138,7 +138,7 @@
                             <span class="text-lg">Apakah SMK Amaliah memiliki afiliasi dengan perguruan tinggi?</span>
                             <svg :class="{'rotate-45': open === 3}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -154,7 +154,7 @@
                             <span class="text-lg">Apa prinsip utama yang dipegang oleh SMK Amaliah?</span>
                             <svg :class="{'rotate-45': open === 4}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -170,7 +170,7 @@
                             <span class="text-lg">Apa saja jurusan atau konsentrasi keahlian yang tersedia?</span>
                             <svg :class="{'rotate-45': open === 5}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -197,7 +197,7 @@
                             <span class="text-lg">Apa visi sekolah dalam mencerdaskan bangsa?</span>
                             <svg :class="{'rotate-45': open === 6}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -217,7 +217,7 @@
                             <span class="text-lg">Bagaimana alur pendaftaran di SMK Amaliah?</span>
                             <svg :class="{'rotate-45': open === 7}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -244,7 +244,7 @@
                             <span class="text-lg">Kapan jadwal pendaftaran siswa baru dibuka?</span>
                             <svg :class="{'rotate-45': open === 8}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -261,7 +261,7 @@
                             <span class="text-lg">Apa saja persyaratan dokumen yang harus disiapkan?</span>
                             <svg :class="{'rotate-45': open === 9}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -286,7 +286,7 @@
                             <span class="text-lg">Apakah ada tes masuk untuk calon siswa?</span>
                             <svg :class="{'rotate-45': open === 10}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -303,7 +303,7 @@
                             <span class="text-lg">Apakah SMK Amaliah menyediakan program beasiswa?</span>
                             <svg :class="{'rotate-45': open === 11}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -331,7 +331,7 @@
                             <span class="text-lg">Berapa rincian biaya pendidikan di SMK Amaliah?</span>
                             <svg :class="{'rotate-45': open === 12}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -351,7 +351,7 @@
                             <span class="text-lg">Apa keunggulan utama SMK Amaliah?</span>
                             <svg :class="{'rotate-45': open === 13}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -370,7 +370,7 @@
                             <span class="text-lg">Bagaimana prospek kerja lulusan dari masing-masing jurusan?</span>
                             <svg :class="{'rotate-45': open === 14}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -397,7 +397,7 @@
                             <span class="text-lg">Apakah lulusan SMK Amaliah dijamin dapat kerja?</span>
                             <svg :class="{'rotate-45': open === 15}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -416,7 +416,7 @@
                             <span class="text-lg">Apakah siswa bisa melanjutkan kuliah setelah lulus?</span>
                             <svg :class="{'rotate-45': open === 16}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -434,7 +434,7 @@
                             <span class="text-lg">Bagaimana sistem Praktik Kerja Lapangan (PKL) di sekolah ini?</span>
                             <svg :class="{'rotate-45': open === 17}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -452,7 +452,7 @@
                             <span class="text-lg">Apakah ada program sertifikasi kompetensi untuk siswa?</span>
                             <svg :class="{'rotate-45': open === 18}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -472,7 +472,7 @@
                             <span class="text-lg">Apa saja kegiatan ekstrakurikuler yang tersedia?</span>
                             <svg :class="{'rotate-45': open === 19}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -495,7 +495,7 @@
                             <span class="text-lg">Bagaimana fasilitas pendukung pembelajaran di SMK Amaliah?</span>
                             <svg :class="{'rotate-45': open === 20}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -521,7 +521,7 @@
                             <span class="text-lg">Apakah ada program pembinaan karakter di sekolah?</span>
                             <svg :class="{'rotate-45': open === 21}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -539,7 +539,7 @@
                             <span class="text-lg">Di mana lokasi tepatnya SMK Amaliah 1 & 2?</span>
                             <svg :class="{'rotate-45': open === 22}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -556,7 +556,7 @@
                                 lanjut?</span>
                             <svg :class="{'rotate-45': open === 23}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -573,7 +573,7 @@
                             <span class="text-lg">Apakah ada layanan konseling untuk siswa?</span>
                             <svg :class="{'rotate-45': open === 24}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -590,7 +590,7 @@
                             <span class="text-lg">Apakah ada seragam khusus untuk siswa SMK Amaliah?</span>
                             <svg :class="{'rotate-45': open === 25}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -608,7 +608,7 @@
                             <span class="text-lg">Bagaimana sekolah melibatkan orang tua dalam pendidikan siswa?</span>
                             <svg :class="{'rotate-45': open === 26}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -625,7 +625,7 @@
                             <span class="text-lg">Apakah ada program kewirausahaan untuk siswa?</span>
                             <svg :class="{'rotate-45': open === 27}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -643,7 +643,7 @@
                             <span class="text-lg">Apakah ada perpustakaan dan bagaimana koleksinya?</span>
                             <svg :class="{'rotate-45': open === 28}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -660,7 +660,7 @@
                             <span class="text-lg">Bagaimana budaya dan lingkungan belajar di SMK Amaliah?</span>
                             <svg :class="{'rotate-45': open === 29}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -679,7 +679,7 @@
                             <span class="text-lg">Apakah ada akses internet untuk siswa?</span>
                             <svg :class="{'rotate-45': open === 30}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
@@ -695,7 +695,7 @@
                             <span class="text-lg">Saya lulusan jurusan Animasi, apa saja prospek karirnya?</span>
                             <svg :class="{'rotate-45': open === 31}"
                                 class="w-6 h-6 transform transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                         </button>
