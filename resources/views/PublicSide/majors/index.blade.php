@@ -339,7 +339,7 @@
 
                 {{-- Tombol Virtual Tour di Atas --}}
                 <div class="text-center mb-10">
-                    <a href="#"
+                    <a href="https://yourdisc710.itch.io/amaliah-tour
                         class="inline-flex items-center bg-white border border-gray-300 rounded-full px-8 py-4 text-base font-semibold shadow-md hover:shadow-lg hover:border-gray-400 transition-all duration-300 group">
                         <span class="text-gray-800">Mau Lihat SMK Amaliah?</span>
                         <span class="ml-2 font-bold" style="color: {{ $amaliahGreen }};">Masuk Ke Virtual Tour!</span>

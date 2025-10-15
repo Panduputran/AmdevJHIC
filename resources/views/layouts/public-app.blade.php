@@ -137,11 +137,11 @@
 
                         {{-- Grup 3: Tautan Cepat --}}
                         <div class="flex items-center space-x-8 text-sm text-gray-700">
-                            <a href="http://spmb.smkamaliah.sch.id"
+                            <a href="https://ppdb.smkamaliah.sch.id/login"
                                 class="hover:text-[#63cd00] transition-colors whitespace-nowrap ">Info SPMB</a>
                             <a href="https://www.instagram.com/bkksmkamaliah/"
                                 class="hover:text-[#63cd00] transition-colors whitespace-nowrap">Info BKK</a>
-                            <a href="http://lms.smkamaliah.sch.id"
+                            <a href="https://lms.smkamaliah.sch.id"
                                 class="hover:text-[#63cd00] transition-colors whitespace-nowrap">E-Learning</a>
                             <a href="https://nonton.smkamaliah.sch.id/"
                                 class="hover:text-[#63cd00] transition-colors whitespace-nowrap">AM Movie</a>
@@ -296,13 +296,13 @@
 
 
                     <hr class="my-2">
-                    <a href="http://spmb.smkamaliah.sch.id"
+                    <a href="https://ppdb.smkamaliah.sch.id/login"
                         class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Info
                         PPDB</a>
                     <a href="https://www.instagram.com/bkksmkamaliah/"
                         class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Info
                         BKK</a>
-                    <a href="http://lms.smkamaliah.sch.id"
+                    <a href="https://lms.smkamaliah.sch.id"
                         class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">E-Learning</a>
                     <a href="https://nonton.smkamaliah.sch.id/"
                         class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">AM
@@ -417,16 +417,16 @@
                     <div>
                         <h4 class="font-semibold text-white tracking-wider uppercase">Informasi</h4>
                         <ul class="mt-4 space-y-3 text-sm">
-                            <li><a href="#"
+                            <li><a href="https://ppdb.smkamaliah.sch.id/login   "
                                     class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Info
                                     PPDB</a></li>
                             <li><a href="{{ route('public.facilities.index') }}"
                                     class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Fasilitas</a>
                             </li>
-                            <li><a href="#"
+                            <li><a href="https://yourdisc710.itch.io/amaliah-tour"
                                     class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Virtual
                                     Tour</a></li>
-                            <li><a href="#"
+                            <li><a href=""
                                     class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Kontak</a>
                             </li>
                         </ul>

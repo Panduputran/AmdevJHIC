@@ -87,7 +87,7 @@
                                 {{-- Tombol "Watch Video" di Pojok Kanan Atas --}}
                                 <button @click="showVideo = true"
                                     class="absolute top-6 right-6 z-20 flex items-center gap-2 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full hover:bg-black/70 transition-all duration-300">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    <svg xmlns="https://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                         fill="currentColor">
                                         <path fill-rule="evenodd"
                                             d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
@@ -110,7 +110,7 @@
                                 {{-- Tombol "Close" untuk Video --}}
                                 <button @click="showVideo = false"
                                     class="absolute top-6 right-6 z-20 flex items-center justify-center w-10 h-10 bg-black/50 backdrop-blur-sm text-white rounded-full hover:bg-black/70 transition-all duration-300">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                     </svg>
@@ -137,7 +137,7 @@
                                     </div>
 
                                     <a href="#" class="text-[#282829] hover:text-gray-600 transition-colors flex-shrink-0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                        <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M9 5l7 7-7 7" />
@@ -199,21 +199,21 @@
                                 'icon' => 'fa-file-lines',
                                 'title' => 'SPMB Online',
                                 'desc' => 'Ayo daftarkan dirimu di SMK Amaliah secara mudah melalui sistem online kami.',
-                                'link' => 'http://spmb.smkamaliah.sch.id', // Ganti dengan route atau URL PPDB Anda
+                                'link' => 'https://ppdb.smkamaliah.sch.id/login', // Ganti dengan route atau URL PPDB Anda
                                 'button_text' => 'Daftar Sekarang',
                             ],
                             [
                                 'icon' => 'fa-chart-simple',
                                 'title' => 'E-Learning',
                                 'desc' => 'Akses materi, tugas, dan sumber belajar kapan saja melalui platform E-Learning terintegrasi.',
-                                'link' => 'http://lms.smkamaliah.sch.id', // Ganti dengan URL E-Learning Anda
+                                'link' => 'https://lms.smkamaliah.sch.id', // Ganti dengan URL E-Learning Anda
                                 'button_text' => 'Mulai Belajar',
                             ],
                             [
                                 'icon' => 'fa-vr-cardboard',
                                 'title' => 'Virtual Tour',
                                 'desc' => 'Jelajahi setiap sudut dan fasilitas sekolah kami secara virtual dari kenyamanan rumah Anda.',
-                                'link' => '#', // Ganti dengan route atau URL Virtual Tour
+                                'link' => 'https://yourdisc710.itch.io/amaliah-tour', // Ganti dengan route atau URL Virtual Tour
                                 'button_text' => 'Jelajahi Sekarang',
                             ],
                             [
@@ -1265,7 +1265,7 @@
 
                     {{-- Tombol Virtual Tour di Atas --}}
                     <div class="text-center mb-10">
-                        <a href="#"
+                        <a href="https://yourdisc710.itch.io/amaliah-tour"
                             class="inline-flex items-center bg-white border border-gray-300 rounded-full px-8 py-4 text-base font-semibold shadow-md hover:shadow-lg hover:border-gray-400 transition-all duration-300 group">
                             <span class="text-gray-800">Mau Lihat SMK Amaliah?</span>
                             <span class="ml-2 font-bold" style="color: {{ $amaliahGreen }};">Masuk Ke Virtual Tour!</span>
