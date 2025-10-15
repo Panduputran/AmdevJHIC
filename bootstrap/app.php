@@ -11,6 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        
+        // ✅ TAMBAHKAN BARIS INI UNTUK MEMPERBAIKI MASALAH "NOT SECURE"
+        $middleware->trustProxies(at: '*'); 
+
+        // Konfigurasi alias Anda yang sudah ada tetap di sini
         $middleware->alias([
             'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
             'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
