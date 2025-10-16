@@ -183,37 +183,7 @@
             </div>
         </section>
 
-        <div class="bg-white py-16 sm:py-24">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight">
-                        Detail Visi & Misi
-                    </h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
-                        Informasi mengenai sejarah perkembangan SMK Amaliah 1 & 2 dari masa ke masa.
-                    </p>
-                </div>
-
-                @if ($visionContent)
-                    <article class="prose prose-lg prose-gray max-w-none">
-                        {!! $visionContent->content !!}
-                    </article>
-                @else
-                    <div class="text-center py-24 px-6 bg-gray-50 rounded-xl border border-gray-200">
-                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            aria-hidden="true">
-                            <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        <h3 class="mt-2 text-sm font-semibold text-gray-900">Konten Belum Tersedia</h3>
-                        <p class="mt-1 text-sm text-gray-500">Halaman ini sedang dalam pengembangan.</p>
-                    </div>
-                @endif
-
-            </div>
-        </div>
+     
 
 
     </body>

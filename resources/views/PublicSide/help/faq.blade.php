@@ -110,9 +110,9 @@
                             </svg>
                         </button>
                         <div x-show="open === 1" x-collapse x-cloak class="mt-4 text-gray-600 leading-relaxed">
-                            [cite_start]<p>SMK Amaliah 1 & 2 Ciawi Bogor berdiri pada tahun 2008. [cite: 5] [cite_start]SMK
+                            <p>SMK Amaliah 1 & 2 Ciawi Bogor berdiri pada tahun 2008.SMK
                                 Amaliah 1 didirikan berdasarkan SK Pendirian No. 421/104-Disdik tanggal 14 Mei 2008, dan SMK
-                                Amaliah 2 berdasarkan SK No. 431/18-Dikmen tanggal 03 Mei 2008. [cite: 5]</p>
+                                Amaliah 2 berdasarkan SK No. 431/18-Dikmen tanggal 03 Mei 2008.</p>
                         </div>
                     </div>
 
@@ -127,8 +127,8 @@
                             </svg>
                         </button>
                         <div x-show="open === 2" x-collapse x-cloak class="mt-4 text-gray-600 leading-relaxed">
-                            [cite_start]<p>SMK Amaliah 1 & 2 berada di bawah naungan Yayasan Pusat Studi Pengembangan Islam
-                                Amaliyah Indonesia (YPSPIAI). [cite: 5]</p>
+                            <p>SMK Amaliah 1 & 2 berada di bawah naungan Yayasan Pusat Studi Pengembangan Islam
+                                Amaliyah Indonesia (YPSPIAI).</p>
                         </div>
                     </div>
 
@@ -143,8 +143,8 @@
                             </svg>
                         </button>
                         <div x-show="open === 3" x-collapse x-cloak class="mt-4 text-gray-600 leading-relaxed">
-                            [cite_start]<p>Ya, SMK Amaliah 1 & 2 berada di bawah pembinaan Universitas Djuanda (UNIDA).
-                                [cite: 5]</p>
+                            <p>Ya, SMK Amaliah 1 & 2 berada di bawah pembinaan Universitas Djuanda (UNIDA).
+                                </p>
                         </div>
                     </div>
 
@@ -159,8 +159,8 @@
                             </svg>
                         </button>
                         <div x-show="open === 4" x-collapse x-cloak class="mt-4 text-gray-600 leading-relaxed">
-                            [cite_start]<p>SMK Amaliah 1 & 2 mengutamakan Kualitas, Profesionalitas, dan Pelayanan Prima
-                                dalam penyelenggaraan pendidikannya. [cite: 5]</p>
+                            <p>SMK Amaliah 1 & 2 mengutamakan Kualitas, Profesionalitas, dan Pelayanan Prima
+                                dalam penyelenggaraan pendidikannya.</p>
                         </div>
                     </div>
 
@@ -175,18 +175,18 @@
                             </svg>
                         </button>
                         <div x-show="open === 5" x-collapse x-cloak class="mt-4 text-gray-600 leading-relaxed">
-                            [cite_start]<p>SMK Amaliah 1 & 2 membuka 9 (sembilan) Konsentrasi Keahlian, yaitu: [cite: 5, 6]
+                            <p>SMK Amaliah 1 & 2 membuka 9 (sembilan) Konsentrasi Keahlian, yaitu: 
                             </p>
                             <ul class="list-disc list-inside mt-2 space-y-1 pl-2">
-                                [cite_start]<li>Teknik Komputer dan Jaringan (TKJ) [cite: 5]</li>
-                                [cite_start]<li>Animasi (AN) [cite: 5]</li>
-                                [cite_start]<li>Rekayasa Perangkat Lunak (RPL) [cite: 5]</li>
-                                [cite_start]<li>Desain dan Komunikasi Visual (DKV) [cite: 5]</li>
-                                [cite_start]<li>Manajemen Perkantoran (MP) [cite: 5]</li>
-                                [cite_start]<li>Akuntansi (AK) [cite: 5]</li>
-                                [cite_start]<li>Layanan Perbankan Syariah (LPS) [cite: 5]</li>
-                                [cite_start]<li>Desain dan Produksi Busana (DPB) [cite: 6]</li>
-                                [cite_start]<li>Bisnis Retail (BR) [cite: 6]</li>
+                                <li>Teknik Komputer dan Jaringan (TKJ)</li>
+                                <li>Animasi (AN)</li>
+                                <li>Rekayasa Perangkat Lunak (RPL)</li>
+                                <li>Desain dan Komunikasi Visual (DKV)</li>
+                                <li>Manajemen Perkantoran (MP)</li>
+                                <li>Akuntansi (AK)</li>
+                                <li>Layanan Perbankan Syariah (LPS)</li>
+                                <li>Desain dan Produksi Busana (DPB)</li>
+                                <li>Bisnis Retail (BR)</li>
                             </ul>
                         </div>
                     </div>
@@ -202,9 +202,9 @@
                             </svg>
                         </button>
                         <div x-show="open === 6" x-collapse x-cloak class="mt-4 text-gray-600 leading-relaxed">
-                            [cite_start]<p>Sekolah berperan untuk menumbuhkan, memotivasi, dan mengembangkan nilai-nilai
+                            <p>Sekolah berperan untuk menumbuhkan, memotivasi, dan mengembangkan nilai-nilai
                                 budaya yang mencakup etika, logika, estetika, dan praktika, untuk menciptakan manusia
-                                Indonesia yang utuh dan berakar pada budaya bangsa. [cite: 3]</p>
+                                Indonesia yang utuh dan berakar pada budaya bangsa.</p>
                         </div>
                     </div>
 
@@ -544,7 +544,7 @@
                             </svg>
                         </button>
                         <div x-show="open === 22" x-collapse x-cloak class="mt-4 text-gray-600 leading-relaxed">
-                            [cite_start]<p>SMK Amaliah 1 & 2 berlokasi di Ciawi, Bogor. [cite: 5] Untuk alamat lengkap dan
+                            <p>SMK Amaliah 1 & 2 berlokasi di Ciawi, Bogor. Untuk alamat lengkap dan
                                 peta lokasi, silakan merujuk pada halaman kontak di website kami.</p>
                         </div>
                     </div>
@@ -665,10 +665,10 @@
                             </svg>
                         </button>
                         <div x-show="open === 29" x-collapse x-cloak class="mt-4 text-gray-600 leading-relaxed">
-                            [cite_start]<p>Kami menciptakan lingkungan belajar yang kondusif, religius, dan berbudaya.
+                            <p>Kami menciptakan lingkungan belajar yang kondusif, religius, dan berbudaya.
                                 Seiring perjalanan waktu, sekolah telah melalui berbagai tantangan, namun berkat kerjasama
                                 yang baik seluruh warga sekolah, kesabaran, dan keikhlasan, kami terus membangun komunitas
-                                yang solid dan mendukung. [cite: 7] Kami menekankan nilai-nilai saling menghormati,
+                                yang solid dan mendukung. Kami menekankan nilai-nilai saling menghormati,
                                 disiplin, dan semangat untuk terus belajar.</p>
                         </div>
                     </div>
@@ -700,7 +700,7 @@
                             </svg>
                         </button>
                         <div x-show="open === 31" x-collapse x-cloak class="mt-4 text-gray-600 leading-relaxed">
-                            [cite_start]<p>Lulusan dari konsentrasi keahlian Animasi (AN) [cite: 5] memiliki prospek karir
+                            <p>Lulusan dari konsentrasi keahlian Animasi (AN)  memiliki prospek karir
                                 yang cerah di industri kreatif. Beberapa profesi yang bisa ditekuni antara lain menjadi
                                 animator 2D/3D untuk film atau game, storyboard artist, character designer, visual effects
                                 (VFX) artist, atau motion graphic designer untuk iklan dan konten digital.</p>

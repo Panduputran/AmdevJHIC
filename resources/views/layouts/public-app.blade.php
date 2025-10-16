@@ -343,7 +343,7 @@
         <main>
             <!-- Elfsight AI Chatbot | Ama Dan Lia -->
             <script src="https://elfsightcdn.com/platform.js" async></script>
-            <div class="elfsight-app-26bf6423-b36c-42c5-a8db-b1c223ee9ec9" data-elfsight-app-lazy></div>
+            <div class="elfsight-app-364452d8-a7e7-4c81-b8e0-d6022fc87dd1" data-elfsight-app-lazy></div>
             @yield('content')
         </main>
 
@@ -438,7 +438,8 @@
                         <div class="mt-4 flex flex-col gap-4 text-sm">
                             <div class="flex items-start gap-3 text-gray-400">
                                 <i class="fas fa-map-marker-alt w-4 h-4 mt-1 flex-shrink-0"></i>
-                                <span>Jl. Raya Veteran III, Banjarwaru, Ciawi, Kab. Bogor, Jawa Barat 16720</span>
+                                <span>Jl. Raya Jl. Tol Jagorawi No.1, Ciawi, Kec. Ciawi, Kabupaten Bogor, Jawa Barat
+                                    16720</span>
                             </div>
                             <div class="flex items-start gap-3 text-gray-400">
                                 <i class="fas fa-envelope w-4 h-4 mt-1 flex-shrink-0"></i>
