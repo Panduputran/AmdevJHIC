@@ -1039,7 +1039,7 @@
 
                     {{-- Tombol "Baca Semua" --}}
                     <div class="text-center mt-12">
-                        <a href="#"
+                        <a href="{{ route('public.about.index') }}"
                             class="inline-block bg-white border border-gray-300 rounded-xl px-6 py-3 text-sm font-semibold text-gray-800 shadow-sm hover:shadow-lg hover:border-gray-400 transition-all duration-300">
                             Baca Testimoni Alumni SMK Amaliah
                         </a>

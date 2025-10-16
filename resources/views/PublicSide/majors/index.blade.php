@@ -159,25 +159,25 @@
 
                             {{-- Tombol "Semua" (Ditambahkan kembali) --}}
                             <button @click="activeTab = 'all'" :class="{
-                            'bg-[#63cd00] text-white shadow-lg': activeTab === 'all',
-                            'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'all'
-                        }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                'bg-[#63cd00] text-white shadow-lg': activeTab === 'all',
+                                'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'all'
+                            }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
                                 Semua
                             </button>
 
                             {{-- Tombol "SMK Amaliah 1" --}}
                             <button @click="activeTab = 'SMK Amaliah 1'" :class="{
-                            'bg-[#63cd00] text-white shadow-lg': activeTab === 'SMK Amaliah 1',
-                            'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'SMK Amaliah 1'
-                        }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                'bg-[#63cd00] text-white shadow-lg': activeTab === 'SMK Amaliah 1',
+                                'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'SMK Amaliah 1'
+                            }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
                                 SMK Amaliah 1
                             </button>
 
                             {{-- Tombol "SMK Amaliah 2" --}}
                             <button @click="activeTab = 'SMK Amaliah 2'" :class="{
-                            'bg-[#63cd00] text-white shadow-lg': activeTab === 'SMK Amaliah 2',
-                            'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'SMK Amaliah 2'
-                        }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                'bg-[#63cd00] text-white shadow-lg': activeTab === 'SMK Amaliah 2',
+                                'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'SMK Amaliah 2'
+                            }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
                                 SMK Amaliah 2
                             </button>
 
@@ -339,7 +339,7 @@
 
                 {{-- Tombol Virtual Tour di Atas --}}
                 <div class="text-center mb-10">
-                    <a href="https://yourdisc710.itch.io/amaliah-tour
+                    <a href="https://yourdisc710.itch.io/amaliah-tour"
                         class="inline-flex items-center bg-white border border-gray-300 rounded-full px-8 py-4 text-base font-semibold shadow-md hover:shadow-lg hover:border-gray-400 transition-all duration-300 group">
                         <span class="text-gray-800">Mau Lihat SMK Amaliah?</span>
                         <span class="ml-2 font-bold" style="color: {{ $amaliahGreen }};">Masuk Ke Virtual Tour!</span>

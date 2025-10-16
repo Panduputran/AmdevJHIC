@@ -12,9 +12,6 @@
     {{-- Tailwind CSS --}}
     <script src="https://cdn.tailwindcss.com"></script>
 
-    {{-- Alpine.js (Untuk Interaktivitas) --}}
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
@@ -22,6 +19,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Times+New+Roman&display=swap"
         rel="stylesheet" />
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 
     <style>
@@ -138,7 +137,7 @@
                         </div>
 
                         {{-- Grup 4: Tombol Contact Us (Style Baru) --}}
-                        <a href="https://linktr.ee/smkamaliah"
+                        <a href="https://wa.me/6285649011449"
                             class="bg-[#282829] text-white px-6 py-2.5 rounded-full font-semibold hover:bg-opacity-80 transition-colors whitespace-nowrap text-sm">Contact
                             Us</a>
 
@@ -204,9 +203,9 @@
                         <div class="absolute dropdown-content bg-white shadow-lg mt-2 rounded-md py-1 w-48 z-10">
                             <a href="{{ route('public.help.faq') }}"
                                 class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">FAQs</a>
-                            <a href="{{ route('public.help.feedback') }}"
+                            <a href="https://forms.gle/sveGZa9nd9uX62YE9"
                                 class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Feedback</a>
-                            <a href="#"
+                            <a href="https://wa.me/6285649011449"
                                 class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Contact
                                 Us</a>
 
@@ -278,8 +277,10 @@
                                 :class="{ 'rotate-180': open }"></i></button>
                         <div x-show="open" x-transition class="pl-6 pt-2 pb-1 space-y-1"><a
                                 href="{{ route('public.help.faq') }}"
-                                class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">FAQs</a><a
-                                href="https://linktr.ee/smkamaliah"
+                                class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">FAQs</a>
+                            <a href="https://forms.gle/sveGZa9nd9uX62YE9"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Feedback</a><a
+                                href="https://wa.me/6285649011449"
                                 class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Contact</a>
                         </div>
                     </div>
@@ -297,7 +298,7 @@
                     <a href="https://nonton.smkamaliah.sch.id/"
                         class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">AM
                         Movie</a>
-                    <a href="https://linktr.ee/smkamaliah"
+                    <a href="https://wa.me/6285649011449"
                         class="block px-4 py-3 text-[#50B70E] font-semibold rounded-md hover:bg-gray-100">Contact
                         Us</a>
                 </div>
@@ -331,9 +332,45 @@
             </div>
         </div>
         <main>
-            <!-- Elfsight AI Chatbot | Ama Dan Lia -->
+            @php
+                // Definisikan variabel warna dan nomor WhatsApp Anda
+                $amaliahGreen = '#63cd00';
+                $whatsappNumber = '6285649011449'; // Ganti dengan nomor Anda
+                $whatsappMessage = 'Halo, saya ingin bertanya tentang informasi SMK Amaliah 1 & 2 Ciawi';
+            @endphp
+
+            {{-- ================================================================= --}}
+            {{-- TOMBOL CEPAT & WIDGET (WHATSAPP, UP BUTTON, & ELFSIGHT AI) ----}}
+            {{-- ================================================================= --}}
+
             <script src="https://elfsightcdn.com/platform.js" async></script>
-            <div class="elfsight-app-364452d8-a7e7-4c81-b8e0-d6022fc87dd1" data-elfsight-app-lazy></div>
+            <div class="elfsight-app-44ecca3d-2b46-4aa8-b0dc-77f7448f5014" data-elfsight-app-lazy></div>
+
+            {{-- PERBAIKAN: Menambah jarak vertikal (space-y) dan posisi dari bawah (bottom) untuk desktop --}}
+            <div class="fixed bottom-[90px] lg:bottom-[100px] right-5 z-40 flex flex-col items-end space-y-4 lg:space-y-5">
+
+                {{-- TOMBOL SCROLL TO TOP (UP BUTTON) --}}
+                <div x-data="{ shown: false }"
+                    x-init="window.addEventListener('scroll', () => { shown = window.scrollY > 300 })" x-show="shown"
+                    x-transition>
+                    <button @click="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Kembali ke atas" {{--
+                        PERBAIKAN: Menambah ukuran tombol & ikon untuk desktop --}}
+                        class="w-12 h-12 lg:w-[65px] lg:h-[65px] rounded-full text-white shadow-lg flex items-center justify-center transition-transform hover:scale-110"
+                        style="background-color: {{ $amaliahGreen }};">
+                        <i class="fas fa-arrow-up text-xl lg:text-2xl"></i>
+                    </button>
+                </div>
+
+                {{-- TOMBOL CEPAT WHATSAPP --}}
+                <a href="https://wa.me/{{ $whatsappNumber }}?text={{ urlencode($whatsappMessage) }}" target="_blank"
+                    rel="noopener noreferrer" aria-label="Hubungi via WhatsApp" {{-- PERBAIKAN: Menambah ukuran tombol &
+                    ikon untuk desktop --}}
+                    class="w-12 h-12 lg:w-[65px] lg:h-[65px] rounded-full text-white shadow-lg flex items-center justify-center transition-transform hover:scale-110"
+                    style="background-color: {{ $amaliahGreen }};">
+                    <i class="fab fa-whatsapp text-xl lg:text-2xl"></i>
+                </a>
+
+            </div>
             @yield('content')
         </main>
 
@@ -438,7 +475,8 @@
                             </div>
                             <div class="flex items-start gap-3 text-gray-400">
                                 <i class="fas fa-phone-alt w-4 h-4 mt-1 flex-shrink-0"></i>
-                                <a href="tel:{{ $phone ?? '' }}" class="hover:text-white transition">0856-1922-827 /
+                                <a href="https://wa.me/6285649011449" class="hover:text-white transition">0856-1922-827
+                                    /
                                     0856-4901-1449</a>
                             </div>
                         </div>
