@@ -141,6 +141,8 @@ Route::middleware(['auth'])->group(function () {
         // Rute untuk Guru
         Route::resource('teachers', TeacherController::class);
 
+        Route::post('/teachers/{teacher}/upload-photo', [App\Http\Controllers\TeacherController::class, 'uploadPhoto'])->name('teachers.uploadPhoto');
+
         // Rute untuk Prestasi
         Route::resource('achievements', AchievementController::class);
 
