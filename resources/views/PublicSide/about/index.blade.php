@@ -6,6 +6,7 @@
     <html lang="en" class="dark">
 
     <head>
+        <meta name="description" content="Ketahui lebih lanjut tentang SMK Amaliah 1 & 2, visi misi kami dalam mencetak generasi unggul, kurikulum inovatif, dan lingkungan belajar yang aman dan inspiratif.">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">

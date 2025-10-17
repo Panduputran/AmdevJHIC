@@ -23,7 +23,7 @@
         $amaliahDark = '#282829';
         $amaliahBlue = '#E0E7FF';
 
-        // Cek Variabel 
+        // Cek Vasriabel 
         $hasImages = isset($facilityImages) && $facilityImages->isNotEmpty();
     @endphp
 

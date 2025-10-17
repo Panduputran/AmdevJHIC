@@ -6,6 +6,7 @@
     <html lang="en">
 
     <head>
+        <meta name="description" content="Telusuri perjalanan SMK Amaliah 1 & 2 sejak didirikan pada 2008. Dari cikal bakal sederhana hingga menjadi institusi pendidikan terdepan saat ini. Kenali warisan dan nilai-nilai kami.">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
