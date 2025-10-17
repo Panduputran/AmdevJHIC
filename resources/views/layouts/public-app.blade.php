@@ -109,8 +109,8 @@
                         <img src="{{ asset('assets/logo/amaliah.png') }}" alt="Logo SMK Amaliah" class="h-12 w-12">
                         <div class="flex flex-col">
                             <span class="text-gray-900 font-times text-base font-bold whitespace-nowrap">SMK AMALIAH
-                                    1&2
-                                    CIAWI</span>
+                                1&2
+                                CIAWI</span>
                             <span class="text-xs font-times text-gray-600"><i>Tauhid Is Our Fundament</i></span>
                         </div>
                     </div>
@@ -343,11 +343,12 @@
             {{-- TOMBOL CEPAT & WIDGET (WHATSAPP, UP BUTTON, & ELFSIGHT AI) ----}}
             {{-- ================================================================= --}}
 
+            <!-- Elfsight AI Chatbot | Ama Dan Lia -->
             <script src="https://elfsightcdn.com/platform.js" async></script>
-            <div class="elfsight-app-44ecca3d-2b46-4aa8-b0dc-77f7448f5014" data-elfsight-app-lazy></div>
-
+            <div class="elfsight-app-26bf6423-b36c-42c5-a8db-b1c223ee9ec9" data-elfsight-app-lazy></div>
             {{-- PERBAIKAN: Menambah jarak vertikal (space-y) dan posisi dari bawah (bottom) untuk desktop --}}
-            <div class="fixed bottom-[90px] lg:bottom-[100px] right-5 z-40 flex flex-col items-end space-y-4 lg:space-y-5">
+            <div
+                class="fixed bottom-[90px] lg:bottom-[100px] right-5 z-40 flex flex-col items-end space-y-4 lg:space-y-5">
 
                 {{-- TOMBOL SCROLL TO TOP (UP BUTTON) --}}
                 <div x-data="{ shown: false }"
