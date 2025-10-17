@@ -111,7 +111,7 @@
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
                             @php
                                 // Daftar judul bisa diambil dari controller atau didefinisikan di sini
-                                $allTitles = ['MainImage', 'MajorsImage', 'NewsImage', 'PartnersImage', 'FacilityImage', 'AchievementImage', 'ProgramImage', 'GridImage', 'MajorGrid', 'Main', 'PortraitImage'];
+                                $allTitles = ['MainImage', 'MajorsImage', 'NewsImage', 'PartnersImage', 'FacilityImage', 'ExtracurricularImage', 'AchievementImage', 'ProgramImage', 'GridImage', 'MajorGrid', 'Main', 'PortraitImage'];
                             @endphp
 
                             @foreach ($allTitles as $title)
@@ -153,6 +153,7 @@
                                         <option value="NewsImage">NewsImage</option>
                                         <option value="PartnersImage">PartnersImage</option>
                                         <option value="FacilityImage">FacilityImage</option>
+                                        <option value="ExtracurricularImage">ExtracurricularImage</option>
                                         <option value="AchievementImage">AchievementImage</option>
                                         <option value="PortraitImage">PortraitImage</option>
                                         <option value="ProgramImage">ProgramImage</option>
