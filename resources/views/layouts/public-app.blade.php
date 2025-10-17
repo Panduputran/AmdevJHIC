@@ -414,7 +414,7 @@
                                 <i
                                     class="fab fa-facebook-f text-gray-400 text-xl group-hover:text-blue-600 transition-colors"></i>
                             </a>
-                            <a href="#" target="_blank"
+                            <a href="https://www.tiktok.com/@smk.amaliah?_t=ZS-90cdH7Gk5Ml&_r=1" target="_blank"
                                 class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
                                 <i
                                     class="fab fa-tiktok text-gray-400 text-xl group-hover:text-black transition-colors"></i>
@@ -454,7 +454,7 @@
                             <li><a href="https://yourdisc710.itch.io/amaliah-tour"
                                     class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Virtual
                                     Tour</a></li>
-                            <li><a href="https://www.tiktok.com/@smk.amaliah?_t=ZS-90cdH7Gk5Ml&_r=1"
+                            <li><a href="https://wa.me/6285649011449"
                                     class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Kontak</a>
                             </li>
                         </ul>
