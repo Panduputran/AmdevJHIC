@@ -108,9 +108,9 @@
                     <div class="flex-shrink-0 flex items-center space-x-4">
                         <img src="{{ asset('assets/logo/amaliah.png') }}" alt="Logo SMK Amaliah" class="h-12 w-12">
                         <div class="flex flex-col">
-                            <span class="text-gray-900 font-times text-base font-bold whitespace-nowrap"><i>SMK AMALIAH
+                            <span class="text-gray-900 font-times text-base font-bold whitespace-nowrap">SMK AMALIAH
                                     1&2
-                                    CIAWI</i></span>
+                                    CIAWI</span>
                             <span class="text-xs font-times text-gray-600"><i>Tauhid Is Our Fundament</i></span>
                         </div>
                     </div>
