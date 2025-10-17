@@ -33,7 +33,7 @@ class PublicFacilityController extends Controller
         $facilities = $facilityQuery->latest()->get();
 
 
-        $facilityImages = Image::where('title', 'FacilityImage', 'main')->first();
+        $facilityImages = Image::where('title', 'FacilityImage',)->first();
 
         return view('PublicSide.facilities.index', [
             'facilities'     => $facilities,
