@@ -73,9 +73,9 @@
                                                                                                         activeNewsSlide: 1,
                                                                                                         totalNewsSlides: {{ $latestNews->count() }}
                                                                                                      }" x-init="
-                                                                                                        setInterval(() => { 
+                                                                                                        setInterval(() => {
                                                                                                             if (!showVideo) { // Animasi gambar hanya berjalan jika video tidak ditampilkan
-                                                                                                                activeImageSlide = activeImageSlide % totalImageSlides + 1 
+                                                                                                                activeImageSlide = activeImageSlide % totalImageSlides + 1
                                                                                                             }
                                                                                                         }, 5000);
                                                                                                         setInterval(() => { activeNewsSlide = activeNewsSlide % totalNewsSlides + 1 }, 5000);
@@ -115,7 +115,7 @@
                                 <iframe class="w-full h-full"
                                     :src="showVideo ? 'https://www.youtube.com/embed/STOhZZmY6Co?autoplay=1&mute=1&controls=0&loop=1&playlist=STOhZZmY6Co&rel=0&iv_load_policy=3&modestbranding=1' : ''"
                                     title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="youtube"
                                     allowfullscreen>
                                 </iframe>
 
@@ -148,7 +148,7 @@
                                             class="h-7 object-contain transition duration-300">
                                     </div>
 
-                                    <a href="#" class="text-[#282829] hover:text-gray-600 transition-colors flex-shrink-0">
+                                    <a href="https://jagoanhosting.com/" class="text-[#282829] hover:text-gray-600 transition-colors flex-shrink-0">
                                         <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -581,11 +581,11 @@
                             {{-- Tombol Navigasi Statis --}}
                             <div class="mt-6 flex items-center space-x-4">
                                 <button @click="scrollSlider('prev')"
-                                    class="bg-white hover:bg-gray-200 text-gray-800 w-12 h-12 rounded-lg flex items-center justify-center transition-colors">
+                                    class="bg-white hover:bg-gray-200 text-gray-800 w-12 h-12 rounded-lg flex items-center justify-center transition-colors" id="majorbutton" role="presentation" aria-label="button">
                                     <i class="fas fa-chevron-left"></i>
                                 </button>
                                 <button @click="scrollSlider('next')"
-                                    class="bg-white hover:bg-gray-200 text-gray-800 w-12 h-12 rounded-lg flex items-center justify-center transition-colors">
+                                    class="bg-white hover:bg-gray-200 text-gray-800 w-12 h-12 rounded-lg flex items-center justify-center transition-colors" id="majorbutton" role="presentation" aria-label="button">
                                     <i class="fas fa-chevron-right"></i>
                                 </button>
                             </div>
@@ -645,11 +645,11 @@
                         {{-- Tombol Navigasi (Hanya tampil di mobile) --}}
                         <div class="lg:hidden mt-6 flex items-center space-x-4">
                             <button @click="scrollSlider('prev')"
-                                class="bg-white hover:bg-gray-200 text-gray-800 w-12 h-12 rounded-lg flex items-center justify-center transition-colors">
+                                class="bg-white hover:bg-gray-200 text-gray-800 w-12 h-12 rounded-lg flex items-center justify-center transition-colors" id="majorbutton" role="presentation" aria-label="button">
                                 <i class="fas fa-chevron-left"></i>
                             </button>
                             <button @click="scrollSlider('next')"
-                                class="bg-white hover:bg-gray-200 text-gray-800 w-12 h-12 rounded-lg flex items-center justify-center transition-colors">
+                                class="bg-white hover:bg-gray-200 text-gray-800 w-12 h-12 rounded-lg flex items-center justify-center transition-colors" id="majorbutton" role="presentation" aria-label="button">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
                         </div>
@@ -740,15 +740,15 @@
                     <!-- Kontainer Video Responsif 16:9 -->
                     <div class="mt-12 max-w-4xl mx-auto">
                         <div class="relative w-full" style="padding-top: 56.25%;">
-                            <!-- 
-                                                          Catatan: padding-top: 56.25% adalah hasil dari 9 / 16, 
+                            <!--
+                                                          Catatan: padding-top: 56.25% adalah hasil dari 9 / 16,
                                                           yang menciptakan rasio aspek 16:9 yang responsif.
                                                         -->
                             <iframe class="absolute top-0 left-0 w-full h-full rounded-xl shadow-2xl"
                                 src="https://www.youtube-nocookie.com/embed/STOhZZmY6Co?si=34QAmdyIwXbAXs-7&amp;controls=0"
                                 title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                referrerpolicy="strict-origin-when-cross-origin" title="youtube" allowfullscreen>
                             </iframe>
                         </div>
                     </div>
@@ -883,7 +883,7 @@
                         {{-- Tombol Panah Kiri --}}
                         <button @click="scroll(-1)"
                             class="absolute top-1/2 -left-2 md:-left-8 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-10 hover:bg-opacity-80 transition"
-                            style="background-color: {{ $amaliahDark }};">
+                            style="background-color: {{ $amaliahDark }};" id="testimonialbutton" role="presentation" aria-label="button">
                             <i class="fas fa-chevron-left text-white"></i>
                         </button>
                         {{-- Container yang bisa di-scroll --}}
@@ -926,7 +926,7 @@
                         {{-- Tombol Panah Kanan --}}
                         <button @click="scroll(1)"
                             class="absolute top-1/2 -right-2 md:-right-8 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-10 hover:bg-opacity-80 transition"
-                            style="background-color: {{ $amaliahDark }};">
+                            style="background-color: {{ $amaliahDark }};" id="testimonialbutton" role="presentation" aria-label="button">
                             <i class="fas fa-chevron-right text-white"></i>
                         </button>
                     </div>
@@ -955,7 +955,7 @@
                                                                                                                                                                                                                                     'bg-[#63cd00] text-white shadow-lg': activeTab === 'amaliah1',
                                                                                                                                                                                                                                     'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'amaliah1'
                                                                                                                                                                                                                                 }"
-                                class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300" id="amaloahbutton" role="presentation" aria-label="button">
                                 SMK Amaliah 1
                             </button>
                             <button @click="activeTab = 'amaliah2'"
@@ -963,7 +963,7 @@
                                                                                                                                                                                                                                     'bg-[#63cd00] text-white shadow-lg': activeTab === 'amaliah2',
                                                                                                                                                                                                                                     'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'amaliah2'
                                                                                                                                                                                                                                 }"
-                                class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300" id="amaloahbutton" role="presentation" aria-label="button">
                                 SMK Amaliah 2
                             </button>
                         </div>
@@ -987,13 +987,13 @@
                                     mempersiapkannya hari ini."
                                 </blockquote>
                                 <div class="flex items-center space-x-3 mt-6 justify-center lg:justify-start">
-                                    <a href="#" aria-label="Facebook"
+                                    <a href="https://www.facebook.com/" aria-label="Facebook"
                                         class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
                                             class="fab fa-facebook-f"></i></a>
-                                    <a href="#" aria-label="Instagram"
+                                    <a href="https://www.instagram.com/" aria-label="Instagram"
                                         class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
                                             class="fab fa-instagram"></i></a>
-                                    <a href="#" aria-label="LinkedIn"
+                                    <a href="https://id.linkedin.com/" aria-label="LinkedIn"
                                         class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
                                             class="fab fa-linkedin-in"></i></a>
                                 </div>
@@ -1014,13 +1014,13 @@
                                     masa depan yang bermakna."
                                 </blockquote>
                                 <div class="flex items-center space-x-3 mt-6 justify-center lg:justify-start">
-                                    <a href="#" aria-label="Facebook"
+                                    <a href="https://www.facebook.com/" aria-label="Facebook"
                                         class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
                                             class="fab fa-facebook-f"></i></a>
-                                    <a href="#" aria-label="Instagram"
+                                    <a href="https://www.instagram.com/" aria-label="Instagram"
                                         class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
                                             class="fab fa-instagram"></i></a>
-                                    <a href="#" aria-label="LinkedIn"
+                                    <a href="https://id.linkedin.com/" aria-label="LinkedIn"
                                         class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors"><i
                                             class="fab fa-linkedin-in"></i></a>
                                 </div>
@@ -1136,7 +1136,7 @@
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.945187355167!2d106.8462900750414!3d-6.653716393341009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c8eec16c788f%3A0x4680dbde73e8b763!2sSMK%20Amaliah%201%20dan%202%20Ciawi!5e0!3m2!1sid!2sid!4v1759652507072!5m2!1sid!2sid"
                             width="1280" height="600" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            referrerpolicy="no-referrer-when-downgrade" title="maps"></iframe>
                         {{-- KARTU INFORMASI DI ATAS PETA --}}
                         <div class="absolute bottom-10 left-10 right-10 bg-white rounded-2xl shadow-xl p-8">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
