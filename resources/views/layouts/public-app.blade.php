@@ -454,7 +454,7 @@
                             <li><a href="https://yourdisc710.itch.io/amaliah-tour"
                                     class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Virtual
                                     Tour</a></li>
-                            <li><a href=""
+                            <li><a href="https://www.tiktok.com/@smk.amaliah?_t=ZS-90cdH7Gk5Ml&_r=1"
                                     class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Kontak</a>
                             </li>
                         </ul>
