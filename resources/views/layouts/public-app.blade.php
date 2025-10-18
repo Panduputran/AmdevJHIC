@@ -364,10 +364,6 @@
             {{-- TOMBOL CEPAT & WIDGET (WHATSAPP, UP BUTTON, & ELFSIGHT AI) ----}}
             {{-- ================================================================= --}}
 
-            <!-- Elfsight AI Chatbot | Ama Dan Lia -->
-            <script src="https://elfsightcdn.com/platform.js" async></script>
-            <div class="elfsight-app-26bf6423-b36c-42c5-a8db-b1c223ee9ec9" data-elfsight-app-lazy></div>
-            {{-- PERBAIKAN: Menambah jarak vertikal (space-y) dan posisi dari bawah (bottom) untuk desktop --}}
             <div
                 class="fixed bottom-[90px] lg:bottom-[100px] right-5 z-40 flex flex-col items-end space-y-4 lg:space-y-5">
 
