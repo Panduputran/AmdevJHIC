@@ -58,11 +58,11 @@
 
                         {{-- Tombol Aksi (CTA) --}}
                         <div class="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                            <a href="#explore-programs"
+                            <a href="href="{{ route('public.about.index') }}
                                 class="inline-flex items-center justify-center px-7 py-3 border border-transparent text-base font-semibold rounded-lg shadow-lg text-white bg-[#63cd00] hover:bg-[#52a800] transition-all duration-300 transform hover:-translate-y-0.5">
-                                Jelajahi Program
+                                About
                             </a>
-                            <a href="#contact-us"
+                            <a href="https://wa.me/6285649011449"
                                 class="inline-flex items-center justify-center px-7 py-3 border-2 border-gray-300 text-base font-semibold rounded-lg text-gray-700 bg-transparent hover:border-[#63cd00] hover:text-[#63cd00] transition-all duration-300">
                                 Hubungi Kami
                             </a>

@@ -125,7 +125,7 @@
                                     <span
                                         class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-200">
                                         <i class="fas fa-trophy mr-1.5 text-yellow-600"></i>
-                                        Juara {{ $achievement->winner }}
+                                        {{ $achievement->winner }}
                                     </span>
                                 </div>
 
