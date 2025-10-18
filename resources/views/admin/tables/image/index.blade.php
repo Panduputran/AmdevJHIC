@@ -234,6 +234,12 @@
                                     <th class="py-3 px-6 text-left">Judul</th>
                                     <th class="py-3 px-6 text-left">Path</th>
                                     <th class="py-3 px-6 text-left">Ukuran</th>
+
+                                    {{-- =================================== --}}
+                                    {{-- 1. TAMBAHKAN HEADER TABEL "TIPE" --}}
+                                    {{-- =================================== --}}
+                                    <th class="py-3 px-6 text-left">Tipe</th>
+
                                     <th class="py-3 px-6 text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -251,6 +257,14 @@
                                         </td>
                                         <td class="py-4 px-6 text-left">{{ number_format($image->size / 1024 / 1024, 2) }} MB
                                         </td>
+
+                                        {{-- =================================== --}}
+                                        {{-- 2. TAMPILKAN DATA MIME_TYPE --}}
+                                        {{-- =================================== --}}
+                                        <td class="py-4 px-6 text-left text-xs">
+                                            <code>{{ $image->mime_type ?? 'N/A' }}</code>
+                                        </td>
+
                                         <td class="py-4 px-6 text-center">
                                             <div class="flex items-center justify-center space-x-2">
                                                 <a href="{{ route('admin.image.show', $image->id) }}"
@@ -265,7 +279,7 @@
                                                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus gambar ini? Ini akan menghapusnya secara permanen.');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
+                                                    <button type
                                                         class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors duration-200">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
@@ -275,7 +289,10 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="py-8 text-center text-gray-500">Belum ada gambar yang diunggah.
+                                        {{-- =================================== --}}
+                                        {{-- 3. UPDATE COLSPAN JADI 6 --}}
+                                        {{-- =================================== --}}
+                                        <td colspan="6" class="py-8 text-center text-gray-500">Belum ada gambar yang diunggah.
                                         </td>
                                     </tr>
                                 @endforelse
