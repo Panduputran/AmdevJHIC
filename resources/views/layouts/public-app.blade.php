@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="description"
         content="@yield('description', 'Situs web resmi SMK Amaliah 1 & 2 Ciawi-Bogor. Temukan informasi tentang jurusan, pendaftaran, fasilitas, dan berita terbaru.')">
-    <link rel="icon" type="image/png" href="{{ asset('assets/logo/am.png') }}">
+    <link rel="icon" type="image/webp" href="{{ asset('assets/logo/am.webp') }}">
 
     <title>@yield('title', 'SMK Amaliah 1 & 2')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -128,7 +128,7 @@
 
                     {{-- Grup 1: Logo & Nama (Kiri) --}}
                     <div class="flex-shrink-0 flex items-center space-x-4">
-                        <img src="{{ asset('assets/logo/amaliah.png') }}" alt="Logo SMK Amaliah" class="h-12 w-12">
+                        <img src="{{ asset('assets/logo/amaliah.webp') }}" alt="Logo SMK Amaliah" class="h-12 w-12">
                         <div class="flex flex-col">
                             <span class="text-gray-900 font-times text-base font-bold whitespace-nowrap">SMK AMALIAH
                                 1&2
@@ -407,7 +407,7 @@
                     <div class="space-y-6">
                         {{-- 1. Struktur Branding yang lebih rapi --}}
                         <a href="/" class="flex items-center gap-3">
-                            <img src="{{ asset('assets/logo/amaliah_white.png') }}" alt="Logo SMK Amaliah" class="h-10">
+                            <img src="{{ asset('assets/logo/amaliah_white.webp') }}" alt="Logo SMK Amaliah" class="h-10">
                             <div>
                                 <span class="text-white font-semibold text-lg leading-tight">SMK Amaliah 1 & 2</span>
                                 <span class="block text-gray-400 text-xs">Ciawi - Bogor</span>
