@@ -6,6 +6,7 @@
     <style>
         .hero-clip-path {
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), calc(100% - 4rem) 100%, 0 100%);
+            will-change: transform;
         }
 
         /* Aturan ini akan aktif jika lebar layar 768px atau kurang */
@@ -22,142 +23,172 @@
             $hasImages = isset($mainImages) && $mainImages->isNotEmpty();
         @endphp
         <main style="margin-top: 10px;">
-            <section class="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-                @if($hasImages && $latestNews->isNotEmpty())
-                    <div x-data="{
-                                                                                                        showVideo: false,
-                                                                                                        activeImageSlide: 1,
-                                                                                                        totalImageSlides: {{ $mainImages->count() }},
-                                                                                                        activeNewsSlide: 1,
-                                                                                                        totalNewsSlides: {{ $latestNews->count() }}
-                                                                                                     }" x-init="
-                                                                                                        setInterval(() => {
-                                                                                                            if (!showVideo) { // Animasi gambar hanya berjalan jika video tidak ditampilkan
-                                                                                                                activeImageSlide = activeImageSlide % totalImageSlides + 1
-                                                                                                            }
-                                                                                                        }, 5000);
-                                                                                                        setInterval(() => { activeNewsSlide = activeNewsSlide % totalNewsSlides + 1 }, 5000);
-                                                                                                     ">
+          <section class="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+    @if($hasImages && $latestNews->isNotEmpty())
+        <div x-data="{
+                showVideo: false,
+                activeImageSlide: 1,
+                totalImageSlides: {{ $mainImages->count() }},
+                activeNewsSlide: 1,
+                totalNewsSlides: {{ $latestNews->count() }}
+             }"
+             
+             {{-- ========================================================== --}}
+             {{-- PERBAIKAN 1: Menggabungkan 2 interval menjadi 1 --}}
+             {{-- ========================================================== --}}
+             x-init="
+                let heroSliderInterval = setInterval(() => {
+                    if (!showVideo) {
+                        activeImageSlide = activeImageSlide % totalImageSlides + 1;
+                        activeNewsSlide = activeNewsSlide % totalNewsSlides + 1;
+                    }
+                }, 5000);
+             ">
 
-                        <div class="relative h-[550px] overflow-hidden hero-clip-path rounded-3xl">
+            <div class="relative h-[550px] overflow-hidden hero-clip-path rounded-3xl">
 
-                            {{-- Kontainer Slider Gambar (Hanya tampil jika showVideo false) --}}
-                            <div x-show="!showVideo" class="w-full h-full">
-                                @foreach($mainImages as $image)
-                                    <div x-show="activeImageSlide === {{ $loop->iteration }}"
-                                        x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="opacity-0"
-                                        x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-1000"
-                                        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                        class="absolute inset-0">
-                                        <img src="{{ Storage::url($image->path) }}"
-                                            alt="{{ $image->description ?? $image->filename }}" class="w-full h-full object-cover">
-                                    </div>
-                                @endforeach
+                {{-- Kontainer Slider Gambar (Hanya tampil jika showVideo false) --}}
+                <div x-show="!showVideo" class="w-full h-full">
+                    
+                    {{-- ========================================================== --}}
+                    {{-- PERBAIKAN LCP: Tambahkan $loop --}}
+                    {{-- ========================================================== --}}
+                    @foreach($mainImages as $loop => $image)
+                        <div x-show="activeImageSlide === {{ $loop->iteration }}"
+                             
+                             {{-- ========================================================== --}}
+                             {{-- PERBAIKAN 2: Samakan durasi animasi menjadi 500ms --}}
+                             {{-- ========================================================== --}}
+                             x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0"
+                             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-500"
 
-                                {{-- Tombol "Watch Video" di Pojok Kanan Atas --}}
-                                <button @click="showVideo = true"
-                                    class="absolute top-6 right-6 z-20 flex items-center gap-2 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full hover:bg-black/70 transition-all duration-300">
-                                    <svg xmlns="https://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                        fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <span class="text-sm font-semibold">Watch Video</span>
-                                </button>
-                            </div>
+                             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                             class="absolute inset-0">
+                            
+                            <img src="{{ Storage::url($image->path) }}"
+                                 alt="{{ $image->description ?? $image->filename }}"
+                                 class="w-full h-full object-cover"
+                                 
+                                 {{-- ========================================================== --}}
+                                 {{-- PERBAIKAN LCP: Tambahkan fetchpriority dan loading --}}
+                                 {{-- ========================================================== --}}
+                                 @if($loop->first) fetchpriority="high" @endif
+                                 loading="eager"
+                            >
+                        </div>
+                    @endforeach
 
-                            {{-- Kontainer Iframe YouTube (Hanya tampil jika showVideo true) --}}
-                            <div x-show="showVideo" x-cloak class="w-full h-full">
-                                {{-- Iframe yang sudah dimodifikasi --}}
-                                <iframe class="w-full h-full"
-                                    :src="showVideo ? 'https://www.youtube.com/embed/STOhZZmY6Co?autoplay=1&mute=1&controls=0&loop=1&playlist=STOhZZmY6Co&rel=0&iv_load_policy=3&modestbranding=1' : ''"
-                                    title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="youtube"
-                                    allowfullscreen>
-                                </iframe>
+                    {{-- Tombol "Watch Video" di Pojok Kanan Atas --}}
+                    <button @click="showVideo = true"
+                        class="absolute top-6 right-6 z-20 flex items-center gap-2 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full hover:bg-black/70 transition-all duration-300">
+                        <svg xmlns="https://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span class="text-sm font-semibold">Watch Video</span>
+                    </button>
+                </div>
 
-                                {{-- Tombol "Close" untuk Video --}}
-                                <button @click="showVideo = false"
-                                    class="absolute top-6 right-6 z-20 flex items-center justify-center w-10 h-10 bg-black/50 backdrop-blur-sm text-white rounded-full hover:bg-black/70 transition-all duration-300">
-                                    <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </div>
+                {{-- Kontainer Iframe YouTube (Hanya tampil jika showVideo true) --}}
+                <div x-show="showVideo" x-cloak class="w-full h-full">
+                    {{-- Iframe yang sudah dimodifikasi --}}
+                    <iframe class="w-full h-full"
+                        :src="showVideo ? 'https://www.youtube.com/embed/STOhZZmY6Co?autoplay=1&mute=1&controls=0&loop=1&playlist=STOhZZmY6Co&rel=0&iv_load_policy=3&modestbranding=1' : ''"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="youtube"
+                        allowfullscreen>
+                    </iframe>
+
+                    {{-- Tombol "Close" untuk Video --}}
+                    <button @click="showVideo = false"
+                        class="absolute top-6 right-6 z-20 flex items-center justify-center w-10 h-10 bg-black/50 backdrop-blur-sm text-white rounded-full hover:bg-black/70 transition-all duration-300">
+                        <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            {{-- Bagian bawah (kartu berita dan logo) --}}
+            <div class="absolute bottom-12 left-8 md:left-12 z-10 w-[calc(100%-4rem)] max-w-md">
+
+                {{-- ========================================================== --}}
+                {{-- KODE LOGO ANDA (LENGKAP) --}}
+                {{-- ========================================================== --}}
+                <div class="bg-white/90 backdrop-blur-md border border-white/30 rounded-xl p-3 shadow-lg mb-4">
+                    <div class="flex items-center justify-between w-full">
+                        <div class="flex items-center justify-between w-full pr-2">
+                            <img src="{{ asset('assets/logo/infra.png') }}" alt="Logo Partner 1"
+                                class="h-7 object-contain transition duration-300">
+                            <img src="{{ asset('assets/logo/jh.png') }}" alt="Logo Partner 5"
+                                class="h-7 object-contain transition duration-300">
+                            <img src="{{ asset('assets/logo/komdigi.png') }}" alt="Logo Partner 2"
+                                class="h-7 object-contain transition duration-300">
+                            <img src="{{ asset('assets/logo/maspionit.png') }}" alt="Logo Partner 3"
+                                class="h-7 object-contain transition duration-300">
+                            <img src="{{ asset('assets/logo/gspark.png') }}" alt="Logo Partner 4"
+                                class="h-7 object-contain transition duration-300">
                         </div>
 
-                        {{-- Bagian bawah (kartu berita dan logo) tidak diubah --}}
-                        <div class="absolute bottom-12 left-8 md:left-12 z-10 w-[calc(100%-4rem)] max-w-md">
+                        <a href="https://jagoanhosting.com/" class="text-[#282829] hover:text-gray-600 transition-colors flex-shrink-0">
+                            <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
 
-                            <div class="bg-white/90 backdrop-blur-md border border-white/30 rounded-xl p-3 shadow-lg mb-4">
-                                <div class="flex items-center justify-between w-full">
-                                    <div class="flex items-center justify-between w-full pr-2">
-                                        <img src="{{ asset('assets/logo/infra.png') }}" alt="Logo Partner 1"
-                                            class="h-7 object-contain transition duration-300">
-                                        <img src="{{ asset('assets/logo/jh.png') }}" alt="Logo Partner 5"
-                                            class="h-7 object-contain transition duration-300">
-                                        <img src="{{ asset('assets/logo/komdigi.png') }}" alt="Logo Partner 2"
-                                            class="h-7 object-contain transition duration-300">
-                                        <img src="{{ asset('assets/logo/maspionit.png') }}" alt="Logo Partner 3"
-                                            class="h-7 object-contain transition duration-300">
-                                        <img src="{{ asset('assets/logo/gspark.png') }}" alt="Logo Partner 4"
-                                            class="h-7 object-contain transition duration-300">
-                                    </div>
+                {{-- Kontainer Slider Kartu Berita --}}
+                <div class="relative w-full h-auto min-h-[250px] overflow-hidden hero-clip-path ">
+                    
+                    {{-- ========================================================== --}}
+                    {{-- KODE BERITA ANDA (LENGKAP) --}}
+                    {{-- ========================================================== --}}
+                    @foreach($latestNews as $news)
+                        <div x-show="activeNewsSlide === {{ $loop->iteration }}"
+                            x-transition:enter="transition transform ease-in-out duration-500"
+                            x-transition:enter-start="opacity-0 translate-y-10"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition transform ease-in-out duration-500"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 -translate-y-10" class="absolute inset-0 w-full">
 
-                                    <a href="https://jagoanhosting.com/" class="text-[#282829] hover:text-gray-600 transition-colors flex-shrink-0">
-                                        <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9 5l7 7-7 7" />
-                                        </svg>
+                            <div
+                                class="flex flex-col h-full bg-white/90 backdrop-blur-lg p-6 rounded-2xl shadow-2xl border border-white/30">
+                                <h1 class="text-xl font-bold text-gray-900 leading-tight line-clamp-2">
+                                    {{ $news->title }}
+                                </h1>
+                                <p class="text-sm mt-2 text-gray-700 line-clamp-3 flex-grow">
+                                    {{ strip_tags($news->description) }}
+                                </p>
+                                <p class="text-xs font-medium text-gray-500 mt-4">
+                                    Diterbitkan
+                                    {{ \Carbon\Carbon::parse($news->date_published)->translatedFormat('d F Y') }}
+                                </p>
+                                <div class="mt-4">
+                                    <a href="{{ route('public.news.show', $news) }}"
+                                        class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-[#282829] px-4 py-2 rounded-full hover:bg-black transition-all duration-300 group">
+                                        Selengkapnya
+                                        <i
+                                            class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
                                     </a>
                                 </div>
                             </div>
-
-                            {{-- Kontainer Slider Kartu Berita --}}
-                            <div class="relative w-full h-auto min-h-[250px] overflow-hidden hero-clip-path ">
-                                @foreach($latestNews as $news)
-                                    <div x-show="activeNewsSlide === {{ $loop->iteration }}"
-                                        x-transition:enter="transition transform ease-in-out duration-500"
-                                        x-transition:enter-start="opacity-0 translate-y-10"
-                                        x-transition:enter-end="opacity-100 translate-y-0"
-                                        x-transition:leave="transition transform ease-in-out duration-500"
-                                        x-transition:leave-start="opacity-100 translate-y-0"
-                                        x-transition:leave-end="opacity-0 -translate-y-10" class="absolute inset-0 w-full">
-
-                                        <div
-                                            class="flex flex-col h-full bg-white/90 backdrop-blur-lg p-6 rounded-2xl shadow-2xl border border-white/30">
-                                            <h1 class="text-xl font-bold text-gray-900 leading-tight line-clamp-2">
-                                                {{ $news->title }}
-                                            </h1>
-                                            <p class="text-sm mt-2 text-gray-700 line-clamp-3 flex-grow">
-                                                {{ strip_tags($news->description) }}
-                                            </p>
-                                            <p class="text-xs font-medium text-gray-500 mt-4">
-                                                Diterbitkan
-                                                {{ \Carbon\Carbon::parse($news->date_published)->translatedFormat('d F Y') }}
-                                            </p>
-                                            <div class="mt-4">
-                                                <a href="{{ route('public.news.show', $news) }}"
-                                                    class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-[#282829] px-4 py-2 rounded-full hover:bg-black transition-all duration-300 group">
-                                                    Selengkapnya
-                                                    <i
-                                                        class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
                         </div>
-                    </div>
-                @else
-                    {{-- Fallback jika tidak ada data --}}
-                    <div class="relative h-[550px] overflow-hidden hero-clip-path rounded-3xl bg-black"></div>
-                @endif
-            </section>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @else
+        {{-- Fallback jika tidak ada data --}}
+        <div class="relative h-[550px] overflow-hidden hero-clip-path rounded-3xl bg-black"></div>
+    @endif
+</section>
 
             <section class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-16">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
