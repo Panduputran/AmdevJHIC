@@ -121,15 +121,15 @@
                 <div class="bg-white/90 backdrop-blur-md border border-white/30 rounded-xl p-3 shadow-lg mb-4">
                     <div class="flex items-center justify-between w-full">
                         <div class="flex items-center justify-between w-full pr-2">
-                            <img src="{{ asset('assets/logo/infra.png') }}" alt="Logo Partner 1"
+                            <img src="{{ asset('assets/logo/infra.webp') }}" alt="Logo Partner 1"
                                 class="h-7 object-contain transition duration-300">
-                            <img src="{{ asset('assets/logo/jh.png') }}" alt="Logo Partner 5"
+                            <img src="{{ asset('assets/logo/jh.webp') }}" alt="Logo Partner 5"
                                 class="h-7 object-contain transition duration-300">
-                            <img src="{{ asset('assets/logo/komdigi.png') }}" alt="Logo Partner 2"
+                            <img src="{{ asset('assets/logo/komdigi.webp') }}" alt="Logo Partner 2"
                                 class="h-7 object-contain transition duration-300">
-                            <img src="{{ asset('assets/logo/maspionit.png') }}" alt="Logo Partner 3"
+                            <img src="{{ asset('assets/logo/maspionit.webp') }}" alt="Logo Partner 3"
                                 class="h-7 object-contain transition duration-300">
-                            <img src="{{ asset('assets/logo/gspark.png') }}" alt="Logo Partner 4"
+                            <img src="{{ asset('assets/logo/gspark.webp') }}" alt="Logo Partner 4"
                                 class="h-7 object-contain transition duration-300">
                         </div>
 
@@ -1024,7 +1024,7 @@
                                 x-transition:enter-end="opacity-100 transform scale-100" class="absolute">
                                 <div
                                     class="w-64 h-64 sm:w-80 sm:h-80 bg-gray-400 rounded-full flex items-center justify-center text-gray-600 shadow-2xl">
-                                    <img src="{{ asset('assets/image/kepsek1.png') }}"
+                                    <img src="{{ asset('assets/image/kepsek1.webp') }}"
                                         class="w-full h-full object-cover rounded-full items-center"
                                         alt="Kepala Sekolah Amaliah 1">
                                 </div>
@@ -1036,7 +1036,7 @@
                                 style="display: none;">
                                 <div
                                     class="w-64 h-64 sm:w-80 sm:h-80 bg-gray-400 rounded-full flex items-center justify-center text-gray-600 shadow-2xl">
-                                    <img src="{{ asset('assets/image/kepsek2.png') }}"
+                                    <img src="{{ asset('assets/image/kepsek2.webp') }}"
                                         class="w-full h-full object-cover rounded-full items-center"
                                         alt="Kepala Sekolah Amaliah 2">
                                 </div>

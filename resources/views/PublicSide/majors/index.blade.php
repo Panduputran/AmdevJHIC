@@ -129,23 +129,23 @@
 
                     {{-- Bar Logo Jurusan --}}
                     <div class="mt-12 flex flex-wrap justify-center items-center gap-x-10 sm:gap-x-12 gap-y-6">
-                        <img src="{{ asset('assets/logo/Logo_Jurusan/pplg.png') }}" alt="Logo PPLG"
+                        <img src="{{ asset('assets/logo/Logo_Jurusan/pplg.webp') }}" alt="Logo PPLG"
                             class="h-12 lg:h-14 object-contain transition-transform duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/logo/Logo_Jurusan/tjkt.png') }}" alt="Logo TJKT"
+                        <img src="{{ asset('assets/logo/Logo_Jurusan/tjkt.webp') }}" alt="Logo TJKT"
                             class="h-12 lg:h-14 object-contain transition-transform duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/logo/Logo_Jurusan/animasi.png') }}" alt="Logo Animasi"
+                        <img src="{{ asset('assets/logo/Logo_Jurusan/animasi.webp') }}" alt="Logo Animasi"
                             class="h-12 lg:h-14 object-contain transition-transform duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/logo/Logo_Jurusan/dkv.png') }}" alt="Logo DKV"
+                        <img src="{{ asset('assets/logo/Logo_Jurusan/dkv.webp') }}" alt="Logo DKV"
                             class="h-12 lg:h-14 object-contain transition-transform duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/logo/Logo_Jurusan/mp.png') }}" alt="Logo MP"
+                        <img src="{{ asset('assets/logo/Logo_Jurusan/mp.webp') }}" alt="Logo MP"
                             class="h-12 lg:h-14 object-contain transition-transform duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/logo/Logo_Jurusan/ak.png') }}" alt="Logo AK"
+                        <img src="{{ asset('assets/logo/Logo_Jurusan/ak.webp') }}" alt="Logo AK"
                             class="h-12 lg:h-14 object-contain transition-transform duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/logo/Logo_Jurusan/lps.png') }}" alt="Logo LPS"
+                        <img src="{{ asset('assets/logo/Logo_Jurusan/lps.webp') }}" alt="Logo LPS"
                             class="h-12 lg:h-14 object-contain transition-transform duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/logo/Logo_Jurusan/br.png') }}" alt="Logo BR"
+                        <img src="{{ asset('assets/logo/Logo_Jurusan/br.webp') }}" alt="Logo BR"
                             class="h-12 lg:h-14 object-contain transition-transform duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/logo/Logo_Jurusan/dpb.png') }}" alt="Logo DPB"
+                        <img src="{{ asset('assets/logo/Logo_Jurusan/dpb.webp') }}" alt="Logo DPB"
                             class="h-12 lg:h-14 object-contain transition-transform duration-300 hover:scale-110">
                         {{-- Anda bisa menambahkan logo lainnya di sini --}}
                     </div>
