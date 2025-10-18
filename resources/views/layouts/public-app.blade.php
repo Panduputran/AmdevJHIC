@@ -8,9 +8,8 @@
     <link rel="icon" type="image/png" href="{{ asset('assets/logo/am.png') }}">
 
     <title>@yield('title', 'SMK Amaliah 1 & 2')</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- Tailwind CSS --}}
-    <script src="https://cdn.tailwindcss.com"></script>
 
     {{-- 2. PERFORMA: Preconnect ke domain penting untuk mempercepat handshake DNS, TCP, dan TLS --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
