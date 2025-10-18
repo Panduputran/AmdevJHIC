@@ -1,5 +1,5 @@
 @extends('layouts.public-app')
-
+@section('description', 'Selamat datang di SMK Amaliah. Kami memiliki jurusan TKJ, RPL, DKV, dan Akuntansi.')
 @section('title', 'SMK Amaliah 1 & 2')
 
 @section('content')

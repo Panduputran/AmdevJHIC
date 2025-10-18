@@ -5,6 +5,8 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description"
+        content="@yield('description', 'Situs web resmi SMK Amaliah 1 & 2 Ciawi-Bogor. Temukan informasi tentang jurusan, pendaftaran, fasilitas, dan berita terbaru.')">
     <link rel="icon" type="image/png" href="{{ asset('assets/logo/am.png') }}">
 
     <title>@yield('title', 'SMK Amaliah 1 & 2')</title>
@@ -17,7 +19,7 @@
     <link rel="preconnect" href="https://cdn.curator.io">
     <link rel="preconnect" href="https://www.youtube-nocookie.com">
 
-   
+
     {{-- Font Awesome --}}
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style"
         onload="this.onload=null;this.rel='stylesheet'">
@@ -364,6 +366,10 @@
             {{-- TOMBOL CEPAT & WIDGET (WHATSAPP, UP BUTTON, & ELFSIGHT AI) ----}}
             {{-- ================================================================= --}}
 
+            <!-- Elfsight AI Chatbot | Ama Dan Lia -->
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-26bf6423-b36c-42c5-a8db-b1c223ee9ec9" data-elfsight-app-lazy></div>
+            {{-- PERBAIKAN: Menambah jarak vertikal (space-y) dan posisi dari bawah (bottom) untuk desktop --}}
             <div
                 class="fixed bottom-[90px] lg:bottom-[100px] right-5 z-40 flex flex-col items-end space-y-4 lg:space-y-5">
 
