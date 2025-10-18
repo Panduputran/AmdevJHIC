@@ -3,46 +3,6 @@
 @section('title', 'SMK Amaliah 1 & 2')
 
 @section('content')
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        {{-- 1. SEO: Meta Description --}}
-        <meta name="description"
-            content="Selamat datang di SMK Amaliah 1 & 2 Ciawi, Sekolah Pusat Keunggulan. Temukan program keahlian unggulan, fasilitas modern, dan berita terbaru kami. Daftar online sekarang!">
-
-        {{-- 2. PERFORMA: Preconnect ke domain penting untuk mempercepat handshake DNS, TCP, dan TLS --}}
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preconnect" href="https://cdn.curator.io">
-        <link rel="preconnect" href="https://www.youtube-nocookie.com">
-
-        {{-- 3. PERFORMA: Memuat CSS non-kritis secara asinkron untuk menghilangkan render-blocking --}}
-        {{-- Font Awesome --}}
-        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" as="style"
-            onload="this.onload=null;this.rel='stylesheet'">
-        <noscript>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        </noscript>
-
-        {{-- Google Fonts: Poppins --}}
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" as="style"
-            onload="this.onload=null;this.rel='stylesheet'">
-        <noscript>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
-        </noscript>
-
-        {{-- Splide CSS --}}
-        <link rel="preload" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" as="style"
-            onload="this.onload=null;this.rel='stylesheet'">
-        <noscript>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-        </noscript>
-
-        {{-- 4. PERFORMA: Muat semua skrip dengan 'defer' agar tidak memblokir parsing HTML --}}
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    </head>
     <style>
         .hero-clip-path {
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), calc(100% - 4rem) 100%, 0 100%);
@@ -56,10 +16,8 @@
         }
     </style>
 
-    <body class="font-['Poppins'] bg-gray-100">
+    <div class="font-['Poppins'] bg-gray-100">
         @php
-            $amaliahGreen = '#63cd00';
-            $amaliahDark = '#282829';
             $amaliahBlue = '#E0E7FF';
             $hasImages = isset($mainImages) && $mainImages->isNotEmpty();
         @endphp
@@ -1089,7 +1047,7 @@
                         <div id="curator-feed-default-feed-layout"><a href="https://curator.io" target="_blank"
                                 class="crt-logo crt-tag">Powered by Curator.io</a></div>
 
-                        <!-- The Javascript can be moved to the end of the html page before the </body> tag -->
+                        <!-- The Javascript can be moved to the end of the html page before the </div> tag -->
                         <script type="text/javascript">
                             /* curator-feed-default-feed-layout */
                             (function () {
@@ -1165,7 +1123,5 @@
                 </div>
             </section>
         </main>
-    </body>
-
-    </html>
+    </div>
 @endsection
