@@ -1129,24 +1129,24 @@
                         {{-- KARTU INFORMASI DI ATAS PETA --}}
                         <div class="absolute bottom-10 left-10 right-10 bg-white rounded-2xl shadow-xl p-8">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                {{-- Alamat --}}
-                                <div>
-                                    <h4 class="text-sm font-bold text-gray-400 tracking-wider uppercase">Alamat</h4>
-                                    <p class="mt-2 text-gray-800 leading-relaxed">{{ $alamat }}</p>
-                                </div>
-                                {{-- Email & Phone --}}
-                                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                                    <div>
-                                        <h4 class="text-sm font-bold text-gray-400 tracking-wider uppercase">Email</h4>
-                                        <a href="mailto:{{ $email }}"
-                                            class="mt-2 text-gray-800 hover:text-green-600 transition-colors">{{ $email }}</a>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-sm font-bold text-gray-400 tracking-wider uppercase">Phone</h4>
-                                        <a href="tel:{{ $phone }}"
-                                            class="mt-2 text-gray-800 hover:text-green-600 transition-colors">{{ $phone }}</a>
-                                    </div>
-                                </div>
+                               {{-- Alamat --}}
+<div>
+    <p class="text-sm font-bold text-gray-400 tracking-wider uppercase">Alamat</p>
+    <p class="mt-2 text-gray-800 leading-relaxed">{{ $alamat }}</p>
+</div>
+{{-- Email & Phone --}}
+<div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
+    <div>
+        <p class="text-sm font-bold text-gray-400 tracking-wider uppercase">Email</p>
+        <a href="mailto:{{ $email }}"
+            class="mt-2 text-gray-800 hover:text-green-600 transition-colors">{{ $email }}</a>
+    </div>
+    <div>
+        <p class="text-sm font-bold text-gray-400 tracking-wider uppercase">Phone</p>
+        <a href="tel:{{ $phone }}"
+            class="mt-2 text-gray-800 hover:text-green-600 transition-colors">{{ $phone }}</a>
+    </div>
+</div>
                             </div>
                         </div>
 

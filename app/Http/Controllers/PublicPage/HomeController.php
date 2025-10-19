@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         // 2. Tentukan durasi cache (misal: 10 menit)
-        $cacheDuration = now()->addMinutes(1);
+        $cacheDuration = now()->addMinutes(5);
 
         // 3. Bungkus semua query dengan Cache::remember()
         $latestNews = Cache::remember('home_latest_news', $cacheDuration, function () {
