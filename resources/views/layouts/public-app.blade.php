@@ -16,8 +16,6 @@
     {{-- 2. PERFORMA: Preconnect ke domain penting untuk mempercepat handshake DNS, TCP, dan TLS --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.curator.io">
-
 
     {{-- Google Fonts: Poppins --}}
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" as="style"
@@ -150,7 +148,8 @@
 
                     {{-- Tombol Hamburger (Mobile) --}}
                     <div class="lg:hidden">
-                        <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-2xl text-gray-700 p-2">
+                        <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-2xl text-gray-700 p-2"
+                            aria-label="Buka menu navigasi" :aria-expanded="mobileMenuOpen.toString()">
                             <i class="fa-solid fa-bars" x-show="!mobileMenuOpen"></i>
                             <i class="fa-solid fa-times" x-show="mobileMenuOpen" x-cloak></i>
                         </button>
@@ -181,10 +180,10 @@
                                 News</a>
                         </div>
                     </div>
-                    <div class="relative group">
-                        <button class="nav-link"><a href="{{ route('public.majors.index') }}">Major
-                                Competency</a></button>
-                    </div>
+                    <a href="{{ route('public.majors.index') }}"
+                        class="nav-link {{ Request::is('majors*') ? 'nav-active' : '' }}">
+                        Major Competency
+                    </a>
                     <div class="relative group">
                         <button class="nav-link">Education Preview <i
                                 class="fa-solid fa-chevron-down ml-1.5 text-xs"></i></button>
@@ -198,10 +197,10 @@
                                 class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Extracurricular</a>
                         </div>
                     </div>
-                    <div class="relative group">
-                        <button class="nav-link"><a
-                                href="{{ route('public.facilities.index') }}">Facilities</a></button>
-                    </div>
+                    <a href="{{ route('public.facilities.index') }}"
+                        class="nav-link {{ Request::is('facilities*') ? 'nav-active' : '' }}">
+                        Facilities
+                    </a>
                     <div class="relative group">
                         <button class="nav-link">Help Center<i
                                 class="fa-solid fa-chevron-down ml-1.5 text-xs"></i></button>
@@ -251,13 +250,11 @@
 
                         </div>
                     </div>
-                    <div x-data="{ open: false }">
-                        <a href="{{ route('public.majors.index') }}">
-                            <button @click="open = !open"
-                                class="w-full flex justify-between items-center px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]"><span>Major
-                                    Competency</span></button>
-                        </a>
-                    </div>
+                    {{-- Ini adalah link, bukan dropdown --}}
+                    <a href="{{ route('public.majors.index') }}"
+                        class="block px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]">
+                        Major Competency
+                    </a>
                     <div x-data="{ open: false }">
                         <button @click="open = !open"
                             class="w-full flex justify-between items-center px-4 py-3 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#59E300]"><span>Education
@@ -330,8 +327,9 @@
                     <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </span>
-                    <button type="button" @click="searchModalOpen = false"
+                    <button type="button" @click="searchModalOpen = false" aria-label="Tutup pencarian"
                         class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                        <i class="fa-solid fa-times text-xl"></i>
                     </button>
                 </form>
             </div>
@@ -359,8 +357,7 @@
                 <div x-data="{ shown: false }"
                     x-init="window.addEventListener('scroll', () => { shown = window.scrollY > 300 })" x-show="shown"
                     x-transition>
-                    <button @click="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Kembali ke atas" {{--
-                        PERBAIKAN: Menambah ukuran tombol & ikon untuk desktop --}}
+                    <button @click="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Kembali ke atas"
                         class="w-12 h-12 lg:w-[65px] lg:h-[65px] rounded-full text-white shadow-lg flex items-center justify-center transition-transform hover:scale-110"
                         style="background-color: {{ $amaliahGreen }};">
                         <i class="fas fa-arrow-up text-xl lg:text-2xl"></i>
@@ -369,8 +366,7 @@
 
                 {{-- TOMBOL CEPAT WHATSAPP --}}
                 <a href="https://wa.me/{{ $whatsappNumber }}?text={{ urlencode($whatsappMessage) }}" target="_blank"
-                    rel="noopener noreferrer" aria-label="Hubungi via WhatsApp" {{-- PERBAIKAN: Menambah ukuran tombol &
-                    ikon untuk desktop --}}
+                    rel="noopener noreferrer" aria-label="Hubungi via WhatsApp"
                     class="w-12 h-12 lg:w-[65px] lg:h-[65px] rounded-full text-white shadow-lg flex items-center justify-center transition-transform hover:scale-110"
                     style="background-color: {{ $amaliahGreen }};">
                     <i class="fab fa-whatsapp text-xl lg:text-2xl"></i>
@@ -390,7 +386,8 @@
                     <div class="space-y-6">
                         {{-- 1. Struktur Branding yang lebih rapi --}}
                         <a href="/" class="flex items-center gap-3">
-                            <img src="{{ asset('assets/logo/amaliah_white.webp') }}" alt="Logo SMK Amaliah" class="h-10">
+                            <img src="{{ asset('assets/logo/amaliah_white.webp') }}" alt="Logo SMK Amaliah"
+                                class="h-10">
                             <div>
                                 <span class="text-white font-semibold text-lg leading-tight">SMK Amaliah 1 & 2</span>
                                 <span class="block text-gray-400 text-xs">Ciawi - Bogor</span>
@@ -405,21 +402,25 @@
                         {{-- 2. Ikon Sosial Media dengan efek hover modern --}}
                         <div class="flex items-center space-x-3">
                             <a href="https://youtube.com/@smkamaliahciawi?si=j67hYjVWMNc2F3vK" target="_blank"
+                                aria-label="Kunjungi YouTube SMK Amaliah"
                                 class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
                                 <i
                                     class="fab fa-youtube text-gray-400 text-xl group-hover:text-red-600 transition-colors"></i>
                             </a>
                             <a href="https://www.instagram.com/smkamaliah" target="_blank"
+                                aria-label="Kunjungi Instagram SMK Amaliah"
                                 class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
                                 <i
                                     class="fab fa-instagram text-gray-400 text-xl group-hover:text-pink-600 transition-colors"></i>
                             </a>
                             <a href="https://www.facebook.com/smk.amaliah.1.dan.2" target="_blank"
+                                aria-label="Kunjungi Facebook SMK Amaliah"
                                 class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
                                 <i
                                     class="fab fa-facebook-f text-gray-400 text-xl group-hover:text-blue-600 transition-colors"></i>
                             </a>
                             <a href="https://www.tiktok.com/@smk.amaliah?_t=ZS-90cdH7Gk5Ml&_r=1" target="_blank"
+                                aria-label="Kunjungi TikTok SMK Amaliah"
                                 class="group w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-white">
                                 <i
                                     class="fab fa-tiktok text-gray-400 text-xl group-hover:text-black transition-colors"></i>

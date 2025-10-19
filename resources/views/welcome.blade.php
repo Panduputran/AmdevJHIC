@@ -102,7 +102,7 @@
                     </iframe>
 
                     {{-- Tombol "Close" untuk Video --}}
-                    <button @click="showVideo = false"
+                    <button @click="showVideo = false" aria-label="Tutup video"
                         class="absolute top-6 right-6 z-20 flex items-center justify-center w-10 h-10 bg-black/50 backdrop-blur-sm text-white rounded-full hover:bg-black/70 transition-all duration-300">
                         <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2">
@@ -133,7 +133,7 @@
                                 class="h-7 object-contain transition duration-300">
                         </div>
 
-                        <a href="https://jagoanhosting.com/" class="text-[#282829] hover:text-gray-600 transition-colors flex-shrink-0">
+                        <a href="https://jagoanhosting.com/" aria-label="Lihat semua partner industri" class="text-[#282829] hover:text-gray-600 transition-colors flex-shrink-0">
                             <svg xmlns="https://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -872,7 +872,7 @@
                         {{-- Tombol Panah Kiri --}}
                         <button @click="scroll(-1)"
                             class="absolute top-1/2 -left-2 md:-left-8 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-10 hover:bg-opacity-80 transition"
-                            style="background-color: {{ $amaliahDark }};" id="testimonialbutton" role="presentation" aria-label="button">
+                            style="background-color: {{ $amaliahDark }};" id="testimonialbutton" role="presentation" aria-label="Testimoni sebelumnya">
                             <i class="fas fa-chevron-left text-white"></i>
                         </button>
                         {{-- Container yang bisa di-scroll --}}
@@ -915,7 +915,7 @@
                         {{-- Tombol Panah Kanan --}}
                         <button @click="scroll(1)"
                             class="absolute top-1/2 -right-2 md:-right-8 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-10 hover:bg-opacity-80 transition"
-                            style="background-color: {{ $amaliahDark }};" id="testimonialbutton" role="presentation" aria-label="button">
+                            style="background-color: {{ $amaliahDark }};" id="testimonialbutton" role="presentation" aria-label="Testimoni berikutnya">
                             <i class="fas fa-chevron-right text-white"></i>
                         </button>
                     </div>
