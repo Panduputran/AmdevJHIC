@@ -19,13 +19,6 @@ return Application::configure(basePath: dirname(__DIR__))
             'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
             'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         ]);
-
-        // +++ TAMBAHKAN BLOK INI +++
-        $middleware->web(append: [
-            \Spatie\ResponseCache\Middlewares\CacheResponse::class,
-        ]);
-        // +++ SAMPAI SINI +++
-
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
