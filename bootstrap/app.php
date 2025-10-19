@@ -12,7 +12,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         
-        // ✅ TAMBAHKAN BARIS INI UNTUK MEMPERBAIKI MASALAH "NOT SECURE"
         $middleware->trustProxies(at: '*'); 
 
         // Konfigurasi alias Anda yang sudah ada tetap di sini
@@ -20,6 +19,13 @@ return Application::configure(basePath: dirname(__DIR__))
             'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
             'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         ]);
+
+        // +++ TAMBAHKAN BLOK INI +++
+        $middleware->web(append: [
+            \Spatie\ResponseCache\Middlewares\CacheResponse::class,
+        ]);
+        // +++ SAMPAI SINI +++
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
