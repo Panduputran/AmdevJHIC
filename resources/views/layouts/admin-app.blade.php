@@ -184,11 +184,11 @@
                     <i class="fa-solid fa-link w-5 text-center"></i>
                     <span>CuratorIO</span>
                 </a>
-                <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700" href="#">
+                <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700" href="https://forms.gle/sveGZa9nd9uX62YE9">
                     <i class="fas fa-comments w-5 text-center"></i>
                     <span>Feedback</span>
                 </a>
-                <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700" href="#">
+                <a class="relative flex items-center space-x-3 p-2 rounded-md transition hover:bg-gray-700" href="https://app.jagoan.cloud/">
                     <i class="fas fa-cog w-5 text-center"></i>
                     <span>Settings</span>
                 </a>
