@@ -95,11 +95,11 @@
                 <div x-show="showVideo" x-cloak class="w-full h-full">
                     {{-- Iframe yang sudah dimodifikasi --}}
                     <iframe class="w-full h-full"
-                        :src="showVideo ? 'https://www.youtube.com/embed/STOhZZmY6Co?autoplay=1&mute=1&controls=0&loop=1&playlist=STOhZZmY6Co&rel=0&iv_load_policy=3&modestbranding=1' : ''"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="youtube"
-                        allowfullscreen>
-                    </iframe>
+        :src="showVideo ? 'https://www.youtube-nocookie.com/embed/STOhZZmY6Co?autoplay=1&mute=1&controls=0&loop=1&playlist=STOhZZmY6Co&rel=0&iv_load_policy=3&modestbranding=1' : ''" 
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+</iframe>
 
                     {{-- Tombol "Close" untuk Video --}}
                     <button @click="showVideo = false" aria-label="Tutup video"
@@ -733,12 +733,9 @@
                                                           Catatan: padding-top: 56.25% adalah hasil dari 9 / 16,
                                                           yang menciptakan rasio aspek 16:9 yang responsif.
                                                         -->
-                            <iframe class="absolute top-0 left-0 w-full h-full rounded-xl shadow-2xl"
-                                src="https://www.youtube.com/embed/STOhZZmY6Co?si=34QAmdyIwXbAXs-7&amp;controls=0"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" title="youtube" allowfullscreen>
-                            </iframe>
+                        <iframe class="absolute top-0 left-0 w-full h-full rounded-xl shadow-2xl"
+                         src="https://www.youtube-nocookie.com/embed/STOhZZmY6Co?si=34QAmdyIwXbAXs-7&amp;controls=0" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen> 
+                        </iframe>
                         </div>
                     </div>
 
