@@ -95,6 +95,7 @@
             /* Bergerak 20px ke bawah */
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
+
         .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0);
@@ -138,7 +139,7 @@
             text-align: center;
         }
 
-        
+
         .loader-spinner {
             width: 60px;
             /* Lebih besar */
@@ -148,7 +149,7 @@
             border-top: 6px solid var(--loader-primary-color);
             /* Warna utama yang berputar */
             border-radius: 50%;
-           animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
             /* Kombinasi animasi */
         }
 
@@ -166,7 +167,7 @@
 
         }
 
-       
+
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -200,21 +201,23 @@
 <script>
 
 
-   
-    window.onload = function () {
 
-       
+    // Fungsi untuk menyembunyikan loader
+    function hideLoader() {
         const loader = document.getElementById('loader-wrapper');
 
-       
-        loader.classList.add('hidden');
+        // Pastikan loader-nya ada
+        if (loader) {
+            loader.classList.add('hidden');
 
-       
-        setTimeout(() => {
-          
-            loader.style.display = 'none'; /
-        }, 500); 
+            // Hapus dari DOM setelah animasi transisi selesai
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 700); // 700ms = durasi transisi fade-out di CSS Anda
+        }
+    }
 
+    setTimeout(hideLoader, 3000); // 10000 milidetik = 10 detik
 </script>
 
 <script>
