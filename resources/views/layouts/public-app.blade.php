@@ -88,8 +88,172 @@
             border-bottom: 2px solid #63cd00;
             padding-bottom: 4px;
         }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            /* Bergerak 20px ke bawah */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        :root {
+            --loader-bg-color: #ffffff;
+            --loader-primary-color: #59E300;
+            --loader-secondary-color: #E6F7F5;
+            --loader-text-color: #333333;
+        }
+
+
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: var(--loader-bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.7s ease-out, visibility 0.7s ease-out;
+            /* Transisi lebih panjang */
+        }
+
+        #loader-wrapper.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        
+        .loader-spinner {
+            width: 60px;
+            /* Lebih besar */
+            height: 60px;
+            border: 6px solid var(--loader-secondary-color);
+            /* Warna dasar spinner */
+            border-top: 6px solid var(--loader-primary-color);
+            /* Warna utama yang berputar */
+            border-radius: 50%;
+           animation: spin 1s linear infinite;
+            /* Kombinasi animasi */
+        }
+
+        /* Animasi untuk teks */
+        .loader-message {
+            margin-top: 20px;
+            /* Jarak dari spinner */
+            font-family: 'Poppins', sans-serif;
+            /* Ganti dengan font web Anda jika sudah dimuat */
+            font-size: 1.1rem;
+            color: var(--loader-text-color);
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInMessage 1s ease-out 0.8s forwards;
+
+        }
+
+       
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        @keyframes fadeInMessage {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
+<div id="loader-wrapper">
+    <div class="loader-content">
+        <div class="loader-spinner"></div>
+        <p class="loader-message">Tenang, pengalaman terbaik sedang kami siapkan untuk Anda.</p>
+    </div>
+</div>
+<script>
+
+
+   
+    window.onload = function () {
+
+       
+        const loader = document.getElementById('loader-wrapper');
+
+       
+        loader.classList.add('hidden');
+
+       
+        setTimeout(() => {
+          
+            loader.style.display = 'none'; /
+        }, 500); 
+
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // Pilih semua section yang ingin dianimasikan
+        const sections = document.querySelectorAll('.fade-in-section');
+
+        // Opsi untuk IntersectionObserver
+        const options = {
+            root: null, // 'null' berarti viewport browser
+            rootMargin: '0px',
+            threshold: 0.1 // Memicu saat 10% section terlihat
+        };
+
+        // Callback function yang akan dijalankan saat section terlihat
+        const callback = (entries, observer) => {
+            entries.forEach(entry => {
+                // Jika elemen masuk ke viewport
+                if (entry.isIntersecting) {
+                    // Tambahkan kelas .is-visible
+                    entry.target.classList.add('is-visible');
+
+                    // (Opsional) Berhenti mengamati elemen ini setelah animasinya berjalan
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        // Buat observer baru
+        const observer = new IntersectionObserver(callback, options);
+
+        // Minta observer untuk mengamati setiap section
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+    });
+</script>
 
 <body class="bg-gray-50 Poppins">
     @php
@@ -195,6 +359,15 @@
                                 Programs</a>
                             <a href="{{ route('public.extracurricular.index') }}"
                                 class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Extracurricular</a>
+                            <a href="" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">AM
+                                Exam</a>
+                            <a href="https://lms.smkamaliah.sch.id/"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">E-Learning</a>
+                            <a href="https://elib.smkamaliah.sch.id/"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">E-Library</a>
+                            <a href="https://yourdisc710.itch.io/amaliah-tour"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Virtual
+                                Tour</a>
                         </div>
                     </div>
                     <a href="{{ route('public.facilities.index') }}"
