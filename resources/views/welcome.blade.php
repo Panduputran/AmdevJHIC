@@ -30,7 +30,7 @@
             $hasImages = isset($mainImages) && $mainImages->isNotEmpty();
         @endphp
         <main style="margin-top: 10px;">
-            <section class="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-4 fade-in-section">
+            <section class="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-4 ">
                 @if($hasImages && $latestNews->isNotEmpty())
                     <div x-data="{
                                                                                         showVideo: false,
@@ -192,7 +192,7 @@
                 @endif
             </section>
 
-            <section class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-16 fade-in-section">
+            <section class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-16">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
                     @php
