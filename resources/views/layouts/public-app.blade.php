@@ -192,12 +192,7 @@
         }
     </style>
 </head>
-<div id="loader-wrapper">
-    <div class="loader-content">
-        <div class="loader-spinner"></div>
-        <p class="loader-message">Tenang, pengalaman terbaik sedang kami siapkan untuk Anda.</p>
-    </div>
-</div>
+
 <script>
 
 
@@ -552,7 +547,13 @@
             @yield('content')
         </main>
 
-        <footer style="background-color: {{ $amaliahDark }};">
+        {{--
+        Saya memperbaiki 'fade-in-section' yang sebelumnya ada di dalam atribut 'style'.
+        Sekarang 'fade-in-section' ada di atribut 'class' agar bisa berfungsi.
+        --}}
+        <footer style="background-color: {{ $amaliahDark }};" class="fade-in-section">
+
+            {{-- Wrapper Utama Konten --}}
             <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
                 {{-- Konten Utama Footer (Multi-kolom) --}}
@@ -627,7 +628,7 @@
                     <div>
                         <h4 class="font-semibold text-white tracking-wider uppercase">Informasi</h4>
                         <ul class="mt-4 space-y-3 text-sm">
-                            <li><a href="https://ppdb.smkamaliah.sch.id/login   "
+                            <li><a href="https://ppdb.smkamaliah.sch.id/login   "
                                     class="text-gray-400 hover:text-white hover:translate-x-1 block transition-all duration-300">Info
                                     PPDB</a></li>
                             <li><a href="{{ route('public.facilities.index') }}"
@@ -665,11 +666,69 @@
                         </div>
                     </div>
 
-                </div>
-            </div>
+                </div> {{--
+                ============================================================
+                == BAGIAN TAMBAHAN: Logo Partner/Sponsor (Sesuai Permintaan) ==
+                ============================================================
+                Ditempatkan setelah grid 4-kolom, tapi di dalam wrapper utama.
+                Ini persis seperti struktur di gambar referensi.
+                --}}
+                {{--
+                ============================================================
+                == BAGIAN LOGO PARTNER (DIMODIFIKASI) ==
+                ============================================================
+                --}}
+                <div class="mt-16 pt-8 border-t border-gray-800">
+                    <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
 
-            {{-- Bagian Copyright di Bawah --}}
-            {{-- 4. Pemisah visual dan struktur copyright yang lebih profesional --}}
+                        {{--
+                        PENYESUAIAN:
+                        1. Tag <a> kini memiliki background putih (bg-white), padding (p-2), dan sudut (rounded-md).
+                            2. Efek opacity dipindahkan ke tag <a> agar background-nya tidak ikut transparan.
+                                3. Ukuran <img> diubah dari h-8 menjadi h-12.
+                                --}}
+
+                                {{-- Contoh Placeholder 2 (Infra) --}}
+                                <a href="#" target="_blank" rel="noopener" aria-label="Infra"
+                                    class="block bg-white p-2 rounded-md opacity-70 hover:opacity-100 transition-opacity duration-300">
+                                    <img src="{{ asset('assets/logo/infra.webp') }}" alt="Logo Infra" class="h-12">
+                                </a>
+
+                                {{-- Contoh Placeholder 1 (Jagoan Hosting) --}}
+                                <a href="#" target="_blank" rel="noopener" aria-label="Jagoan Hosting"
+                                    class="block bg-white p-2 rounded-md opacity-70 hover:opacity-100 transition-opacity duration-300">
+                                    <img src="{{ asset('assets/logo/jh.webp') }}" alt="Logo Jagoan Hosting"
+                                        class="h-12">
+                                </a>
+
+                                
+
+                                {{-- Contoh Placeholder 3 (Galileo) --}}
+                                <a href="#" target="_blank" rel="noopener" aria-label="Galileo"
+                                    class="block bg-white p-2 rounded-md opacity-70 hover:opacity-100 transition-opacity duration-300">
+                                    <img src="{{ asset('assets/logo/komdigi.webp') }}" alt="Logo Galileo" class="h-12">
+                                </a>
+
+                                {{-- Contoh Placeholder 4 (Kominfo) --}}
+                                <a href="#" target="_blank" rel="noopener" aria-label="Kominfo"
+                                    class="block bg-white p-2 rounded-md opacity-70 hover:opacity-100 transition-opacity duration-300">
+                                    <img src="{{ asset('assets/logo/maspionit.webp') }}" alt="Logo Kominfo"
+                                        class="h-12">
+                                </a>
+
+                                {{-- Contoh Placeholder 5 (Spark) --}}
+                                <a href="#" target="_blank" rel="noopener" aria-label="Spark"
+                                    class="block bg-white p-2 rounded-md opacity-70 hover:opacity-100 transition-opacity duration-300">
+                                    <img src="{{ asset('assets/logo/gspark.webp') }}" alt="Logo Spark" class="h-12">
+                                </a>
+
+                                {{-- Tambahkan logo lain di sini jika perlu --}}
+
+                    </div>
+                </div>
+                {{-- === AKHIR BAGIAN TAMBAHAN === --}}
+
+            </div> {{-- Bagian Copyright di Bawah (Tidak ada perubahan di sini) --}}
             <div class="border-t border-gray-800">
                 <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <div class="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-4">
@@ -683,8 +742,8 @@
                     </div>
                 </div>
             </div>
-        </footer>
 
+        </footer>
 
 </body>
 
