@@ -439,6 +439,15 @@
                                 Programs</a>
                             <a href="{{ route('public.extracurricular.index') }}"
                                 class="block px-4 py-2 text-gray-600 rounded-md hover:bg-gray-100 hover:text-[#59E300]">Extracurriculars</a>
+                            <a href="" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">AM
+                                Exam</a>
+                            <a href="https://lms.smkamaliah.sch.id/"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">E-Learning</a>
+                            <a href="https://elib.smkamaliah.sch.id/"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">E-Library</a>
+                            <a href="https://yourdisc710.itch.io/amaliah-tour"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#59E300]">Virtual
+                                Tour</a>
                         </div>
                     </div>
                     <a href="{{ route('public.facilities.index') }}"
@@ -701,7 +710,7 @@
                                         class="h-12">
                                 </a>
 
-                                
+
 
                                 {{-- Contoh Placeholder 3 (Galileo) --}}
                                 <a href="#" target="_blank" rel="noopener" aria-label="Galileo"

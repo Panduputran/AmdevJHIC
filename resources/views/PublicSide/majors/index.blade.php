@@ -27,6 +27,12 @@
         .custom-mt {
             margin-top: -30px;
         }
+
+        @media (max-width: 768px) {
+            .custom-none {
+                border-radius: 0px:
+            }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
@@ -86,9 +92,9 @@
                 </div>
                 {{-- BAGIAN 2: CARD FOKUS SEKOLAH --}}
                 <div class="relative z-20 -mt-16 max-w-5xl mx-auto fade-in-section">
-                    <div class="rounded-2xl shadow-xl p-8" style="background-color: {{ $amaliahDark }};">
+                    <div class="shadow-xl p-8 custom-none bg-[{{ $amaliahDark }}] rounded-none md:rounded-2xl">
 
-                        {{-- MODIFIKASI: Grid 2 kolom (md:grid-cols-2) --}}
+                        {{-- Grid 2 kolom di layar sedang ke atas --}}
                         <div
                             class="grid grid-cols-1 md:grid-cols-2 gap-8 text-white divide-y divide-gray-700 md:divide-y-0">
                             @foreach ($schoolFocus as $item)
@@ -108,6 +114,7 @@
 
                     </div>
                 </div>
+
 
             </div>
         </section>
@@ -159,25 +166,25 @@
 
                             {{-- Tombol "Semua" (Ditambahkan kembali) --}}
                             <button @click="activeTab = 'all'" :class="{
-                                'bg-[#63cd00] text-white shadow-lg': activeTab === 'all',
-                                'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'all'
-                            }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                        'bg-[#63cd00] text-white shadow-lg': activeTab === 'all',
+                                        'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'all'
+                                    }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
                                 Semua
                             </button>
 
                             {{-- Tombol "SMK Amaliah 1" --}}
                             <button @click="activeTab = 'SMK Amaliah 1'" :class="{
-                                'bg-[#63cd00] text-white shadow-lg': activeTab === 'SMK Amaliah 1',
-                                'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'SMK Amaliah 1'
-                            }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                        'bg-[#63cd00] text-white shadow-lg': activeTab === 'SMK Amaliah 1',
+                                        'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'SMK Amaliah 1'
+                                    }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
                                 SMK Amaliah 1
                             </button>
 
                             {{-- Tombol "SMK Amaliah 2" --}}
                             <button @click="activeTab = 'SMK Amaliah 2'" :class="{
-                                'bg-[#63cd00] text-white shadow-lg': activeTab === 'SMK Amaliah 2',
-                                'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'SMK Amaliah 2'
-                            }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
+                                        'bg-[#63cd00] text-white shadow-lg': activeTab === 'SMK Amaliah 2',
+                                        'bg-white text-[#282829] hover:bg-gray-200': activeTab !== 'SMK Amaliah 2'
+                                    }" class="px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300">
                                 SMK Amaliah 2
                             </button>
 
@@ -334,36 +341,36 @@
             $phone = '123-456-7890';
         @endphp
 
-            <section class="bg-gray-50 py-16 sm:py-24 fade-in-section">
-                <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="bg-gray-50 py-16 sm:py-24 fade-in-section">
+            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                    {{-- Tombol Virtual Tour di Atas --}}
-                    <div class="text-center mb-10">
-                        <a href="https://yourdisc710.itch.io/amaliah-tour"
-                            class="inline-flex items-center bg-white border border-gray-300 rounded-full px-8 py-4 text-base font-semibold shadow-md hover:shadow-lg hover:border-gray-400 transition-all duration-300 group">
-                            <span class="text-gray-800">Mau Lihat SMK Amaliah?</span>
-                            <span class="ml-2 font-bold" style="color: {{ $amaliahGreen }};">Masuk Ke Virtual Tour!</span>
-                            <div
-                                class="ml-4 bg-white rounded-full p-2 flex items-center justify-center border border-gray-300 group-hover:border-gray-400 transition-all">
-                                <i class="fas fa-chevron-right text-sm" style="color: {{ $amaliahGreen }};"></i>
-                            </div>
-                        </a>
-                    </div>
-
-                    {{-- Container Utama untuk Peta dan Info --}}
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-
-                        {{-- KODE IFRAME GOOGLE MAPS --}}
-                        {{-- Pastikan Anda mengganti src="..." dengan kode embed Anda --}}
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.945187355167!2d106.8462900750414!3d-6.653716393341009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c8eec16c788f%3A0x4680dbde73e8b763!2sSMK%20Amaliah%201%20dan%202%20Ciawi!5e0!3m2!1sid!2sid!4v1759652507072!5m2!1sid!2sid"
-                            width="1280" height="600" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        {{-- KARTU INFORMASI DI ATAS PETA --}}
-
-                    </div>
+                {{-- Tombol Virtual Tour di Atas --}}
+                <div class="text-center mb-10">
+                    <a href="https://yourdisc710.itch.io/amaliah-tour"
+                        class="inline-flex items-center bg-white border border-gray-300 rounded-full px-8 py-4 text-base font-semibold shadow-md hover:shadow-lg hover:border-gray-400 transition-all duration-300 group">
+                        <span class="text-gray-800">Mau Lihat SMK Amaliah?</span>
+                        <span class="ml-2 font-bold" style="color: {{ $amaliahGreen }};">Masuk Ke Virtual Tour!</span>
+                        <div
+                            class="ml-4 bg-white rounded-full p-2 flex items-center justify-center border border-gray-300 group-hover:border-gray-400 transition-all">
+                            <i class="fas fa-chevron-right text-sm" style="color: {{ $amaliahGreen }};"></i>
+                        </div>
+                    </a>
                 </div>
-            </section>
+
+                {{-- Container Utama untuk Peta dan Info --}}
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+
+                    {{-- KODE IFRAME GOOGLE MAPS --}}
+                    {{-- Pastikan Anda mengganti src="..." dengan kode embed Anda --}}
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.945187355167!2d106.8462900750414!3d-6.653716393341009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c8eec16c788f%3A0x4680dbde73e8b763!2sSMK%20Amaliah%201%20dan%202%20Ciawi!5e0!3m2!1sid!2sid!4v1759652507072!5m2!1sid!2sid"
+                        width="1280" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    {{-- KARTU INFORMASI DI ATAS PETA --}}
+
+                </div>
+            </div>
+        </section>
     </body>
 
     </html>

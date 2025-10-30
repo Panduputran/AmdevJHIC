@@ -29,40 +29,33 @@
                 </div>
             @endif
         </header>
-        <div style="background-color: #2D2D2D;">
-            <div class="max-w-screen-xl h-[70px] mx-auto px-4 sm:px-6 lg:px-8">
-                {{-- Menggunakan h-full dan flex items-center untuk membuat konten di tengah vertikal --}}
-                <div class="h-full flex items-center">
-                    <nav class="flex" aria-label="Breadcrumb">
-                        {{-- Text-lg untuk memperbesar teks --}}
-                        <ol class="inline-flex items-center space-x-2 md:space-x-3 text-lg">
+        <div class="bg-[#2D2D2D]">
+            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 h-auto py-3">
+                <div class="flex items-center overflow-hidden">
+                    <nav class="flex w-full text-sm sm:text-base md:text-lg" aria-label="Breadcrumb">
+                        <ol class="flex items-center space-x-1 sm:space-x-2 md:space-x-3 w-full overflow-hidden">
                             {{-- 1. Home --}}
-                            <li class="inline-flex items-center">
-                                <a href="/"
-                                    class="inline-flex items-center font-medium text-gray-300 hover:text-white transition-colors">
+                            <li class="inline-flex items-center flex-shrink-0">
+                                <a href="/" class="font-medium text-gray-300 hover:text-white transition-colors">
                                     Home
                                 </a>
                             </li>
 
-                            {{-- 2. News (Diperbaiki agar mengarah ke index berita) --}}
-                            <li>
-                                <div class="flex items-center">
-                                    <i class="fas fa-chevron-right text-white text-xs"></i>
-                                    {{-- Menggunakan route('public.news.index') --}}
-                                    <a href="{{ route('public.news.index') }}"
-                                        class="ml-2 font-medium text-gray-300 hover:text-white md:ml-3 transition-colors">News</a>
-                                </div>
+                            {{-- 2. News --}}
+                            <li class="inline-flex items-center flex-shrink-0">
+                                <i class="fas fa-chevron-right text-gray-300 text-xs mx-1 sm:mx-2"></i>
+                                <a href="{{ route('public.news.index') }}"
+                                    class="font-medium text-gray-300 hover:text-white transition-colors">
+                                    News
+                                </a>
                             </li>
 
-                            {{-- 3. Judul Berita Saat Ini (Aktif) --}}
-                            <li aria-current="page">
-                                <div class="flex items-center">
-                                    <i class="fas fa-chevron-right text-white text-xs"></i>
-                                    {{-- Menggunakan Judul Berita dan warna aktif (hijau) --}}
-                                    <span class="ml-2 font-medium md:ml-3 truncate max-w-xs" style="color: #ffffff;">
-                                        {{ $news->title }}
-                                    </span>
-                                </div>
+                            {{-- 3. Judul berita --}}
+                            <li class="inline-flex items-center min-w-0 flex-1">
+                                <i class="fas fa-chevron-right text-gray-300 text-xs flex-shrink-0 mx-1 sm:mx-2"></i>
+                                <span class="font-medium text-white truncate block" title="{{ $news->title }}">
+                                    {{ $news->title }}
+                                </span>
                             </li>
                         </ol>
                     </nav>
@@ -109,7 +102,7 @@
                     <div x-data="{ modalOpen: false, modalImage: '' }">
                         {{-- Isi Konten Artikel --}}
                         <article class="prose prose-lg max-w-none text-gray-800 leading-relaxed mb-12">
-                           {!! $news->description !!}
+                            {!! $news->description !!}
                         </article>
 
                         {{-- BAGIAN GALERI MINI (THUMBNAILS) --}}
@@ -208,7 +201,7 @@
 
             </div>
         </div>
-        </div>
+    </div>
     </div>
 
 @endsection

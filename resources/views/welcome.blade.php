@@ -1269,29 +1269,6 @@
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.945187355167!2d106.8462900750414!3d-6.653716393341009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c8eec16c788f%3A0x4680dbde73e8b763!2sSMK%20Amaliah%201%20dan%202%20Ciawi!5e0!3m2!1sid!2sid!4v1759652507072!5m2!1sid!2sid"
                             width="1280" height="600" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade" title="maps"></iframe>
-                        {{-- KARTU INFORMASI DI ATAS PETA --}}
-                        <div class="absolute bottom-10 left-10 right-10 bg-white rounded-2xl shadow-xl p-8">
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                {{-- Alamat --}}
-                                <div>
-                                    <p class="text-sm font-bold text-gray-400 tracking-wider uppercase">Alamat</p>
-                                    <p class="mt-2 text-gray-800 leading-relaxed">{{ $alamat }}</p>
-                                </div>
-                                {{-- Email & Phone --}}
-                                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                                    <div>
-                                        <p class="text-sm font-bold text-gray-400 tracking-wider uppercase">Email</p>
-                                        <a href="mailto:{{ $email }}"
-                                            class="mt-2 text-gray-800 hover:text-green-600 transition-colors">{{ $email }}</a>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-bold text-gray-400 tracking-wider uppercase">Phone</p>
-                                        <a href="tel:{{ $phone }}"
-                                            class="mt-2 text-gray-800 hover:text-green-600 transition-colors">{{ $phone }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
